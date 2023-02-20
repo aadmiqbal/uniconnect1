@@ -1,5 +1,6 @@
 image: jhipster/jhipster:v7.9.3
 
+
 variables:
   CI_IMG: "\"${CI_REGISTRY_IMAGE}:latest\""
   TP_URL: "${CI_PROJECT_NAMESPACE}.bham.team"
