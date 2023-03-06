@@ -26,12 +26,6 @@
         <dd>
           <span>{{ userModules.studyYear }}</span>
         </dd>
-        <dt><span jhiTranslate="teamprojectApp.userModules.subject">Subject</span></dt>
-        <dd>
-          <div *ngIf="userModules.subject">
-            <a [routerLink]="['/subjects', userModules.subject.id, 'view']">{{ userModules.subject.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -21,7 +21,9 @@
       "name": "Name",
       "studyYear": "Study Year",
       "bio": "Bio",
-      "pfp": "Pfp"
+      "pfp": "Pfp",
+      "subject": "Subject",
+      "optionalModules": "Optional Modules"
     }
   }
 }

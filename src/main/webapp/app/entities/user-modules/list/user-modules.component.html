@@ -56,12 +56,6 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="subject.id">
-            <div class="d-flex">
-              <span jhiTranslate="teamprojectApp.userModules.subject">Subject</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -73,11 +67,6 @@
           <td>{{ userModules.moduleName }}</td>
           <td>{{ userModules.optional }}</td>
           <td>{{ userModules.studyYear }}</td>
-          <td>
-            <div *ngIf="userModules.subject">
-              <a [routerLink]="['/subjects', userModules.subject.id, 'view']">{{ userModules.subject.id }}</a>
-            </div>
-          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

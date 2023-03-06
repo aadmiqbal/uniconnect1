@@ -24,10 +24,10 @@ public class Mentors implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "subject" }, allowSetters = true)
     private UserModules module;
 
     @ManyToOne
+    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
     private AppUsers mentorUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

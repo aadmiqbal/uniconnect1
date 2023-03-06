@@ -37,9 +37,6 @@ public class UserModules implements Serializable {
     @Column(name = "study_year", nullable = false)
     private Integer studyYear;
 
-    @ManyToOne
-    private Subjects subject;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -92,19 +89,6 @@ public class UserModules implements Serializable {
 
     public void setStudyYear(Integer studyYear) {
         this.studyYear = studyYear;
-    }
-
-    public Subjects getSubject() {
-        return this.subject;
-    }
-
-    public void setSubject(Subjects subjects) {
-        this.subject = subjects;
-    }
-
-    public UserModules subject(Subjects subjects) {
-        this.setSubject(subjects);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

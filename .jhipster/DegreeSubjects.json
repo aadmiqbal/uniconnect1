@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306192357",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "degree_subjects",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DegreeSubjects",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "degrees",
+      "otherEntityRelationshipName": "subject",
+      "relationshipName": "degree",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "subjects",
+      "relationshipName": "subject",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

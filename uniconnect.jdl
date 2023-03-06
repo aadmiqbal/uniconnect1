@@ -1,8 +1,20 @@
+entity Degrees{
+    degreeName String required
+}
+
+//Degree table, provides degree name
+
+
 entity Subjects {
     subjectName String required
 }
 
-//Subject table, provides subject name to modules
+//Subject table, provides subject name to degrees
+
+
+entity DegreeSubjects
+
+    //linking table for subjects and degrees
 
 entity UserModules {
     moduleName String required,
@@ -14,27 +26,27 @@ entity UserModules {
 //"Optional" field can help control what modules students automatically take
 
 entity AppUsers {
-	name String required,
-    studyYear Integer required max(5),
+    name String required,
+    studyYear Integer required min(1) max(5),
     bio String,
     pfp String
 }
 //Users table, takes subject name from subjects
 
-entity OptionalModuleLink
-//linking table for users and optional modules
+entity ModuleLink
+    //linking table for users and optional modules
 
-entity Mentors 
-//Mentors table, links user to a mentor identity, takes a module
+entity Mentors
+    //Mentors table, links user to a mentor identity, takes a module
 
 entity MentorLink
-//linking table for mentors and mentees
+    //linking table for mentors and mentees
 
 entity Mentees
-//Mentees table, links user to a mentee identity
+    //Mentees table, links user to a mentee identity
 
 entity Connections
-//Connections table, links users to each other (a connection)
+    //Connections table, links users to each other (a connection)
 
 entity UserGroups {
     groupName String required
@@ -42,7 +54,7 @@ entity UserGroups {
 //Groups table, provides group details
 
 entity UserGroupUsers
-//Linking table for groups and users
+    //Linking table for groups and users
 
 entity UserGroupAd {
     groupBio String
@@ -58,25 +70,28 @@ relationship ManyToOne {
     Connections {user1} to AppUsers,
     Connections {user2} to AppUsers,
     //setup of Connections table relationship with Users
-    
-    UserModules{subject} to Subjects,
+
+    AppUsers{subject} to Degrees,
     //setup of Modules relationship with Users
-    
-    OptionalModuleLink{optionalModule} to UserModules,
-    OptionalModuleLink{optionalModuleUser} to AppUsers,
+
+    DegreeSubjects{degree} to Degrees{subject},
+    DegreeSubjects{subject} to Subjects,
+
+    ModuleLink{optionalModule} to UserModules,
+    ModuleLink{optionalModuleUser} to AppUsers{optionalModules},
     //setup of Modules relationship with Users via OptionalModuleLink
-    
+
     Mentors{module} to UserModules,
     Mentors{mentorUser} to AppUsers,
     //setup of Mentors relationship with Modules and Users
-    
+
     MentorLink{mentor} to Mentors,
     MentorLink{mentee} to Mentees,
-    //setup of Mentors relationship with Mentees via Mentorlink
-    
+    //setup of Mentors relationship with Mentees via MentorLink
+
     Mentees{menteeUser} to AppUsers,
     //setup of Mentees relationship with Users
-    
+
     UserGroupUsers{group} to UserGroups,
     UserGroupUsers{user} to AppUsers
     //setup of Groups relationship with Users via GroupUsers

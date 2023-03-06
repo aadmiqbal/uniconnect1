@@ -9,21 +9,21 @@ export const sampleWithRequiredData: IAppUsers = {
 export const sampleWithPartialData: IAppUsers = {
   id: 29658,
   name: 'Denar',
-  studyYear: 0,
+  studyYear: 1,
   pfp: 'strategy Consultant',
 };
 
 export const sampleWithFullData: IAppUsers = {
   id: 15989,
   name: 'Money Path Gold',
-  studyYear: 2,
+  studyYear: 3,
   bio: 'Naira Borders Borders',
   pfp: 'morph content Steel',
 };
 
 export const sampleWithNewData: NewAppUsers = {
   name: 'multi-state Customer-focused Directives',
-  studyYear: 2,
+  studyYear: 3,
   id: null,
 };
 

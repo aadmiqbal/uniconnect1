@@ -1,5 +1,6 @@
 package uk.ac.bham.teamproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
@@ -23,6 +24,7 @@ public class Mentees implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
     private AppUsers menteeUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

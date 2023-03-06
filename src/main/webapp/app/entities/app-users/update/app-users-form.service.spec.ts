@@ -24,6 +24,7 @@ describe('AppUsers Form Service', () => {
             studyYear: expect.any(Object),
             bio: expect.any(Object),
             pfp: expect.any(Object),
+            subject: expect.any(Object),
           })
         );
       });
@@ -38,6 +39,7 @@ describe('AppUsers Form Service', () => {
             studyYear: expect.any(Object),
             bio: expect.any(Object),
             pfp: expect.any(Object),
+            subject: expect.any(Object),
           })
         );
       });

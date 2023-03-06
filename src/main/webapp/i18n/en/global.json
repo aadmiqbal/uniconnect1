@@ -18,6 +18,9 @@
         "userGroups": "User Groups",
         "userGroupUsers": "User Group Users",
         "userGroupAd": "User Group Ad",
+        "degrees": "Degrees",
+        "degreeSubjects": "Degree Subjects",
+        "moduleLink": "Module Link",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

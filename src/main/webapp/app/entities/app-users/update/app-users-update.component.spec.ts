@@ -9,6 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { AppUsersFormService } from './app-users-form.service';
 import { AppUsersService } from '../service/app-users.service';
 import { IAppUsers } from '../app-users.model';
+import { IDegrees } from 'app/entities/degrees/degrees.model';
+import { DegreesService } from 'app/entities/degrees/service/degrees.service';
 
 import { AppUsersUpdateComponent } from './app-users-update.component';
 
@@ -18,6 +20,7 @@ describe('AppUsers Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let appUsersFormService: AppUsersFormService;
   let appUsersService: AppUsersService;
+  let degreesService: DegreesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,17 +43,43 @@ describe('AppUsers Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     appUsersFormService = TestBed.inject(AppUsersFormService);
     appUsersService = TestBed.inject(AppUsersService);
+    degreesService = TestBed.inject(DegreesService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call Degrees query and add missing value', () => {
       const appUsers: IAppUsers = { id: 456 };
+      const subject: IDegrees = { id: 15648 };
+      appUsers.subject = subject;
+
+      const degreesCollection: IDegrees[] = [{ id: 55106 }];
+      jest.spyOn(degreesService, 'query').mockReturnValue(of(new HttpResponse({ body: degreesCollection })));
+      const additionalDegrees = [subject];
+      const expectedCollection: IDegrees[] = [...additionalDegrees, ...degreesCollection];
+      jest.spyOn(degreesService, 'addDegreesToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ appUsers });
       comp.ngOnInit();
 
+      expect(degreesService.query).toHaveBeenCalled();
+      expect(degreesService.addDegreesToCollectionIfMissing).toHaveBeenCalledWith(
+        degreesCollection,
+        ...additionalDegrees.map(expect.objectContaining)
+      );
+      expect(comp.degreesSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const appUsers: IAppUsers = { id: 456 };
+      const subject: IDegrees = { id: 80230 };
+      appUsers.subject = subject;
+
+      activatedRoute.data = of({ appUsers });
+      comp.ngOnInit();
+
+      expect(comp.degreesSharedCollection).toContain(subject);
       expect(comp.appUsers).toEqual(appUsers);
     });
   });
@@ -120,6 +149,18 @@ describe('AppUsers Management Update Component', () => {
       expect(appUsersService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Compare relationships', () => {
+    describe('compareDegrees', () => {
+      it('Should forward to degreesService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(degreesService, 'compareDegrees');
+        comp.compareDegrees(entity, entity2);
+        expect(degreesService.compareDegrees).toHaveBeenCalledWith(entity, entity2);
+      });
     });
   });
 });

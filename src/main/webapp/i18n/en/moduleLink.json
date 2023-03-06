@@ -1,0 +1,25 @@
+{
+  "teamprojectApp": {
+    "moduleLink": {
+      "home": {
+        "title": "Module Links",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Module Link",
+        "createOrEditLabel": "Create or edit a Module Link",
+        "notFound": "No Module Links found"
+      },
+      "created": "A new Module Link is created with identifier {{ param }}",
+      "updated": "A Module Link is updated with identifier {{ param }}",
+      "deleted": "A Module Link is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Module Link {{ id }}?"
+      },
+      "detail": {
+        "title": "Module Link"
+      },
+      "id": "ID",
+      "optionalModule": "Optional Module",
+      "optionalModuleUser": "Optional Module User"
+    }
+  }
+}

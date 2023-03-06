@@ -13,8 +13,9 @@
     {
       "fieldName": "studyYear",
       "fieldType": "Integer",
-      "fieldValidateRules": ["required", "max"],
-      "fieldValidateRulesMax": "5"
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMax": "5",
+      "fieldValidateRulesMin": "1"
     },
     {
       "fieldName": "bio",
@@ -30,6 +31,18 @@
   "name": "AppUsers",
   "pagination": "infinite-scroll",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "degrees",
+      "relationshipName": "subject",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "moduleLink",
+      "otherEntityRelationshipName": "optionalModuleUser",
+      "relationshipName": "optionalModules",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "service": "no"
 }

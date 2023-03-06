@@ -1,5 +1,6 @@
 package uk.ac.bham.teamproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
@@ -26,6 +27,7 @@ public class UserGroupUsers implements Serializable {
     private UserGroups group;
 
     @ManyToOne
+    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
     private AppUsers user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

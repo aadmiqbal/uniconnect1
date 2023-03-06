@@ -1,5 +1,6 @@
 package uk.ac.bham.teamproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
@@ -23,9 +24,11 @@ public class Connections implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
     private AppUsers user1;
 
     @ManyToOne
+    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
     private AppUsers user2;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

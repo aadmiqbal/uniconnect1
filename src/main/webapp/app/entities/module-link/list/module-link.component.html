@@ -1,0 +1,103 @@
+<div>
+  <h2 id="page-heading" data-cy="ModuleLinkHeading">
+    <span jhiTranslate="teamprojectApp.moduleLink.home.title">Module Links</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="teamprojectApp.moduleLink.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-module-link"
+        [routerLink]="['/module-link/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="teamprojectApp.moduleLink.home.createLabel"> Create a new Module Link </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="moduleLinks?.length === 0">
+    <span jhiTranslate="teamprojectApp.moduleLink.home.notFound">No Module Links found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="moduleLinks && moduleLinks.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="optionalModule.id">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.moduleLink.optionalModule">Optional Module</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="optionalModuleUser.id">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.moduleLink.optionalModuleUser">Optional Module User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let moduleLink of moduleLinks; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/module-link', moduleLink.id, 'view']">{{ moduleLink.id }}</a>
+          </td>
+          <td>
+            <div *ngIf="moduleLink.optionalModule">
+              <a [routerLink]="['/user-modules', moduleLink.optionalModule.id, 'view']">{{ moduleLink.optionalModule.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="moduleLink.optionalModuleUser">
+              <a [routerLink]="['/app-users', moduleLink.optionalModuleUser.id, 'view']">{{ moduleLink.optionalModuleUser.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/module-link', moduleLink.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/module-link', moduleLink.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(moduleLink)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

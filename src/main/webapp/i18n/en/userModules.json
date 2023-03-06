@@ -20,8 +20,7 @@
       "id": "ID",
       "moduleName": "Module Name",
       "optional": "Optional",
-      "studyYear": "Study Year",
-      "subject": "Subject"
+      "studyYear": "Study Year"
     }
   }
 }

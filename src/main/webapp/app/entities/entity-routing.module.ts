@@ -59,6 +59,21 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'teamprojectApp.userGroupAd.home.title' },
         loadChildren: () => import('./user-group-ad/user-group-ad.module').then(m => m.UserGroupAdModule),
       },
+      {
+        path: 'degrees',
+        data: { pageTitle: 'teamprojectApp.degrees.home.title' },
+        loadChildren: () => import('./degrees/degrees.module').then(m => m.DegreesModule),
+      },
+      {
+        path: 'degree-subjects',
+        data: { pageTitle: 'teamprojectApp.degreeSubjects.home.title' },
+        loadChildren: () => import('./degree-subjects/degree-subjects.module').then(m => m.DegreeSubjectsModule),
+      },
+      {
+        path: 'module-link',
+        data: { pageTitle: 'teamprojectApp.moduleLink.home.title' },
+        loadChildren: () => import('./module-link/module-link.module').then(m => m.ModuleLinkModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

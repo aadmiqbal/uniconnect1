@@ -1,6 +1,9 @@
 package uk.ac.bham.teamproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -28,6 +31,7 @@ public class AppUsers implements Serializable {
     private String name;
 
     @NotNull
+    @Min(value = 1)
     @Max(value = 5)
     @Column(name = "study_year", nullable = false)
     private Integer studyYear;
@@ -37,6 +41,15 @@ public class AppUsers implements Serializable {
 
     @Column(name = "pfp")
     private String pfp;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "subjects" }, allowSetters = true)
+    private Degrees subject;
+
+    @OneToMany(mappedBy = "optionalModuleUser")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "optionalModule", "optionalModuleUser" }, allowSetters = true)
+    private Set<ModuleLink> optionalModules = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -103,6 +116,50 @@ public class AppUsers implements Serializable {
 
     public void setPfp(String pfp) {
         this.pfp = pfp;
+    }
+
+    public Degrees getSubject() {
+        return this.subject;
+    }
+
+    public void setSubject(Degrees degrees) {
+        this.subject = degrees;
+    }
+
+    public AppUsers subject(Degrees degrees) {
+        this.setSubject(degrees);
+        return this;
+    }
+
+    public Set<ModuleLink> getOptionalModules() {
+        return this.optionalModules;
+    }
+
+    public void setOptionalModules(Set<ModuleLink> moduleLinks) {
+        if (this.optionalModules != null) {
+            this.optionalModules.forEach(i -> i.setOptionalModuleUser(null));
+        }
+        if (moduleLinks != null) {
+            moduleLinks.forEach(i -> i.setOptionalModuleUser(this));
+        }
+        this.optionalModules = moduleLinks;
+    }
+
+    public AppUsers optionalModules(Set<ModuleLink> moduleLinks) {
+        this.setOptionalModules(moduleLinks);
+        return this;
+    }
+
+    public AppUsers addOptionalModules(ModuleLink moduleLink) {
+        this.optionalModules.add(moduleLink);
+        moduleLink.setOptionalModuleUser(this);
+        return this;
+    }
+
+    public AppUsers removeOptionalModules(ModuleLink moduleLink) {
+        this.optionalModules.remove(moduleLink);
+        moduleLink.setOptionalModuleUser(null);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

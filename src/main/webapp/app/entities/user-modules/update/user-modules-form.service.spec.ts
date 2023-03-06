@@ -23,7 +23,6 @@ describe('UserModules Form Service', () => {
             moduleName: expect.any(Object),
             optional: expect.any(Object),
             studyYear: expect.any(Object),
-            subject: expect.any(Object),
           })
         );
       });
@@ -37,7 +36,6 @@ describe('UserModules Form Service', () => {
             moduleName: expect.any(Object),
             optional: expect.any(Object),
             studyYear: expect.any(Object),
-            subject: expect.any(Object),
           })
         );
       });

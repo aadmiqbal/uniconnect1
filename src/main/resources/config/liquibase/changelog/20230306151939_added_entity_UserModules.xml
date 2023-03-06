@@ -23,9 +23,6 @@
             <column name="study_year" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="subject_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>

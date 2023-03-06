@@ -21,7 +21,6 @@ type UserModulesFormGroupContent = {
   moduleName: FormControl<IUserModules['moduleName']>;
   optional: FormControl<IUserModules['optional']>;
   studyYear: FormControl<IUserModules['studyYear']>;
-  subject: FormControl<IUserModules['subject']>;
 };
 
 export type UserModulesFormGroup = FormGroup<UserModulesFormGroupContent>;
@@ -50,7 +49,6 @@ export class UserModulesFormService {
       studyYear: new FormControl(userModulesRawValue.studyYear, {
         validators: [Validators.required, Validators.min(1), Validators.max(5)],
       }),
-      subject: new FormControl(userModulesRawValue.subject),
     });
   }
 

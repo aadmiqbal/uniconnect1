@@ -36,6 +36,14 @@
             </small>
             <small
               class="form-text text-danger"
+              *ngIf="editForm.get('studyYear')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              This field should be at least 1.
+            </small>
+            <small
+              class="form-text text-danger"
               *ngIf="editForm.get('studyYear')?.errors?.max"
               jhiTranslate="entity.validation.max"
               [translateValues]="{ max: 5 }"
@@ -60,6 +68,21 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="teamprojectApp.appUsers.pfp" for="field_pfp">Pfp</label>
           <input type="text" class="form-control" name="pfp" id="field_pfp" data-cy="pfp" formControlName="pfp" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.appUsers.subject" for="field_subject">Subject</label>
+          <select
+            class="form-control"
+            id="field_subject"
+            data-cy="subject"
+            name="subject"
+            formControlName="subject"
+            [compareWith]="compareDegrees"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="degreesOption" *ngFor="let degreesOption of degreesSharedCollection">{{ degreesOption.id }}</option>
+          </select>
         </div>
       </div>
 

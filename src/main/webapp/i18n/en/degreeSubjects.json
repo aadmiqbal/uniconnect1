@@ -1,0 +1,25 @@
+{
+  "teamprojectApp": {
+    "degreeSubjects": {
+      "home": {
+        "title": "Degree Subjects",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Degree Subjects",
+        "createOrEditLabel": "Create or edit a Degree Subjects",
+        "notFound": "No Degree Subjects found"
+      },
+      "created": "A new Degree Subjects is created with identifier {{ param }}",
+      "updated": "A Degree Subjects is updated with identifier {{ param }}",
+      "deleted": "A Degree Subjects is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Degree Subjects {{ id }}?"
+      },
+      "detail": {
+        "title": "Degree Subjects"
+      },
+      "id": "ID",
+      "degree": "Degree",
+      "subject": "Subject"
+    }
+  }
+}

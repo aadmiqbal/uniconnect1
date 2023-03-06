@@ -22,6 +22,7 @@ type AppUsersFormGroupContent = {
   studyYear: FormControl<IAppUsers['studyYear']>;
   bio: FormControl<IAppUsers['bio']>;
   pfp: FormControl<IAppUsers['pfp']>;
+  subject: FormControl<IAppUsers['subject']>;
 };
 
 export type AppUsersFormGroup = FormGroup<AppUsersFormGroupContent>;
@@ -45,10 +46,11 @@ export class AppUsersFormService {
         validators: [Validators.required],
       }),
       studyYear: new FormControl(appUsersRawValue.studyYear, {
-        validators: [Validators.required, Validators.max(5)],
+        validators: [Validators.required, Validators.min(1), Validators.max(5)],
       }),
       bio: new FormControl(appUsersRawValue.bio),
       pfp: new FormControl(appUsersRawValue.pfp),
+      subject: new FormControl(appUsersRawValue.subject),
     });
   }
 

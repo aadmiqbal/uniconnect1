@@ -59,6 +59,11 @@ public class CacheConfiguration {
             createCache(cm, uk.ac.bham.teamproject.domain.UserGroups.class.getName());
             createCache(cm, uk.ac.bham.teamproject.domain.UserGroupUsers.class.getName());
             createCache(cm, uk.ac.bham.teamproject.domain.UserGroupAd.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.AppUsers.class.getName() + ".optionalModules");
+            createCache(cm, uk.ac.bham.teamproject.domain.Degrees.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.Degrees.class.getName() + ".subjects");
+            createCache(cm, uk.ac.bham.teamproject.domain.DegreeSubjects.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.ModuleLink.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

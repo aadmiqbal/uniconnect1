@@ -9,8 +9,6 @@ import { of, Subject, from } from 'rxjs';
 import { UserModulesFormService } from './user-modules-form.service';
 import { UserModulesService } from '../service/user-modules.service';
 import { IUserModules } from '../user-modules.model';
-import { ISubjects } from 'app/entities/subjects/subjects.model';
-import { SubjectsService } from 'app/entities/subjects/service/subjects.service';
 
 import { UserModulesUpdateComponent } from './user-modules-update.component';
 
@@ -20,7 +18,6 @@ describe('UserModules Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let userModulesFormService: UserModulesFormService;
   let userModulesService: UserModulesService;
-  let subjectsService: SubjectsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,43 +40,17 @@ describe('UserModules Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     userModulesFormService = TestBed.inject(UserModulesFormService);
     userModulesService = TestBed.inject(UserModulesService);
-    subjectsService = TestBed.inject(SubjectsService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Subjects query and add missing value', () => {
-      const userModules: IUserModules = { id: 456 };
-      const subject: ISubjects = { id: 78960 };
-      userModules.subject = subject;
-
-      const subjectsCollection: ISubjects[] = [{ id: 27156 }];
-      jest.spyOn(subjectsService, 'query').mockReturnValue(of(new HttpResponse({ body: subjectsCollection })));
-      const additionalSubjects = [subject];
-      const expectedCollection: ISubjects[] = [...additionalSubjects, ...subjectsCollection];
-      jest.spyOn(subjectsService, 'addSubjectsToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ userModules });
-      comp.ngOnInit();
-
-      expect(subjectsService.query).toHaveBeenCalled();
-      expect(subjectsService.addSubjectsToCollectionIfMissing).toHaveBeenCalledWith(
-        subjectsCollection,
-        ...additionalSubjects.map(expect.objectContaining)
-      );
-      expect(comp.subjectsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const userModules: IUserModules = { id: 456 };
-      const subject: ISubjects = { id: 9187 };
-      userModules.subject = subject;
 
       activatedRoute.data = of({ userModules });
       comp.ngOnInit();
 
-      expect(comp.subjectsSharedCollection).toContain(subject);
       expect(comp.userModules).toEqual(userModules);
     });
   });
@@ -149,18 +120,6 @@ describe('UserModules Management Update Component', () => {
       expect(userModulesService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Compare relationships', () => {
-    describe('compareSubjects', () => {
-      it('Should forward to subjectsService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(subjectsService, 'compareSubjects');
-        comp.compareSubjects(entity, entity2);
-        expect(subjectsService.compareSubjects).toHaveBeenCalledWith(entity, entity2);
-      });
     });
   });
 });
