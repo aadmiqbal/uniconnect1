@@ -1,0 +1,26 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151941",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "optional_module_link",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "OptionalModuleLink",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "userModules",
+      "relationshipName": "optionalModule",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "appUsers",
+      "relationshipName": "optionalModuleUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

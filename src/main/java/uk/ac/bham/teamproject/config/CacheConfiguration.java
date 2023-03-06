@@ -48,6 +48,17 @@ public class CacheConfiguration {
             createCache(cm, uk.ac.bham.teamproject.domain.User.class.getName());
             createCache(cm, uk.ac.bham.teamproject.domain.Authority.class.getName());
             createCache(cm, uk.ac.bham.teamproject.domain.User.class.getName() + ".authorities");
+            createCache(cm, uk.ac.bham.teamproject.domain.Subjects.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.UserModules.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.AppUsers.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.OptionalModuleLink.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.Mentors.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.MentorLink.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.Mentees.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.Connections.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.UserGroups.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.UserGroupUsers.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.UserGroupAd.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

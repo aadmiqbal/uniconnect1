@@ -1,0 +1,24 @@
+{
+  "teamprojectApp": {
+    "mentees": {
+      "home": {
+        "title": "Mentees",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Mentees",
+        "createOrEditLabel": "Create or edit a Mentees",
+        "notFound": "No Mentees found"
+      },
+      "created": "A new Mentees is created with identifier {{ param }}",
+      "updated": "A Mentees is updated with identifier {{ param }}",
+      "deleted": "A Mentees is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mentees {{ id }}?"
+      },
+      "detail": {
+        "title": "Mentees"
+      },
+      "id": "ID",
+      "menteeUser": "Mentee User"
+    }
+  }
+}

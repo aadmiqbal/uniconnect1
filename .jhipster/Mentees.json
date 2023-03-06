@@ -1,0 +1,21 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151944",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "mentees",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Mentees",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "appUsers",
+      "relationshipName": "menteeUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

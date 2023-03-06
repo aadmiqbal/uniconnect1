@@ -1,0 +1,25 @@
+{
+  "teamprojectApp": {
+    "userGroupAd": {
+      "home": {
+        "title": "User Group Ads",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Group Ad",
+        "createOrEditLabel": "Create or edit a User Group Ad",
+        "notFound": "No User Group Ads found"
+      },
+      "created": "A new User Group Ad is created with identifier {{ param }}",
+      "updated": "A User Group Ad is updated with identifier {{ param }}",
+      "deleted": "A User Group Ad is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Group Ad {{ id }}?"
+      },
+      "detail": {
+        "title": "User Group Ad"
+      },
+      "id": "ID",
+      "groupBio": "Group Bio",
+      "group": "Group"
+    }
+  }
+}

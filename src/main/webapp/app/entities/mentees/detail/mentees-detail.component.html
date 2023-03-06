@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="mentees">
+      <h2 data-cy="menteesDetailsHeading"><span jhiTranslate="teamprojectApp.mentees.detail.title">Mentees</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ mentees.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.mentees.menteeUser">Mentee User</span></dt>
+        <dd>
+          <div *ngIf="mentees.menteeUser">
+            <a [routerLink]="['/app-users', mentees.menteeUser.id, 'view']">{{ mentees.menteeUser.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mentees', mentees.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

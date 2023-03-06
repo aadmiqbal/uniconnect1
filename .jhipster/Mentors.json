@@ -1,0 +1,26 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151942",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "mentors",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Mentors",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "userModules",
+      "relationshipName": "module",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "appUsers",
+      "relationshipName": "mentorUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

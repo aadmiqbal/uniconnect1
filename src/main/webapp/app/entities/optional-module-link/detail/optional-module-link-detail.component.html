@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="optionalModuleLink">
+      <h2 data-cy="optionalModuleLinkDetailsHeading">
+        <span jhiTranslate="teamprojectApp.optionalModuleLink.detail.title">Optional Module Link</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ optionalModuleLink.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.optionalModuleLink.optionalModule">Optional Module</span></dt>
+        <dd>
+          <div *ngIf="optionalModuleLink.optionalModule">
+            <a [routerLink]="['/user-modules', optionalModuleLink.optionalModule.id, 'view']">{{ optionalModuleLink.optionalModule.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.optionalModuleLink.optionalModuleUser">Optional Module User</span></dt>
+        <dd>
+          <div *ngIf="optionalModuleLink.optionalModuleUser">
+            <a [routerLink]="['/app-users', optionalModuleLink.optionalModuleUser.id, 'view']">{{
+              optionalModuleLink.optionalModuleUser.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/optional-module-link', optionalModuleLink.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

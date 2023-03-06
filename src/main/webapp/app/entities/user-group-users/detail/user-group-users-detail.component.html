@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userGroupUsers">
+      <h2 data-cy="userGroupUsersDetailsHeading">
+        <span jhiTranslate="teamprojectApp.userGroupUsers.detail.title">User Group Users</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ userGroupUsers.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userGroupUsers.group">Group</span></dt>
+        <dd>
+          <div *ngIf="userGroupUsers.group">
+            <a [routerLink]="['/user-groups', userGroupUsers.group.id, 'view']">{{ userGroupUsers.group.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userGroupUsers.user">User</span></dt>
+        <dd>
+          <div *ngIf="userGroupUsers.user">
+            <a [routerLink]="['/app-users', userGroupUsers.user.id, 'view']">{{ userGroupUsers.user.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-group-users', userGroupUsers.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

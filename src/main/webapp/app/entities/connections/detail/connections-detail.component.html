@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="connections">
+      <h2 data-cy="connectionsDetailsHeading"><span jhiTranslate="teamprojectApp.connections.detail.title">Connections</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ connections.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.connections.user1">User 1</span></dt>
+        <dd>
+          <div *ngIf="connections.user1">
+            <a [routerLink]="['/app-users', connections.user1.id, 'view']">{{ connections.user1.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.connections.user2">User 2</span></dt>
+        <dd>
+          <div *ngIf="connections.user2">
+            <a [routerLink]="['/app-users', connections.user2.id, 'view']">{{ connections.user2.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/connections', connections.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

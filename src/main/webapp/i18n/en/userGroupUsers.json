@@ -1,0 +1,25 @@
+{
+  "teamprojectApp": {
+    "userGroupUsers": {
+      "home": {
+        "title": "User Group Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Group Users",
+        "createOrEditLabel": "Create or edit a User Group Users",
+        "notFound": "No User Group Users found"
+      },
+      "created": "A new User Group Users is created with identifier {{ param }}",
+      "updated": "A User Group Users is updated with identifier {{ param }}",
+      "deleted": "A User Group Users is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Group Users {{ id }}?"
+      },
+      "detail": {
+        "title": "User Group Users"
+      },
+      "id": "ID",
+      "group": "Group",
+      "user": "User"
+    }
+  }
+}

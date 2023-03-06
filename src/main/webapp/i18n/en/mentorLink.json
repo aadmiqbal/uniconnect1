@@ -1,0 +1,25 @@
+{
+  "teamprojectApp": {
+    "mentorLink": {
+      "home": {
+        "title": "Mentor Links",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Mentor Link",
+        "createOrEditLabel": "Create or edit a Mentor Link",
+        "notFound": "No Mentor Links found"
+      },
+      "created": "A new Mentor Link is created with identifier {{ param }}",
+      "updated": "A Mentor Link is updated with identifier {{ param }}",
+      "deleted": "A Mentor Link is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mentor Link {{ id }}?"
+      },
+      "detail": {
+        "title": "Mentor Link"
+      },
+      "id": "ID",
+      "mentor": "Mentor",
+      "mentee": "Mentee"
+    }
+  }
+}

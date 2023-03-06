@@ -1,0 +1,125 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-user-modules-heading"
+        data-cy="UserModulesCreateUpdateHeading"
+        jhiTranslate="teamprojectApp.userModules.home.createOrEditLabel"
+      >
+        Create or edit a User Modules
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userModules.moduleName" for="field_moduleName">Module Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="moduleName"
+            id="field_moduleName"
+            data-cy="moduleName"
+            formControlName="moduleName"
+          />
+          <div *ngIf="editForm.get('moduleName')!.invalid && (editForm.get('moduleName')!.dirty || editForm.get('moduleName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('moduleName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userModules.optional" for="field_optional">Optional</label>
+          <input type="checkbox" class="form-check" name="optional" id="field_optional" data-cy="optional" formControlName="optional" />
+          <div *ngIf="editForm.get('optional')!.invalid && (editForm.get('optional')!.dirty || editForm.get('optional')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('optional')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userModules.studyYear" for="field_studyYear">Study Year</label>
+          <input type="number" class="form-control" name="studyYear" id="field_studyYear" data-cy="studyYear" formControlName="studyYear" />
+          <div *ngIf="editForm.get('studyYear')!.invalid && (editForm.get('studyYear')!.dirty || editForm.get('studyYear')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('studyYear')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('studyYear')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              This field should be at least 1.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('studyYear')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 5 }"
+            >
+              This field cannot be more than 5.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('studyYear')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userModules.subject" for="field_subject">Subject</label>
+          <select
+            class="form-control"
+            id="field_subject"
+            data-cy="subject"
+            name="subject"
+            formControlName="subject"
+            [compareWith]="compareSubjects"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="subjectsOption" *ngFor="let subjectsOption of subjectsSharedCollection">{{ subjectsOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
