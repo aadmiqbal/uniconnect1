@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151948",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_group_ad",
+  "fields": [
+    {
+      "fieldName": "groupBio",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserGroupAd",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "userGroups",
+      "ownerSide": true,
+      "relationshipName": "group",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

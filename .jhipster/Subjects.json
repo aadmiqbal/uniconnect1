@@ -1,0 +1,21 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151938",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "subjects",
+  "fields": [
+    {
+      "fieldName": "subjectName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Subjects",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

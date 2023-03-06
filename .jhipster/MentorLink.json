@@ -1,0 +1,26 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151943",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "mentor_link",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "MentorLink",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "mentors",
+      "relationshipName": "mentor",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "mentees",
+      "relationshipName": "mentee",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

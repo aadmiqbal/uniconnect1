@@ -1,0 +1,27 @@
+{
+  "teamprojectApp": {
+    "userModules": {
+      "home": {
+        "title": "User Modules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Modules",
+        "createOrEditLabel": "Create or edit a User Modules",
+        "notFound": "No User Modules found"
+      },
+      "created": "A new User Modules is created with identifier {{ param }}",
+      "updated": "A User Modules is updated with identifier {{ param }}",
+      "deleted": "A User Modules is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Modules {{ id }}?"
+      },
+      "detail": {
+        "title": "User Modules"
+      },
+      "id": "ID",
+      "moduleName": "Module Name",
+      "optional": "Optional",
+      "studyYear": "Study Year",
+      "subject": "Subject"
+    }
+  }
+}

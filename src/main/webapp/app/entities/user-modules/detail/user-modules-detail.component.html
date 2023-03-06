@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userModules">
+      <h2 data-cy="userModulesDetailsHeading"><span jhiTranslate="teamprojectApp.userModules.detail.title">User Modules</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ userModules.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userModules.moduleName">Module Name</span></dt>
+        <dd>
+          <span>{{ userModules.moduleName }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userModules.optional">Optional</span></dt>
+        <dd>
+          <span>{{ userModules.optional }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userModules.studyYear">Study Year</span></dt>
+        <dd>
+          <span>{{ userModules.studyYear }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userModules.subject">Subject</span></dt>
+        <dd>
+          <div *ngIf="userModules.subject">
+            <a [routerLink]="['/subjects', userModules.subject.id, 'view']">{{ userModules.subject.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-modules', userModules.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

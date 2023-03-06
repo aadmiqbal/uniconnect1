@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity MentorLink.
+    -->
+    <changeSet id="20230306151943-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="mentor_id"
+                                 baseTableName="mentor_link"
+                                 constraintName="fk_mentor_link__mentor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mentors"/>
+
+        <addForeignKeyConstraint baseColumnNames="mentee_id"
+                                 baseTableName="mentor_link"
+                                 constraintName="fk_mentor_link__mentee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mentees"/>
+    </changeSet>
+</databaseChangeLog>

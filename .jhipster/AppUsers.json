@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151940",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "app_users",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "studyYear",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "max"],
+      "fieldValidateRulesMax": "5"
+    },
+    {
+      "fieldName": "bio",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pfp",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AppUsers",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

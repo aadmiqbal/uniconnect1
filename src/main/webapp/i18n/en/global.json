@@ -7,6 +7,17 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "subjects": "Subjects",
+        "userModules": "User Modules",
+        "appUsers": "App Users",
+        "optionalModuleLink": "Optional Module Link",
+        "mentors": "Mentors",
+        "mentorLink": "Mentor Link",
+        "mentees": "Mentees",
+        "connections": "Connections",
+        "userGroups": "User Groups",
+        "userGroupUsers": "User Group Users",
+        "userGroupAd": "User Group Ad",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

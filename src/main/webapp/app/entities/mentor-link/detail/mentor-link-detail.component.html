@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="mentorLink">
+      <h2 data-cy="mentorLinkDetailsHeading"><span jhiTranslate="teamprojectApp.mentorLink.detail.title">Mentor Link</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ mentorLink.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.mentorLink.mentor">Mentor</span></dt>
+        <dd>
+          <div *ngIf="mentorLink.mentor">
+            <a [routerLink]="['/mentors', mentorLink.mentor.id, 'view']">{{ mentorLink.mentor.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.mentorLink.mentee">Mentee</span></dt>
+        <dd>
+          <div *ngIf="mentorLink.mentee">
+            <a [routerLink]="['/mentees', mentorLink.mentee.id, 'view']">{{ mentorLink.mentee.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mentor-link', mentorLink.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

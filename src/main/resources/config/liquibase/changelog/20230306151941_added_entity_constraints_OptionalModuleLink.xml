@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity OptionalModuleLink.
+    -->
+    <changeSet id="20230306151941-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="optional_module_id"
+                                 baseTableName="optional_module_link"
+                                 constraintName="fk_optional_module_link__optional_module_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_modules"/>
+
+        <addForeignKeyConstraint baseColumnNames="optional_module_user_id"
+                                 baseTableName="optional_module_link"
+                                 constraintName="fk_optional_module_link__optional_module_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="app_users"/>
+    </changeSet>
+</databaseChangeLog>

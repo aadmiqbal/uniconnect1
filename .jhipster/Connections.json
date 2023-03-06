@@ -1,0 +1,26 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151945",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "connections",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Connections",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "appUsers",
+      "relationshipName": "user1",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "appUsers",
+      "relationshipName": "user2",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

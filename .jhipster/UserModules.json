@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20230306151939",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_modules",
+  "fields": [
+    {
+      "fieldName": "moduleName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "optional",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "studyYear",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMax": "5",
+      "fieldValidateRulesMin": "1"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserModules",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "subjects",
+      "relationshipName": "subject",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

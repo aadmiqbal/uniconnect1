@@ -1,0 +1,25 @@
+{
+  "teamprojectApp": {
+    "mentors": {
+      "home": {
+        "title": "Mentors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Mentors",
+        "createOrEditLabel": "Create or edit a Mentors",
+        "notFound": "No Mentors found"
+      },
+      "created": "A new Mentors is created with identifier {{ param }}",
+      "updated": "A Mentors is updated with identifier {{ param }}",
+      "deleted": "A Mentors is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mentors {{ id }}?"
+      },
+      "detail": {
+        "title": "Mentors"
+      },
+      "id": "ID",
+      "module": "Module",
+      "mentorUser": "Mentor User"
+    }
+  }
+}

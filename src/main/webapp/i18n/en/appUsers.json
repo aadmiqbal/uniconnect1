@@ -1,0 +1,27 @@
+{
+  "teamprojectApp": {
+    "appUsers": {
+      "home": {
+        "title": "App Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new App Users",
+        "createOrEditLabel": "Create or edit a App Users",
+        "notFound": "No App Users found"
+      },
+      "created": "A new App Users is created with identifier {{ param }}",
+      "updated": "A App Users is updated with identifier {{ param }}",
+      "deleted": "A App Users is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete App Users {{ id }}?"
+      },
+      "detail": {
+        "title": "App Users"
+      },
+      "id": "ID",
+      "name": "Name",
+      "studyYear": "Study Year",
+      "bio": "Bio",
+      "pfp": "Pfp"
+    }
+  }
+}

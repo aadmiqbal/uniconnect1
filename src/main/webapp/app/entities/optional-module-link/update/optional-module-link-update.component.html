@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-optional-module-link-heading"
+        data-cy="OptionalModuleLinkCreateUpdateHeading"
+        jhiTranslate="teamprojectApp.optionalModuleLink.home.createOrEditLabel"
+      >
+        Create or edit a Optional Module Link
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.optionalModuleLink.optionalModule" for="field_optionalModule"
+            >Optional Module</label
+          >
+          <select
+            class="form-control"
+            id="field_optionalModule"
+            data-cy="optionalModule"
+            name="optionalModule"
+            formControlName="optionalModule"
+            [compareWith]="compareUserModules"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userModulesOption" *ngFor="let userModulesOption of userModulesSharedCollection">
+              {{ userModulesOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.optionalModuleLink.optionalModuleUser" for="field_optionalModuleUser"
+            >Optional Module User</label
+          >
+          <select
+            class="form-control"
+            id="field_optionalModuleUser"
+            data-cy="optionalModuleUser"
+            name="optionalModuleUser"
+            formControlName="optionalModuleUser"
+            [compareWith]="compareAppUsers"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="appUsersOption" *ngFor="let appUsersOption of appUsersSharedCollection">{{ appUsersOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

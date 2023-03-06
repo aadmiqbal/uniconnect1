@@ -1,0 +1,25 @@
+{
+  "teamprojectApp": {
+    "connections": {
+      "home": {
+        "title": "Connections",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Connections",
+        "createOrEditLabel": "Create or edit a Connections",
+        "notFound": "No Connections found"
+      },
+      "created": "A new Connections is created with identifier {{ param }}",
+      "updated": "A Connections is updated with identifier {{ param }}",
+      "deleted": "A Connections is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Connections {{ id }}?"
+      },
+      "detail": {
+        "title": "Connections"
+      },
+      "id": "ID",
+      "user1": "User 1",
+      "user2": "User 2"
+    }
+  }
+}
