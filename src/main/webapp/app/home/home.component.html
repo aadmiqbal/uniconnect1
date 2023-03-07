@@ -1,13 +1,10 @@
 <div class="row">
-  <div class="col-md-3">
-    <span class="hipster img-fluid rounded"></span>
+  <div class="col-md-4">
+    <!--<span class="hipster img-fluid rounded"></span>-->
   </div>
 
   <div class="col-md-5">
-    <h1 class="display-4"><span jhiTranslate="home.title">Welcome, Java Hipster!</span> (Teamproject)</h1>
-
-    <p class="lead" jhiTranslate="home.subtitle">This is your homepage, team41</p>
-
+    <h1 class="display-3">Welcome to UNIconnect</h1>
     <div [ngSwitch]="account !== null">
       <div class="alert alert-success" *ngSwitchCase="true">
         <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
