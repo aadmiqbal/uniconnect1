@@ -1,49 +1,61 @@
-<div class="row">
-  <div class="col-md-4">
-    <!--<span class="hipster img-fluid rounded"></span>-->
-  </div>
+<div class="p-3 mb-2 bg-light text-dark">
+  <div class="row">
+    <div class="col-md-4">
+      <!--<span class="hipster img-fluid rounded"></span>-->
+    </div>
 
-  <div class="col-md-5">
-    <h1 class="display-5">Welcome to UNIconnect</h1>
-    <div [ngSwitch]="account !== null">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
-          >You are logged in as user "{{ account.login }}".</span
-        >
+    <style>
+      .display-5 {
+        margin-bottom: 50px;
+      }
+      .form-group {
+        margin-bottom: 10px;
+      }
+    </style>
 
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">One of three columns</div>
-            <div class="col-sm">HEllo</div>
-            <div class="col-sm">One of three columns</div>
+    <div class="col-md-5">
+      <h1 class="display-5">Welcome to UNIconnect</h1>
+      <div [ngSwitch]="account !== null">
+        <div class="alert alert-success" *ngSwitchCase="true">
+          <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
+            >You are logged in as user "{{ account.login }}".</span
+          >
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">One of three columns</div>
+              <div class="col-sm">HEllo</div>
+              <div class="col-sm">One of three columns</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Remember me</label>
-        </div>
-        <button type="submit" class="btn btn-primary" style="background-color: darkorange; border-color: darkorange; color: black">
-          Log in
-        </button>
-      </form>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+          </div>
+          <button type="submit" class="button" style="background-color: darkorange; border-color: darkorange; color: black">Log in</button>
+        </form>
 
-      <button type="button" class="btn btn-register" style="background-color: darkorange; border-color: darkorange; color: black">
-        Register
-      </button>
+        <button type="button" class="button" style="background-color: darkorange; border-color: darkorange; color: black">Register</button>
 
-      <!-- <div class="alert alert-warning" *ngSwitchCase="false">
+        <style>
+          .button {
+            margin-bottom: 25px;
+          }
+        </style>
+
+        <!-- <div class="alert alert-warning" *ngSwitchCase="false">
          <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
          <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a
          ><span jhiTranslate="global.messages.info.authenticated.suffix"
@@ -52,14 +64,14 @@
          >
        </div>*/-->
 
-      <!--<div class="alert alert-warning" *ngSwitchCase="false">
+        <!--<div class="alert alert-warning" *ngSwitchCase="false">
         <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>&nbsp;
         <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
       </div>-->
+      </div>
     </div>
   </div>
 </div>
-
 <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
   rel="stylesheet"
