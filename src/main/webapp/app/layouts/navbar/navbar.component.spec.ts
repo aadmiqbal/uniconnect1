@@ -64,6 +64,7 @@ describe('Navbar Component', () => {
     comp.ngOnInit();
 
     // THEN
+    // @ts-ignore
     expect(comp.account).toBeNull();
 
     // WHEN
