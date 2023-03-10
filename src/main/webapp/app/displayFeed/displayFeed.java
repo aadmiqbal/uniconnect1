@@ -2,6 +2,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ConnectionManager {
 
@@ -33,17 +35,15 @@ public class displayFeed {
     private static ArrayList<String[]> getUserModules(int UserId, int studyYear, int subjectId, Connection con) {
         ArrayList modules = null;
         try {
-            PreparedStatement st = con.prepareStatement(
-                "SELECT id, moduleName FROM Modules WHERE studyYear = ? AND subject = ? AND optional = False"
-            );
+            PreparedStatement st = con.prepareStatement("SELECT id, moduleName FROM UserModules WHERE studyYear = ? AND optional = False"); //AND subject = ?
             st.setInt(1, studyYear);
             st.setInt(2, subjectId);
             modules = compileResults(st.executeQuery());
 
             st =
                 con.prepareStatement(
-                    "SELECT Modules.id, Modules.moduleName FROM Modules INNER JOIN OptionalModuleLink ON Modules.id = OptionalModuleLink.moduleId WHERE OptionalModuleLink.userId = ? AND Modules.studyYear = ?"
-                );
+                    "SELECT UserModules.id, UserModules.moduleName FROM UserModules INNER JOIN ModuleLink ON UserModules.id = ModuleLink.moduleId WHERE ModuleLink.userId = ? AND UserModules.studyYear = ?"
+                ); //TODO: check links
             st.setInt(1, UserId);
             st.setInt(2, studyYear);
             modules.addAll(compileResults(st.executeQuery()));
@@ -65,25 +65,56 @@ public class displayFeed {
         return userModules;
     }
 
-    private static ArrayList<String[]> getPotentialConnections(ArrayList<String[]> modules, int userId, int studyYear, Connection con) {
-        ArrayList<String[]> connections = null;
+    private static String[] getPotentialConnections(ArrayList<String[]> modules, int userId, int studyYear, Connection con) {
+        String[] connections = null;
         try {
             String modulesString = null;
             for (String[] module : modules) modulesString = modulesString + ", " + module[0];
             PreparedStatement st = con.prepareStatement(
-                "SELECT AppUsers.id FROM AppUsers INNER JOIN OptionalModuleLink ON AppUsers.id = OptionalModuleLink.userId WHERE OptionalModuleLink.moduleId IN (?);"
+                "SELECT AppUsers.id FROM AppUsers INNER JOIN ModuleLink ON AppUsers.id = ModuleLink.userId WHERE ModuleLink.moduleId IN (?);"
             );
             st.setString(1, modulesString);
-            connections.addAll(compileResults(st.executeQuery()));
+            connections = (String[]) st.executeQuery().getArray("is_nullable").getArray();
         } catch (SQLException e) {
             System.out.println(e);
         }
         return connections;
     }
 
-    private static void displayFeedBackend(int n, String[] filters, int UserId) {
-        try (Connection con = ConnectionManager.getConnection();) {
-            PreparedStatement st = con.prepareStatement("SELECT studyYear, subjectId FROM AppUsers WHERE id = ?");
+    static String[] shuffleArray(String[] ar) {
+        Random rnd = ThreadLocalRandom.current();
+        for (int i = ar.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            String a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
+        return ar;
+    }
+
+    private static String[][] getConnectionsDetails(String[] connections, Connection con) {
+        String[][] connectionDetails = new String[connections.length][5];
+        PreparedStatement ps = null;
+        try {
+            for (int i = 0; i < connections.length; i++) {
+                ps = con.prepareStatement("SELECT name, studyYear, pfp FROM AppUsers WHERE id = ?;");
+                ps.setInt(1, Integer.parseInt(connections[i]));
+                ResultSet rs = ps.executeQuery();
+                connectionDetails[i][0] = connections[i];
+                connectionDetails[i][1] = rs.getString("name");
+                connectionDetails[i][2] = String.valueOf(rs.getInt("studyYear"));
+                connectionDetails[i][3] = rs.getString("pfp");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return connectionDetails;
+    }
+
+    private static String[][] displayFeedBackend(int n, String[] filters, int UserId) {
+        String[][] connectionsDetails = null;
+        try (Connection con = ConnectionManager.getConnection()) {
+            PreparedStatement st = con.prepareStatement("SELECT studyYear, subject FROM AppUsers WHERE id = ?"); //subject link doesn't exist?
             st.setInt(1, UserId);
             ResultSet rs = st.executeQuery();
             int studyYear = rs.getInt("studyYear");
@@ -92,9 +123,15 @@ public class displayFeed {
             ArrayList userModules = getUserModules(UserId, studyYear, subjectId, con);
             userModules = filterModules(userModules, filters);
 
-            ArrayList<String[]> potentialConnections = getPotentialConnections(userModules, UserId, studyYear, con);
+            String[] potentialConnections = shuffleArray(getPotentialConnections(userModules, UserId, studyYear, con));
+            potentialConnections = Arrays.copyOf(potentialConnections, n);
+
+            connectionsDetails = getConnectionsDetails(potentialConnections, con);
+
+            con.close();
         } catch (SQLException | ClassNotFoundException sq) {
             System.out.println(sq);
         }
+        return connectionsDetails;
     }
 }
