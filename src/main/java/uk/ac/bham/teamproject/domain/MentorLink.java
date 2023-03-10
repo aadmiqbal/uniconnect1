@@ -28,7 +28,7 @@ public class MentorLink implements Serializable {
     private Mentors mentor;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "menteeUser" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "module", "menteeUser" }, allowSetters = true)
     private Mentees mentee;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

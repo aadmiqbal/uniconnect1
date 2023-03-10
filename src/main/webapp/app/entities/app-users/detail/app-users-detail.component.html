@@ -30,10 +30,10 @@
         <dd>
           <span>{{ appUsers.pfp }}</span>
         </dd>
-        <dt><span jhiTranslate="teamprojectApp.appUsers.subject">Subject</span></dt>
+        <dt><span jhiTranslate="teamprojectApp.appUsers.degree">Degree</span></dt>
         <dd>
-          <div *ngIf="appUsers.subject">
-            <a [routerLink]="['/degrees', appUsers.subject.id, 'view']">{{ appUsers.subject.id }}</a>
+          <div *ngIf="appUsers.degree">
+            <a [routerLink]="['/degrees', appUsers.degree.id, 'view']">{{ appUsers.degree.id }}</a>
           </div>
         </dd>
       </dl>

@@ -44,7 +44,7 @@ public class AppUsers implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "subjects" }, allowSetters = true)
-    private Degrees subject;
+    private Degrees degree;
 
     @OneToMany(mappedBy = "optionalModuleUser")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -118,16 +118,16 @@ public class AppUsers implements Serializable {
         this.pfp = pfp;
     }
 
-    public Degrees getSubject() {
-        return this.subject;
+    public Degrees getDegree() {
+        return this.degree;
     }
 
-    public void setSubject(Degrees degrees) {
-        this.subject = degrees;
+    public void setDegree(Degrees degrees) {
+        this.degree = degrees;
     }
 
-    public AppUsers subject(Degrees degrees) {
-        this.setSubject(degrees);
+    public AppUsers degree(Degrees degrees) {
+        this.setDegree(degrees);
         return this;
     }
 

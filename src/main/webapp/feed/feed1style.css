@@ -1,7 +1,38 @@
 body {
-  margin-top: 40px; /* This margin just makes the text easier to read. You can remove it if you want since it can mess with your other styles. */
+  margin-top: 40px;
+  /* This margin just makes the text easier to read. You can remove it if you want since it can mess with your other styles. */
 }
 #fdcont {
   height: 100vh;
   overflow: auto;
+}
+
+#ddmen {
+  box-sizing: content-box;
+}
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: #ff781f;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
 }

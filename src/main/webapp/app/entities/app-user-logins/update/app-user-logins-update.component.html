@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-app-user-logins-heading"
+        data-cy="AppUserLoginsCreateUpdateHeading"
+        jhiTranslate="teamprojectApp.appUserLogins.home.createOrEditLabel"
+      >
+        Create or edit a App User Logins
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.appUserLogins.userEmail" for="field_userEmail">User Email</label>
+          <input type="text" class="form-control" name="userEmail" id="field_userEmail" data-cy="userEmail" formControlName="userEmail" />
+          <div *ngIf="editForm.get('userEmail')!.invalid && (editForm.get('userEmail')!.dirty || editForm.get('userEmail')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('userEmail')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.appUserLogins.passwordSalt" for="field_passwordSalt">Password Salt</label>
+          <input
+            type="text"
+            class="form-control"
+            name="passwordSalt"
+            id="field_passwordSalt"
+            data-cy="passwordSalt"
+            formControlName="passwordSalt"
+          />
+          <div
+            *ngIf="editForm.get('passwordSalt')!.invalid && (editForm.get('passwordSalt')!.dirty || editForm.get('passwordSalt')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('passwordSalt')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.appUserLogins.passwordHash" for="field_passwordHash">Password Hash</label>
+          <input
+            type="text"
+            class="form-control"
+            name="passwordHash"
+            id="field_passwordHash"
+            data-cy="passwordHash"
+            formControlName="passwordHash"
+          />
+          <div
+            *ngIf="editForm.get('passwordHash')!.invalid && (editForm.get('passwordHash')!.dirty || editForm.get('passwordHash')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('passwordHash')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.appUserLogins.appUser" for="field_appUser">App User</label>
+          <select
+            class="form-control"
+            id="field_appUser"
+            data-cy="appUser"
+            name="appUser"
+            formControlName="appUser"
+            [compareWith]="compareAppUsers"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="appUsersOption" *ngFor="let appUsersOption of appUsersSharedCollection">{{ appUsersOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

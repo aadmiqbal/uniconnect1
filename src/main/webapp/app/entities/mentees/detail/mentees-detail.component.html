@@ -14,6 +14,12 @@
         <dd>
           <span>{{ mentees.id }}</span>
         </dd>
+        <dt><span jhiTranslate="teamprojectApp.mentees.module">Module</span></dt>
+        <dd>
+          <div *ngIf="mentees.module">
+            <a [routerLink]="['/user-modules', mentees.module.id, 'view']">{{ mentees.module.id }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="teamprojectApp.mentees.menteeUser">Mentee User</span></dt>
         <dd>
           <div *ngIf="mentees.menteeUser">

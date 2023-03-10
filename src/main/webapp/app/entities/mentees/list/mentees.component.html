@@ -38,6 +38,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="module.id">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.mentees.module">Module</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="menteeUser.id">
             <div class="d-flex">
               <span jhiTranslate="teamprojectApp.mentees.menteeUser">Mentee User</span>
@@ -51,6 +57,11 @@
         <tr *ngFor="let mentees of mentees; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/mentees', mentees.id, 'view']">{{ mentees.id }}</a>
+          </td>
+          <td>
+            <div *ngIf="mentees.module">
+              <a [routerLink]="['/user-modules', mentees.module.id, 'view']">{{ mentees.module.id }}</a>
+            </div>
           </td>
           <td>
             <div *ngIf="mentees.menteeUser">

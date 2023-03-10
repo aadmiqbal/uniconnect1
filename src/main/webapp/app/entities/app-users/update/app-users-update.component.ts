@@ -81,7 +81,7 @@ export class AppUsersUpdateComponent implements OnInit {
 
     this.degreesSharedCollection = this.degreesService.addDegreesToCollectionIfMissing<IDegrees>(
       this.degreesSharedCollection,
-      appUsers.subject
+      appUsers.degree
     );
   }
 
@@ -89,7 +89,7 @@ export class AppUsersUpdateComponent implements OnInit {
     this.degreesService
       .query()
       .pipe(map((res: HttpResponse<IDegrees[]>) => res.body ?? []))
-      .pipe(map((degrees: IDegrees[]) => this.degreesService.addDegreesToCollectionIfMissing<IDegrees>(degrees, this.appUsers?.subject)))
+      .pipe(map((degrees: IDegrees[]) => this.degreesService.addDegreesToCollectionIfMissing<IDegrees>(degrees, this.appUsers?.degree)))
       .subscribe((degrees: IDegrees[]) => (this.degreesSharedCollection = degrees));
   }
 }

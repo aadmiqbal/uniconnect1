@@ -18,6 +18,7 @@ type MenteesFormDefaults = Pick<NewMentees, 'id'>;
 
 type MenteesFormGroupContent = {
   id: FormControl<IMentees['id'] | NewMentees['id']>;
+  module: FormControl<IMentees['module']>;
   menteeUser: FormControl<IMentees['menteeUser']>;
 };
 
@@ -38,6 +39,7 @@ export class MenteesFormService {
           validators: [Validators.required],
         }
       ),
+      module: new FormControl(menteesRawValue.module),
       menteeUser: new FormControl(menteesRawValue.menteeUser),
     });
   }
