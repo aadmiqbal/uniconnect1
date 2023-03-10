@@ -27,7 +27,7 @@ public class ModuleLink implements Serializable {
     private UserModules optionalModule;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "degree", "optionalModules" }, allowSetters = true)
     private AppUsers optionalModuleUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

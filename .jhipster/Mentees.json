@@ -12,6 +12,11 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "userModules",
+      "relationshipName": "module",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityName": "appUsers",
       "relationshipName": "menteeUser",
       "relationshipType": "many-to-one"

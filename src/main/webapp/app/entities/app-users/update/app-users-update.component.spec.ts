@@ -51,12 +51,12 @@ describe('AppUsers Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Degrees query and add missing value', () => {
       const appUsers: IAppUsers = { id: 456 };
-      const subject: IDegrees = { id: 15648 };
-      appUsers.subject = subject;
+      const degree: IDegrees = { id: 15648 };
+      appUsers.degree = degree;
 
       const degreesCollection: IDegrees[] = [{ id: 55106 }];
       jest.spyOn(degreesService, 'query').mockReturnValue(of(new HttpResponse({ body: degreesCollection })));
-      const additionalDegrees = [subject];
+      const additionalDegrees = [degree];
       const expectedCollection: IDegrees[] = [...additionalDegrees, ...degreesCollection];
       jest.spyOn(degreesService, 'addDegreesToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -73,13 +73,13 @@ describe('AppUsers Management Update Component', () => {
 
     it('Should update editForm', () => {
       const appUsers: IAppUsers = { id: 456 };
-      const subject: IDegrees = { id: 80230 };
-      appUsers.subject = subject;
+      const degree: IDegrees = { id: 80230 };
+      appUsers.degree = degree;
 
       activatedRoute.data = of({ appUsers });
       comp.ngOnInit();
 
-      expect(comp.degreesSharedCollection).toContain(subject);
+      expect(comp.degreesSharedCollection).toContain(degree);
       expect(comp.appUsers).toEqual(appUsers);
     });
   });

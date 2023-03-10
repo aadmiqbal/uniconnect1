@@ -34,7 +34,7 @@
   "relationships": [
     {
       "otherEntityName": "degrees",
-      "relationshipName": "subject",
+      "relationshipName": "degree",
       "relationshipType": "many-to-one"
     },
     {

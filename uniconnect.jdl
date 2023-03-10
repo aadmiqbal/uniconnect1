@@ -1,27 +1,23 @@
 entity Degrees{
     degreeName String required
 }
-
 //Degree table, provides degree name
 
 
 entity Subjects {
     subjectName String required
 }
-
 //Subject table, provides subject name to degrees
 
 
 entity DegreeSubjects
-
-    //linking table for subjects and degrees
+//linking table for subjects and degrees
 
 entity UserModules {
     moduleName String required,
     optional Boolean required,
     studyYear Integer required min(1) max(5)
 }
-
 //Core modules table, takes subject name from subjects
 //"Optional" field can help control what modules students automatically take
 
@@ -33,20 +29,28 @@ entity AppUsers {
 }
 //Users table, takes subject name from subjects
 
+entity AppUserLogins {
+    userEmail String required,
+    passwordSalt String required,
+    passwordHash String required,
+}
+//User logins table, provides login details for users
+
 entity ModuleLink
-    //linking table for users and optional modules
+//linking table for users and optional modules
 
 entity Mentors
-    //Mentors table, links user to a mentor identity, takes a module
+//Mentors table, links user to a mentor identity, takes a module
 
 entity MentorLink
-    //linking table for mentors and mentees
+//linking table for mentors and mentees
 
 entity Mentees
-    //Mentees table, links user to a mentee identity
+//Mentees table, links user to a mentee identity
 
 entity Connections
-    //Connections table, links users to each other (a connection)
+//Connections table, links users to each other (a connection)
+    
 
 entity UserGroups {
     groupName String required
@@ -54,7 +58,7 @@ entity UserGroups {
 //Groups table, provides group details
 
 entity UserGroupUsers
-    //Linking table for groups and users
+//Linking table for groups and users
 
 entity UserGroupAd {
     groupBio String
@@ -62,6 +66,9 @@ entity UserGroupAd {
 //GroupAd table, keeps track of advertised groups, takes a group
 
 relationship OneToOne {
+    AppUserLogins{appUser} to AppUsers,
+    //setup of AppUserLogins relationship with AppUsers
+    
     UserGroupAd{group} to UserGroups
     //setup of GroupAd relationship with Groups
 }
@@ -71,7 +78,7 @@ relationship ManyToOne {
     Connections {user2} to AppUsers,
     //setup of Connections table relationship with Users
 
-    AppUsers{subject} to Degrees,
+    AppUsers{degree} to Degrees,
     //setup of Modules relationship with Users
 
     DegreeSubjects{degree} to Degrees{subject},
@@ -88,9 +95,10 @@ relationship ManyToOne {
     MentorLink{mentor} to Mentors,
     MentorLink{mentee} to Mentees,
     //setup of Mentors relationship with Mentees via MentorLink
-
+    
+    Mentees{module} to UserModules,
     Mentees{menteeUser} to AppUsers,
-    //setup of Mentees relationship with Users
+    //setup of Mentees relationship with Modules Users
 
     UserGroupUsers{group} to UserGroups,
     UserGroupUsers{user} to AppUsers

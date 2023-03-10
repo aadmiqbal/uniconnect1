@@ -62,9 +62,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="subject.id">
+          <th scope="col" jhiSortBy="degree.id">
             <div class="d-flex">
-              <span jhiTranslate="teamprojectApp.appUsers.subject">Subject</span>
+              <span jhiTranslate="teamprojectApp.appUsers.degree">Degree</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -86,8 +86,8 @@
           <td>{{ appUsers.bio }}</td>
           <td>{{ appUsers.pfp }}</td>
           <td>
-            <div *ngIf="appUsers.subject">
-              <a [routerLink]="['/degrees', appUsers.subject.id, 'view']">{{ appUsers.subject.id }}</a>
+            <div *ngIf="appUsers.degree">
+              <a [routerLink]="['/degrees', appUsers.degree.id, 'view']">{{ appUsers.degree.id }}</a>
             </div>
           </td>
           <td class="text-end">

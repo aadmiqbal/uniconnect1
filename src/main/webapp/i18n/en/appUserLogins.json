@@ -1,0 +1,27 @@
+{
+  "teamprojectApp": {
+    "appUserLogins": {
+      "home": {
+        "title": "App User Logins",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new App User Logins",
+        "createOrEditLabel": "Create or edit a App User Logins",
+        "notFound": "No App User Logins found"
+      },
+      "created": "A new App User Logins is created with identifier {{ param }}",
+      "updated": "A App User Logins is updated with identifier {{ param }}",
+      "deleted": "A App User Logins is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete App User Logins {{ id }}?"
+      },
+      "detail": {
+        "title": "App User Logins"
+      },
+      "id": "ID",
+      "userEmail": "User Email",
+      "passwordSalt": "Password Salt",
+      "passwordHash": "Password Hash",
+      "appUser": "App User"
+    }
+  }
+}

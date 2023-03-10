@@ -6,7 +6,7 @@ export interface IAppUsers {
   studyYear?: number | null;
   bio?: string | null;
   pfp?: string | null;
-  subject?: Pick<IDegrees, 'id'> | null;
+  degree?: Pick<IDegrees, 'id'> | null;
 }
 
 export type NewAppUsers = Omit<IAppUsers, 'id'> & { id: null };

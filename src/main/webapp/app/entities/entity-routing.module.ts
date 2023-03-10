@@ -74,6 +74,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'teamprojectApp.moduleLink.home.title' },
         loadChildren: () => import('./module-link/module-link.module').then(m => m.ModuleLinkModule),
       },
+      {
+        path: 'app-user-logins',
+        data: { pageTitle: 'teamprojectApp.appUserLogins.home.title' },
+        loadChildren: () => import('./app-user-logins/app-user-logins.module').then(m => m.AppUserLoginsModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

@@ -8,6 +8,12 @@
     -->
     <changeSet id="20230306151944-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="module_id"
+                                 baseTableName="mentees"
+                                 constraintName="fk_mentees__module_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_modules"/>
+
         <addForeignKeyConstraint baseColumnNames="mentee_user_id"
                                  baseTableName="mentees"
                                  constraintName="fk_mentees__mentee_user_id"

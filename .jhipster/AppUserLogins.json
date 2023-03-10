@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20230310190942",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "app_user_logins",
+  "fields": [
+    {
+      "fieldName": "userEmail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "passwordSalt",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "passwordHash",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AppUserLogins",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "appUsers",
+      "ownerSide": true,
+      "relationshipName": "appUser",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -18,6 +18,7 @@
         "title": "Mentees"
       },
       "id": "ID",
+      "module": "Module",
       "menteeUser": "Mentee User"
     }
   }

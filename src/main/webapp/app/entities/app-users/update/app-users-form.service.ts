@@ -22,7 +22,7 @@ type AppUsersFormGroupContent = {
   studyYear: FormControl<IAppUsers['studyYear']>;
   bio: FormControl<IAppUsers['bio']>;
   pfp: FormControl<IAppUsers['pfp']>;
-  subject: FormControl<IAppUsers['subject']>;
+  degree: FormControl<IAppUsers['degree']>;
 };
 
 export type AppUsersFormGroup = FormGroup<AppUsersFormGroupContent>;
@@ -50,7 +50,7 @@ export class AppUsersFormService {
       }),
       bio: new FormControl(appUsersRawValue.bio),
       pfp: new FormControl(appUsersRawValue.pfp),
-      subject: new FormControl(appUsersRawValue.subject),
+      degree: new FormControl(appUsersRawValue.degree),
     });
   }
 

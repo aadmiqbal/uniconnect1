@@ -20,6 +20,7 @@ describe('Mentees Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
+            module: expect.any(Object),
             menteeUser: expect.any(Object),
           })
         );
@@ -31,6 +32,7 @@ describe('Mentees Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
+            module: expect.any(Object),
             menteeUser: expect.any(Object),
           })
         );

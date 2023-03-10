@@ -9,6 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { MenteesFormService } from './mentees-form.service';
 import { MenteesService } from '../service/mentees.service';
 import { IMentees } from '../mentees.model';
+import { IUserModules } from 'app/entities/user-modules/user-modules.model';
+import { UserModulesService } from 'app/entities/user-modules/service/user-modules.service';
 import { IAppUsers } from 'app/entities/app-users/app-users.model';
 import { AppUsersService } from 'app/entities/app-users/service/app-users.service';
 
@@ -20,6 +22,7 @@ describe('Mentees Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let menteesFormService: MenteesFormService;
   let menteesService: MenteesService;
+  let userModulesService: UserModulesService;
   let appUsersService: AppUsersService;
 
   beforeEach(() => {
@@ -43,12 +46,35 @@ describe('Mentees Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     menteesFormService = TestBed.inject(MenteesFormService);
     menteesService = TestBed.inject(MenteesService);
+    userModulesService = TestBed.inject(UserModulesService);
     appUsersService = TestBed.inject(AppUsersService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call UserModules query and add missing value', () => {
+      const mentees: IMentees = { id: 456 };
+      const module: IUserModules = { id: 39569 };
+      mentees.module = module;
+
+      const userModulesCollection: IUserModules[] = [{ id: 60659 }];
+      jest.spyOn(userModulesService, 'query').mockReturnValue(of(new HttpResponse({ body: userModulesCollection })));
+      const additionalUserModules = [module];
+      const expectedCollection: IUserModules[] = [...additionalUserModules, ...userModulesCollection];
+      jest.spyOn(userModulesService, 'addUserModulesToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ mentees });
+      comp.ngOnInit();
+
+      expect(userModulesService.query).toHaveBeenCalled();
+      expect(userModulesService.addUserModulesToCollectionIfMissing).toHaveBeenCalledWith(
+        userModulesCollection,
+        ...additionalUserModules.map(expect.objectContaining)
+      );
+      expect(comp.userModulesSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should call AppUsers query and add missing value', () => {
       const mentees: IMentees = { id: 456 };
       const menteeUser: IAppUsers = { id: 24010 };
@@ -73,12 +99,15 @@ describe('Mentees Management Update Component', () => {
 
     it('Should update editForm', () => {
       const mentees: IMentees = { id: 456 };
+      const module: IUserModules = { id: 6032 };
+      mentees.module = module;
       const menteeUser: IAppUsers = { id: 43619 };
       mentees.menteeUser = menteeUser;
 
       activatedRoute.data = of({ mentees });
       comp.ngOnInit();
 
+      expect(comp.userModulesSharedCollection).toContain(module);
       expect(comp.appUsersSharedCollection).toContain(menteeUser);
       expect(comp.mentees).toEqual(mentees);
     });
@@ -153,6 +182,16 @@ describe('Mentees Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
+    describe('compareUserModules', () => {
+      it('Should forward to userModulesService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(userModulesService, 'compareUserModules');
+        comp.compareUserModules(entity, entity2);
+        expect(userModulesService.compareUserModules).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
     describe('compareAppUsers', () => {
       it('Should forward to appUsersService', () => {
         const entity = { id: 123 };

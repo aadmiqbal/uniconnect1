@@ -24,7 +24,10 @@ public class Mentees implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
+    private UserModules module;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "degree", "optionalModules" }, allowSetters = true)
     private AppUsers menteeUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -40,6 +43,19 @@ public class Mentees implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public UserModules getModule() {
+        return this.module;
+    }
+
+    public void setModule(UserModules userModules) {
+        this.module = userModules;
+    }
+
+    public Mentees module(UserModules userModules) {
+        this.setModule(userModules);
+        return this;
     }
 
     public AppUsers getMenteeUser() {

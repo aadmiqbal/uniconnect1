@@ -24,11 +24,11 @@ public class Connections implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "degree", "optionalModules" }, allowSetters = true)
     private AppUsers user1;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "degree", "optionalModules" }, allowSetters = true)
     private AppUsers user2;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

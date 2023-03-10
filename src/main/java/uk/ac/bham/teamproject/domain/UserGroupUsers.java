@@ -27,7 +27,7 @@ public class UserGroupUsers implements Serializable {
     private UserGroups group;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "subject", "optionalModules" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "degree", "optionalModules" }, allowSetters = true)
     private AppUsers user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
