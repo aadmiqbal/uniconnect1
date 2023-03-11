@@ -9,3 +9,11 @@ export const HOME_ROUTE: Route = {
     pageTitle: 'home.title',
   },
 };
+
+export const DISPLAY_ROUTE: Route = {
+  path: 'displayFeed',
+  component: HomeComponent,
+  data: {
+    pageTitle: 'displayFeed.title',
+  },
+};
