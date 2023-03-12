@@ -98,3 +98,8 @@ body {
   margin: 0;
   height: 100%;
 }
+
+#flux {
+  height: 850px;
+  overflow: auto;
+}
