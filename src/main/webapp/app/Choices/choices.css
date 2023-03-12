@@ -1,0 +1,11 @@
+
+
+
+/* This box class is purely used for explaining how the bootstrap grid system works. */
+.box {
+  background-color: lightblue;
+  border: 1px solid blue;
+  min-height: 50px;
+  font-size: 2rem;
+}
+
