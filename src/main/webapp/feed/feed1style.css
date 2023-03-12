@@ -48,3 +48,53 @@ body {
   height: 15vw;
   object-fit: cover;
 }
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+img {
+  width: 200px;
+  height: auto;
+}
+/* sm */
+@media (min-width: 768px) {
+  img {
+    width: 200px;
+  }
+}
+/* md */
+@media (min-width: 992px) {
+  img {
+    width: 200px;
+  }
+}
+/* lg */
+@media (min-width: 1200px) {
+  img {
+    width: 300px;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
