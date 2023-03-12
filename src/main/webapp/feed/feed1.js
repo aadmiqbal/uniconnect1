@@ -30,7 +30,7 @@ var addCols = function (num) {
     $target.hide('slow', function () {
       $target.remove();
     });
-    //will try to find a better looking transition but ones i tried didn't work
+    //want to find a better looking transition but ones I have tried didn't work
   });
 };
 
