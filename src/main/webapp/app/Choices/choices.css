@@ -9,3 +9,9 @@
   font-size: 2rem;
 }
 
+
+.custom-color {
+  background-color: #FF8C00; /* Replace with your desired shade of orange */
+  border-color: #FF8C00; /* Use the same color for the border */
+}
+
