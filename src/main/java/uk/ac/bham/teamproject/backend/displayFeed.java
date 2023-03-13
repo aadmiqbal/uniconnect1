@@ -7,6 +7,15 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+class ConnectionManager {
+
+    public static Connection getConnection() throws SQLException { //TODO: fix url
+        String url =
+            "jdbc:postgresql:C:\\Users\\User\\Desktop\\UniConnect\\UniConnect\\src\\main\\java\\com\\example\\uniconnect\\uniconnect.db";
+        return DriverManager.getConnection(url);
+    }
+}
+
 public class displayFeed {
 
     private static ArrayList<String[]> compileResults(ResultSet rs) {
