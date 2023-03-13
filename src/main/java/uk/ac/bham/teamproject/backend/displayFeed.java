@@ -1,18 +1,11 @@
+package uk.ac.bham.teamproject.backend;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-
-public class ConnectionManager {
-
-    public static Connection getConnection() throws SQLException { //TODO: fix url
-        String url =
-            "jdbc:postgresql:C:\\Users\\User\\Desktop\\UniConnect\\UniConnect\\src\\main\\java\\com\\example\\uniconnect\\uniconnect.db";
-        return DriverManager.getConnection(url);
-    }
-}
 
 public class displayFeed {
 
@@ -37,7 +30,6 @@ public class displayFeed {
         try {
             PreparedStatement st = con.prepareStatement("SELECT id, moduleName FROM UserModules WHERE studyYear = ? AND optional = False"); //AND subject = ?
             st.setInt(1, studyYear);
-            st.setInt(2, subjectId);
             modules = compileResults(st.executeQuery());
 
             st =
@@ -111,7 +103,7 @@ public class displayFeed {
         return connectionDetails;
     }
 
-    private static String[][] displayFeedBackend(int n, String[] filters, int UserId) {
+    private static String displayFeedBackend(int n, String[] filters, int UserId) { //private static String[][] displayFeedBackend(int n, String[] filters, int UserId) {
         String[][] connectionsDetails = null;
         try (Connection con = ConnectionManager.getConnection()) {
             PreparedStatement st = con.prepareStatement("SELECT studyYear, subject FROM AppUsers WHERE id = ?"); //subject link doesn't exist?
@@ -129,9 +121,9 @@ public class displayFeed {
             connectionsDetails = getConnectionsDetails(potentialConnections, con);
 
             con.close();
-        } catch (SQLException | ClassNotFoundException sq) {
+        } catch (SQLException sq) {
             System.out.println(sq);
         }
-        return connectionsDetails;
+        return "Hello world"; //return connectionsDetails;
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import displayFeedBackend from '';
 
 @Component({
   selector: 'jhi-connections-feed',
@@ -8,5 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class ConnectionsFeedComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //(document.getElementById("mainText") as HTMLElement).innerText = "UP THE TEAM41!"
+    //displayFeedBackend().then((message: string) => document.body.innerText = message);
+  }
 }
