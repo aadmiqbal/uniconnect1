@@ -228,11 +228,12 @@
                 </select>
                 &nbsp;&nbsp;&nbsp;
                 <label for="moduleChoice">Modules:</label>
-                <select name="modules" id="moduleChoice" style="border-color: darkorange">
-                  <option value="AI">Artificial Intelligence</option>
-                  <option value="DSA">Data Structures & Algorithms</option>
-                  <option value="S&N">Security and Network</option>
-                  <option value="FP">Functional Programming</option>
+
+                <select>
+                  <option value="">Select a module</option>
+                  <option *ngFor="let module of userModulesData" [value]="module.id">
+                    {{ module.moduleName }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -260,4 +261,7 @@
       </div>
     </div>
   </div>
+</div>
+<div class="form-group" id="user-modules-data">
+  <ul></ul>
 </div>
