@@ -1,9 +1,12 @@
+let bio = 'my name is axel';
+let name = 'axel';
+let imagesrc = '../../content/images/punpuntriangle.png';
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function greet() {
-  await sleep(5000);
-  console.log('working2');
+  await sleep(2000);
   let i = 1;
   let myPanel = document.createElement('div');
   myPanel.className = 'card mb-3';
@@ -17,7 +20,7 @@ async function greet() {
   colMd4.className = 'col-md-4';
 
   let img = document.createElement('img');
-  img.src = '../../content/images/punpuntriangle.png';
+  img.src = imagesrc;
   img.className = 'img-fluid rounded-start rounded';
   img.alt = 'Profile';
 
@@ -29,28 +32,31 @@ async function greet() {
   let cardBody = document.createElement('div');
   cardBody.className = 'card-body';
 
+  let cardTitle = document.createElement('h5');
+  cardTitle.className = 'card-title';
+  cardTitle.textContent = name;
+
   let btnClose = document.createElement('button');
   btnClose.type = 'button';
   btnClose.className = 'btn-close float-end';
   btnClose.setAttribute('aria-label', 'Close');
   btnClose.dataset.target = '#' + i + 'cardsection';
   btnClose.dataset.dismiss = 'alert';
-
-  let cardTitle = document.createElement('h5');
-  cardTitle.className = 'card-title';
-  cardTitle.textContent = 'Placeholder Name';
+  btnClose.addEventListener('click', function (e) {
+    e.stopPropagation();
+    myPanel.style.display = 'none';
+    myPanel.parentNode.removeChild(myPanel);
+  });
 
   let cardText = document.createElement('p');
   cardText.className = 'card-text';
-  cardText.textContent =
-    'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita adipisci vero tempora! Laudantium voluptatibus praesentium itaque alias possimus quia, vel dolorem reprehenderit quae, incidunt sunt tenetur libero nihil officia nulla!';
-
+  cardText.textContent = bio;
   let small = document.createElement('small');
   small.className = 'text-muted';
   small.textContent = 'Last updated 3 mins ago';
 
-  cardBody.appendChild(btnClose);
   cardBody.appendChild(cardTitle);
+  cardBody.appendChild(btnClose);
   cardBody.appendChild(cardText);
   cardBody.appendChild(small);
 
