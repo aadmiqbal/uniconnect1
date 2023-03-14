@@ -234,9 +234,13 @@
                   <option value="S&N">Security and Network</option>
                   <option value="FP">Functional Programming</option>
                 </select>
+                &nbsp;&nbsp;&nbsp;
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                <label class="form-check-label" for="flexCheckDefault"> I agree to the terms and conditions for UNIconnect </label>
               </div>
             </div>
-
             <button
               type="submit"
               [disabled]="registerForm.invalid"
@@ -253,15 +257,25 @@
     </div>
 
     <div class="col-sm">
-      <div style="background-image: url('profile pic icon.png'); background-size: cover; height: 540px">
-        <img src="C:\Users\Krishaad\team41-22\src\main\webapp\app\account\register\profile pic icon.png" style="height: 150px" />
-      </div>
       <div class="row">
         <div class="form-group">
-          <label for="aboutyourself">About yourself (80 words)</label>
+          <label for="aboutyourself">About yourself</label>
+          <label for="aboutyourself">(A quick intro about yourself for others on UNIconnect to know about you)</label>
           <textarea class="form-control" id="aboutyourself" rows="10" cols="75" style="border-color: darkorange"></textarea>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+  crossorigin="anonymous"
+></script>
