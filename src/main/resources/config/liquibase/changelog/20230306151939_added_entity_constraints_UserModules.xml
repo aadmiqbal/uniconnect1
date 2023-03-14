@@ -8,10 +8,8 @@
     -->
     <changeSet id="20230306151939-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="subject_id"
-                                 baseTableName="user_modules"
-                                 constraintName="fk_user_modules__subject_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="subjects"/>
+        <!--
+        Deleted constraints as they no longer apply - robin
+        -->
     </changeSet>
 </databaseChangeLog>

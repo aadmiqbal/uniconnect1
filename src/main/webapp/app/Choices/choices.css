@@ -1,0 +1,12 @@
+/* This box class is purely used for explaining how the bootstrap grid system works. */
+.box {
+  background-color: lightblue;
+  border: 1px solid blue;
+  min-height: 50px;
+  font-size: 2rem;
+}
+
+.custom-color {
+  background-color: #ff8c00; /* Replace with your desired shade of orange */
+  border-color: #ff8c00; /* Use the same color for the border */
+}
