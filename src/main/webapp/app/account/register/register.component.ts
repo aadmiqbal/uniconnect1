@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
 
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/config/error.constants';
 import { RegisterService } from './register.service';
@@ -43,9 +44,13 @@ export class RegisterComponent implements AfterViewInit {
       validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
     }),
   });
-
-  constructor(private translateService: TranslateService, private registerService: RegisterService) {}
-
+  userModulesData: any[] = [];
+  constructor(private translateService: TranslateService, private registerService: RegisterService, private http: HttpClient) {}
+  ngOnInit() {
+    this.http.get<any[]>('/api/user-modules').subscribe(data => {
+      this.userModulesData = data;
+    });
+  }
   ngAfterViewInit(): void {
     if (this.login) {
       this.login.nativeElement.focus();
