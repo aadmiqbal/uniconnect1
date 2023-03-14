@@ -228,26 +228,28 @@
                 </select>
                 &nbsp;&nbsp;&nbsp;
                 <label for="moduleChoice">Modules:</label>
-                <select name="modules" id="moduleChoice" style="border-color: darkorange">
-                  <option value="AI">Artificial Intelligence</option>
-                  <option value="DSA">Data Structures & Algorithms</option>
-                  <option value="S&N">Security and Network</option>
-                  <option value="FP">Functional Programming</option>
+
+                <select>
+                  <option value="">Select a module</option>
+                  <option *ngFor="let module of userModulesData" [value]="module.id">
+                    {{ module.moduleName }}
+                  </option>
                 </select>
-                &nbsp;&nbsp;&nbsp;
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault"> I agree to the terms and conditions for UNIconnect </label>
               </div>
             </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+              <label class="form-check-label" for="flexCheckDefault"> I agree to the terms and conditions for UNIconnect </label>
+            </div>
+
             <button
               type="submit"
               [disabled]="registerForm.invalid"
               jhiTranslate="register.form.button"
               data-cy="submit"
               class="button"
-              style="background-color: darkorange; border-color: darkorange; color: black"
+              style="background-color: darkorange; border-color: darkorange; color: black; width: 200px"
             >
               Register
             </button>
@@ -255,17 +257,18 @@
         </div>
       </div>
     </div>
-
     <div class="col-sm">
       <div class="row">
         <div class="form-group">
-          <label for="aboutyourself">About yourself</label>
-          <label for="aboutyourself">(A quick intro about yourself for others on UNIconnect to know about you)</label>
+          <label for="aboutyourself">About yourself (80 words)</label>
           <textarea class="form-control" id="aboutyourself" rows="10" cols="75" style="border-color: darkorange"></textarea>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="form-group" id="user-modules-data">
+  <ul></ul>
 </div>
 
 <link
