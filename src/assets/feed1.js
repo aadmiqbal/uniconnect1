@@ -40,7 +40,7 @@ function getUserModules(UserId, studyYear, subjectId, con) {
     }
   }
   return userModules;
-}*/
+}**/
 
 function getPotentialConnections(modules, userId, studyYear, con) {
   let connections = [];

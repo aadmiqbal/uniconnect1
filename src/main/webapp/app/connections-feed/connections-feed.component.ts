@@ -11,15 +11,9 @@ export class ConnectionsFeedComponent implements OnInit {
   /* myScriptElement: HTMLScriptElement; */
   constructor() {
     greet();
-    /*this.myScriptElement = document.createElement("script");
-    this.myScriptElement.src = ".....";
-    document.body.appendChild(this.myScriptElement); */
   }
 
-  ngOnInit(): void {
-    //(document.getElementById("mainText") as HTMLElement).innerText = "UP THE TEAM41!"
-    //displayFeedBackend().then((message: string) => document.body.innerText = message);
-  }
+  ngOnInit(): void {}
 }
 
 /*
