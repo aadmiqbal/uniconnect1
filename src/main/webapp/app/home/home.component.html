@@ -1,83 +1,68 @@
-<div class="p-3 mb-2 bg-light text-dark">
-  <div class="row">
-    <div class="col-md-4">
-      <!--THIS IS A TEST FOR THE DATABASE-->
-    </div>
-
-    <style>
-      .display-5 {
-        margin-bottom: 50px;
-      }
-      .form-group {
-        margin-bottom: 10px;
-      }
-    </style>
-
-    <div class="col-md-5">
-      <h1 class="display-5">Welcome to UNIconnect</h1>
-      <div [ngSwitch]="account !== null">
-        <div class="alert alert-success" *ngSwitchCase="true">
-          <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
-            >You are logged in as user "{{ account.login }}".</span
-          >
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UNIconnect</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <div class="card-group">
+        <div class="card" style="width: 500px">
+          <img class="card-img-top" src="../../content/images/ind1.png" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Join as an Individual</h5>
+            <div class="card-text">
+              <li>Meet like minded people</li>
+              <li>Make new connections</li>
+            </div>
+            <br />
+            <div class="col-md-12 text-center">
+              <a routerLink="login" routerLinkActive="active">
+                <button type="button" class="button" style="background-color: darkorange; border-color: darkorange; color: black">
+                  Connect
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="card" style="width: 500px">
+          <img class="card-img-top" src="../../content/images/group.png" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Join a group</h5>
+            <div class="card-text">
+              <li>Ask or Answer Questions</li>
+              <li>Gain new perspective</li>
+            </div>
+            <br />
+            <div class="col-md-12 text-center">
+              <a href="#" style="background-color: darkorange" class="btn">CONNECT</a>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+        </div>
+
+        <div class="card" style="width: 500px">
+          <img class="card-img-top" src="../../content/images/mentee.png" alt="Card image cap" />
+          <div class="card-body">
+            <div class="col-md-12 text-center">
+              <a href="#" style="background-color: darkorange" class="btn custom-color btn-lg">Join as a Mentee</a>
+            </div>
+            <br />
+            <br />
+            <div class="col-md-12 text-center">
+              <a href="#" style="background-color: darkorange" class="btn btn-lg">Join as a Mentor</a>
+            </div>
           </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-            <label class="form-check-label" for="exampleCheck1" style="font-size: medium">Remember me</label>
-          </div>
-          <button type="submit" class="button" style="background-color: darkorange; border-color: darkorange; color: black; width: 200px">
-            Log in
-          </button>
-        </form>
-
-        <a routerLink="connections-feed" routerLinkActive="active">
-          <button type="button" class="button" style="background-color: darkorange; border-color: darkorange; color: black">
-            Display the feed
-          </button>
-        </a>
-
-        <style>
-          .button {
-            margin-bottom: 25px;
-          }
-        </style>
-
-        <!-- <div class="alert alert-warning" *ngSwitchCase="false">
-         <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
-         <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a
-         ><span jhiTranslate="global.messages.info.authenticated.suffix"
-           >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-           password="user").</span
-         >
-       </div>*/-->
-
-        <!--<div class="alert alert-warning" *ngSwitchCase="false">
-        <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>&nbsp;
-        <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
-      </div>-->
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-  crossorigin="anonymous"
-/>
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-  crossorigin="anonymous"
-></script>
+  </body>
+</html>
