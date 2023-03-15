@@ -19,6 +19,7 @@ body {
   height: 100%;
   overflow: auto;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 .sidebar a {
@@ -49,7 +50,7 @@ body {
   object-fit: cover;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .sidebar {
     width: 100%;
     height: auto;
@@ -60,6 +61,13 @@ body {
   }
   div.content {
     margin-left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    position: absolute;
+    padding-bottom: 500px;
   }
 }
 
