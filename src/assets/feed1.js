@@ -35,7 +35,7 @@ async function greet(appUsers) {
 
     let cardTitle = document.createElement('h5');
     cardTitle.className = 'card-title';
-    cardTitle.textContent = user.name;
+    cardTitle.textContent = 'Name: ' + '  ' + user.name;
 
     let btnClose = document.createElement('button');
     btnClose.type = 'button';
@@ -51,13 +51,10 @@ async function greet(appUsers) {
 
     let cardText = document.createElement('p');
     cardText.className = 'card-text';
-    cardText.textContent = user.bio;
+    cardText.textContent = 'Biography:' + ' ' + user.bio + ' \\n' + 'Year Of Study:' + ' ' + user.studyYear;
     let small = document.createElement('small');
     small.className = 'text-muted';
     small.textContent = 'Last updated 3 mins ago';
-
-    cardText.className = 'card-text';
-    cardText.textContent = user.studyYear;
 
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(btnClose);
