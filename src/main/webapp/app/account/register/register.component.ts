@@ -43,6 +43,22 @@ export class RegisterComponent implements AfterViewInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
     }),
+    studyYear: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    course: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    modules: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    bio: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(1), Validators.maxLength(250)],
+    }),
   });
   userModulesData: any[] = [];
   constructor(private translateService: TranslateService, private registerService: RegisterService, private http: HttpClient) {}
@@ -58,22 +74,22 @@ export class RegisterComponent implements AfterViewInit {
   }
 
   register(): void {
+    console.log('In register()');
     this.doNotMatch = false;
     this.error = false;
     this.errorEmailExists = false;
     this.errorUserExists = false;
 
-    const { password, confirmPassword } = this.registerForm.getRawValue();
+    const { password, confirmPassword, login, email, studyYear, bio } = this.registerForm.getRawValue();
+    const modules = this.registerForm.controls['modules'].value.valueOf();
     if (password !== confirmPassword) {
       this.doNotMatch = true;
     } else {
-      const { login, email } = this.registerForm.getRawValue();
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang })
+        .save({ login, email, password, langKey: this.translateService.currentLang }, studyYear, bio, modules)
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }
-
   private processError(response: HttpErrorResponse): void {
     if (response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE) {
       this.errorUserExists = true;

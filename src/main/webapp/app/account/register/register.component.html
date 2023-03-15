@@ -214,8 +214,8 @@
 
             <div class="mb-3">
               <div class="row">
-                <label for="yearChoices">Year:</label>
-                <select name="years" id="yearChoices" style="border-color: darkorange">
+                <label for="studyYear">Year:</label>
+                <select name="years" class="form-control" id="studyYear" formControlName="studyYear" style="border-color: darkorange">
                   <option value="Year 1">Year 1</option>
                   <option value="Year 2">Year 2</option>
                   <option value="Year 3">Year 3</option>
@@ -227,14 +227,29 @@
                   <option value="Comp Sci">Computer Science</option>
                 </select>
                 &nbsp;&nbsp;&nbsp;
-                <label for="moduleChoice">Modules:</label>
-
-                <select>
+                <label for="modules">Modules:</label>
+                <select class="form-control" id="modules" formControlName="modules">
                   <option value="">Select a module</option>
                   <option *ngFor="let module of userModulesData" [value]="module.id">
                     {{ module.moduleName }}
                   </option>
                 </select>
+              </div>
+            </div>
+
+            <div class="col-sm">
+              <div class="row">
+                <div class="form-group" *ngIf="!success">
+                  <label for="aboutyourself">About yourself (80 words)</label>
+                  <textarea
+                    class="form-control"
+                    formControlName="bio"
+                    id="aboutyourself"
+                    rows="10"
+                    cols="75"
+                    style="border-color: darkorange"
+                  ></textarea>
+                </div>
               </div>
             </div>
 
@@ -245,23 +260,15 @@
 
             <button
               type="submit"
-              [disabled]="registerForm.invalid"
               jhiTranslate="register.form.button"
               data-cy="submit"
               class="button"
               style="background-color: darkorange; border-color: darkorange; color: black; width: 200px"
             >
+              <!--[disabled]="registerForm.invalid"-->
               Register
             </button>
           </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="row">
-        <div class="form-group" *ngIf="!success">
-          <label for="aboutyourself">About yourself (80 words)</label>
-          <textarea class="form-control" id="aboutyourself" rows="10" cols="75" style="border-color: darkorange"></textarea>
         </div>
       </div>
     </div>
