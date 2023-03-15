@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
@@ -22,6 +22,10 @@ import { ConnectionsFeedComponent } from './connections-feed/connections-feed.co
           },
           canActivate: [UserRouteAccessService],
           loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule),
+        },
+        {
+          path: 'privacy-policy',
+          component: PrivacyPolicyComponent,
         },
         {
           path: 'account',

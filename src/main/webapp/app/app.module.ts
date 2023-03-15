@@ -26,6 +26,7 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { ConnectionsFeedComponent } from './connections-feed/connections-feed.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { ConnectionsFeedComponent } from './connections-feed/connections-feed.co
     ActiveMenuDirective,
     FooterComponent,
     ConnectionsFeedComponent,
+    PrivacyPolicyComponent,
   ],
   bootstrap: [MainComponent],
 })
