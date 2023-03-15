@@ -51,7 +51,7 @@ async function greet(appUsers) {
 
     let cardText = document.createElement('p');
     cardText.className = 'card-text';
-    cardText.textContent = 'Biography:' + ' ' + user.bio + ' \\n' + 'Year Of Study:' + ' ' + user.studyYear;
+    cardText.textContent = 'Biography:' + ' ' + user.bio + '\nYear Of Study:' + ' ' + user.studyYear;
     let small = document.createElement('small');
     small.className = 'text-muted';
     small.textContent = 'Last updated 3 mins ago';
