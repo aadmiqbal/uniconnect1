@@ -1,4 +1,4 @@
-let imagesrc = '../../content/images/punpuntriangle.png';
+let imagesrc = '../../content/images/pp.png';
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -55,6 +55,9 @@ async function greet(appUsers) {
     let small = document.createElement('small');
     small.className = 'text-muted';
     small.textContent = 'Last updated 3 mins ago';
+
+    cardText.className = 'card-text';
+    cardText.textContent = user.studyYear;
 
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(btnClose);

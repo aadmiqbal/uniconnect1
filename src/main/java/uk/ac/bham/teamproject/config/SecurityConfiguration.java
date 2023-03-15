@@ -93,6 +93,7 @@ public class SecurityConfiguration {
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/user-modules").permitAll()
             .antMatchers("/api/app-users").permitAll()
+            .antMatchers("/api/app-user-logins").permitAll()
 
 
             .and()
