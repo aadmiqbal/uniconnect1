@@ -92,8 +92,10 @@ public class SecurityConfiguration {
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/user-modules").permitAll()
+            .antMatchers("/api/app-users").permitAll()
 
-        .and()
+
+            .and()
             .httpBasic()
         .and()
             .apply(securityConfigurerAdapter());

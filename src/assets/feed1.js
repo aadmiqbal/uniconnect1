@@ -1,73 +1,75 @@
-let bio = 'my name is axel';
-let name = 'axel';
 let imagesrc = '../../content/images/punpuntriangle.png';
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function greet() {
+async function greet(appUsers) {
   await sleep(2000);
   let i = 1;
-  let myPanel = document.createElement('div');
-  myPanel.className = 'card mb-3';
-  myPanel.style.maxWidth = 'max-content';
-  myPanel.id = i + 'cardsection';
 
-  let row = document.createElement('div');
-  row.className = 'row g-0';
+  // loop through appUsers
+  for (const user of appUsers) {
+    let myPanel = document.createElement('div');
+    myPanel.className = 'card mb-3';
+    myPanel.style.maxWidth = 'max-content';
+    myPanel.id = i + 'cardsection';
 
-  let colMd4 = document.createElement('div');
-  colMd4.className = 'col-md-4';
+    let row = document.createElement('div');
+    row.className = 'row g-0';
 
-  let img = document.createElement('img');
-  img.src = imagesrc;
-  img.className = 'img-fluid rounded-start rounded';
-  img.alt = 'Profile';
+    let colMd4 = document.createElement('div');
+    colMd4.className = 'col-md-4';
 
-  colMd4.appendChild(img);
+    let img = document.createElement('img');
+    img.src = imagesrc;
+    img.className = 'img-fluid rounded-start rounded';
+    img.alt = 'Profile';
 
-  let colMd8 = document.createElement('div');
-  colMd8.className = 'col-md-8';
+    colMd4.appendChild(img);
 
-  let cardBody = document.createElement('div');
-  cardBody.className = 'card-body';
+    let colMd8 = document.createElement('div');
+    colMd8.className = 'col-md-8';
 
-  let cardTitle = document.createElement('h5');
-  cardTitle.className = 'card-title';
-  cardTitle.textContent = name;
+    let cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
 
-  let btnClose = document.createElement('button');
-  btnClose.type = 'button';
-  btnClose.className = 'btn-close float-end';
-  btnClose.setAttribute('aria-label', 'Close');
-  btnClose.dataset.target = '#' + i + 'cardsection';
-  btnClose.dataset.dismiss = 'alert';
-  btnClose.addEventListener('click', function (e) {
-    e.stopPropagation();
-    myPanel.style.display = 'none';
-    myPanel.parentNode.removeChild(myPanel);
-  });
+    let cardTitle = document.createElement('h5');
+    cardTitle.className = 'card-title';
+    cardTitle.textContent = user.name;
 
-  let cardText = document.createElement('p');
-  cardText.className = 'card-text';
-  cardText.textContent = bio;
-  let small = document.createElement('small');
-  small.className = 'text-muted';
-  small.textContent = 'Last updated 3 mins ago';
+    let btnClose = document.createElement('button');
+    btnClose.type = 'button';
+    btnClose.className = 'btn-close float-end';
+    btnClose.setAttribute('aria-label', 'Close');
+    btnClose.dataset.target = '#' + i + 'cardsection';
+    btnClose.dataset.dismiss = 'alert';
+    btnClose.addEventListener('click', function (e) {
+      e.stopPropagation();
+      myPanel.style.display = 'none';
+      myPanel.parentNode.removeChild(myPanel);
+    });
 
-  cardBody.appendChild(cardTitle);
-  cardBody.appendChild(btnClose);
-  cardBody.appendChild(cardText);
-  cardBody.appendChild(small);
+    let cardText = document.createElement('p');
+    cardText.className = 'card-text';
+    cardText.textContent = user.bio;
+    let small = document.createElement('small');
+    small.className = 'text-muted';
+    small.textContent = 'Last updated 3 mins ago';
 
-  colMd8.appendChild(cardBody);
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(btnClose);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(small);
 
-  row.appendChild(colMd4);
-  row.appendChild(colMd8);
+    colMd8.appendChild(cardBody);
 
-  myPanel.appendChild(row);
+    row.appendChild(colMd4);
+    row.appendChild(colMd8);
 
-  document.getElementById('cardsection').appendChild(myPanel);
+    myPanel.appendChild(row);
 
-  i++;
+    document.getElementById('cardsection').appendChild(myPanel);
+
+    i++;
+  }
 }
