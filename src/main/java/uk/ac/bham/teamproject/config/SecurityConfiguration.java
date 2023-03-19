@@ -82,6 +82,10 @@ public class SecurityConfiguration {
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
+            .antMatchers("/api/user-modules").permitAll()
+            .antMatchers("/api/app-users").permitAll()
+            .antMatchers("/api/app-user-logins").permitAll()
+            .antMatchers("/api/module-links").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
@@ -91,10 +95,6 @@ public class SecurityConfiguration {
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/api/user-modules").permitAll()
-            .antMatchers("/api/app-users").permitAll()
-            .antMatchers("/api/app-user-logins").permitAll()
-
 
             .and()
             .httpBasic()
