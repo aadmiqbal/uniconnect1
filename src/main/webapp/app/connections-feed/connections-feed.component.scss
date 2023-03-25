@@ -111,3 +111,7 @@ body {
   height: 850px;
   overflow: auto;
 }
+
+.row {
+  flex-wrap: nowrap;
+}
