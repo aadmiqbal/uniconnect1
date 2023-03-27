@@ -31,7 +31,15 @@ import { ConnectionsFeedComponent } from './connections-feed/connections-feed.co
           path: 'account',
           loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
         },
-        { path: 'connections-feed', component: ConnectionsFeedComponent },
+        {
+          path: 'connections-feed',
+          component: ConnectionsFeedComponent,
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+            pageTitle: 'Connections Feed',
+          },
+        },
         {
           path: 'login',
           loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
