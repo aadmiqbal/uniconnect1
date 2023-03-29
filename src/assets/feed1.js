@@ -74,3 +74,108 @@ async function greet(appUsers) {
     i++;
   }
 }
+// Define arrays
+let friends = [
+  { name: 'Roshaan', image: imagesrc, status: 'Online' },
+  { name: 'Adam', image: imagesrc, status: 'Offline' },
+  { name: 'Axel', image: imagesrc, status: 'Away' },
+];
+let requests = [
+  { name: 'Krishaad', image: imagesrc },
+  { name: 'Varan', image: imagesrc },
+  { name: 'Robin', image: imagesrc },
+];
+
+// Function to display friends list
+function displayFriends() {
+  // Get the section element where we want to display the cards
+  let section = document.getElementById('list');
+
+  // Clear any previous content
+  section.innerHTML = '';
+
+  // Loop through the friends array and create a card for each friend
+  for (let i = 0; i < friends.length; i++) {
+    // Create the card container
+    let card = document.createElement('div');
+    card.classList.add('card', 'mb-3');
+
+    // Create the card body
+    let cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    // Create the card title with the friend's name
+    let cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-title');
+    cardTitle.textContent = friends[i].name;
+
+    // Create the card text with the friend's status
+    let cardText = document.createElement('p');
+    cardText.classList.add('card-text');
+    cardText.textContent = 'Status: ' + friends[i].status;
+
+    // Create the profile picture and add it to the card
+    let profilePic = document.createElement('img');
+    profilePic.classList.add('rounded', 'float-end');
+    profilePic.style.width = '50px';
+    profilePic.style.height = '50px';
+    profilePic.style.objectFit = 'cover';
+    profilePic.src = friends[i].image;
+    cardBody.appendChild(profilePic);
+
+    // Add the title and text to the card body
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+
+    // Add the card body to the card container
+    card.appendChild(cardBody);
+
+    // Add the card to the section
+    section.appendChild(card);
+  }
+}
+
+// Function to display requests list
+function displayRequests() {
+  // Get the section element where we want to display the cards
+  let section = document.getElementById('list');
+
+  // Clear any previous content
+  section.innerHTML = '';
+
+  // Loop through the friends array and create a card for each friend
+  for (let i = 0; i < requests.length; i++) {
+    // Create the card container
+    let card = document.createElement('div');
+    card.classList.add('card', 'mb-3');
+
+    // Create the card body
+    let cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    // Create the card title with the friend's name
+    let cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-title');
+    cardTitle.textContent = requests[i].name;
+
+    // Create the card text with the friend's status
+
+    // Create the profile picture and add it to the card
+    let profilePic = document.createElement('img');
+    profilePic.classList.add('rounded', 'float-end');
+    profilePic.style.width = '50px';
+    profilePic.style.height = '50px';
+    profilePic.style.objectFit = 'cover';
+    profilePic.src = requests[i].image;
+    cardBody.appendChild(profilePic);
+
+    // Add the title and text to the card body
+    cardBody.appendChild(cardTitle);
+
+    // Add the card body to the card container
+    card.appendChild(cardBody);
+
+    // Add the card to the section
+    section.appendChild(card);
+  }
+}
