@@ -27,6 +27,9 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { ConnectionsFeedComponent } from './connections-feed/connections-feed.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { MentorModuleSelectionComponent } from './mentor-module-selection/mentor-module-selection.component';
+import { RouterModule } from '@angular/router';
+import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee-module-selection.component';
 
 @NgModule({
   imports: [
@@ -56,6 +59,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     FooterComponent,
     ConnectionsFeedComponent,
     PrivacyPolicyComponent,
+    MentorModuleSelectionComponent,
+    MenteeModuleSelectionComponent,
   ],
   bootstrap: [MainComponent],
 })
