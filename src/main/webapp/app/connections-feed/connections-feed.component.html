@@ -33,12 +33,14 @@
           </div>
           <div class="col d-none d-sm-none d-lg-none d-md-none d-xl-block">
             <h1>Connections</h1>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-secondary active">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked /> Friends
-              </label>
-              <label class="btn btn-secondary"> <input type="radio" name="options" id="option2" autocomplete="off" /> Requests </label>
+            <div class="button-container">
+              <button class="buttonstyle" id="friends-button" onclick="displayFriends()">Friends</button>
+              <button class="buttonstyle" id="requests-button" onclick="displayRequests()">Requests</button>
+              <br />
+              <div id="list"></div>
             </div>
+
+            <br />
 
             <div class="row">
               <div class="col">
