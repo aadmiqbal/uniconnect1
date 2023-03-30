@@ -141,3 +141,30 @@ body {
   border-top-right-radius: 25%;
   border-bottom-right-radius: 25%;
 }
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-title {
+  margin-bottom: 10px;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+}
+
+.card-body img {
+  margin-right: 10px;
+}
+
+.btn-accept {
+  background-color: green;
+  color: white;
+}
+
+.btn-reject {
+  background-color: red;
+  color: white;
+}

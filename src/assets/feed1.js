@@ -143,7 +143,7 @@ function displayRequests() {
   // Clear any previous content
   section.innerHTML = '';
 
-  // Loop through the friends array and create a card for each friend
+  // Loop through the requests array and create a card for each request
   for (let i = 0; i < requests.length; i++) {
     // Create the card container
     let card = document.createElement('div');
@@ -153,24 +153,50 @@ function displayRequests() {
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
 
-    // Create the card title with the friend's name
+    // Create the card title with the request's name
     let cardTitle = document.createElement('h5');
     cardTitle.classList.add('card-title');
     cardTitle.textContent = requests[i].name;
 
-    // Create the card text with the friend's status
+    // Create the accept button
+
+    // Create the reject button
+    let rejectButton = document.createElement('button');
+    rejectButton.classList.add('btn', 'btn-danger', 'float', 'mx-1', 'btn-sm');
+    rejectButton.textContent = 'Reject';
+    // Add a click event listener to the reject button
+    rejectButton.addEventListener('click', function () {
+      // Call a function to reject the request
+      rejectRequest(requests[i]);
+      // Remove the card from the section
+      card.remove();
+    });
+
+    let acceptButton = document.createElement('button');
+    acceptButton.classList.add('btn', 'btn-success', 'float', 'btn-sm');
+    acceptButton.textContent = 'Accept';
+    // Add a click event listener to the accept button
+    acceptButton.addEventListener('click', function () {
+      // Call a function to accept the request
+      acceptRequest(requests[i]);
+      // Remove the card from the section
+      card.remove();
+    });
+
+    // Add the title and buttons to the card body
+    cardBody.appendChild(cardTitle);
+
+    cardBody.appendChild(rejectButton);
+    cardBody.appendChild(acceptButton);
 
     // Create the profile picture and add it to the card
     let profilePic = document.createElement('img');
-    profilePic.classList.add('rounded', 'float-end');
+    profilePic.classList.add('rounded', 'float');
     profilePic.style.width = '50px';
     profilePic.style.height = '50px';
     profilePic.style.objectFit = 'cover';
     profilePic.src = requests[i].image;
     cardBody.appendChild(profilePic);
-
-    // Add the title and text to the card body
-    cardBody.appendChild(cardTitle);
 
     // Add the card body to the card container
     card.appendChild(cardBody);
@@ -178,4 +204,14 @@ function displayRequests() {
     // Add the card to the section
     section.appendChild(card);
   }
+}
+
+// Function to accept a request
+function acceptRequest(request) {
+  // Your code to accept the request goes here
+}
+
+// Function to reject a request
+function rejectRequest(request) {
+  // Your code to reject the request goes here
 }
