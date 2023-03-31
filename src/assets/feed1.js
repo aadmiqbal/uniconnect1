@@ -83,6 +83,7 @@ let friends = [
 let requests = [
   { name: 'Krishaad', image: imagesrc },
   { name: 'Varan', image: imagesrc },
+  { name: 'Einstein', image: imagesrc },
   { name: 'Robin', image: imagesrc },
 ];
 
@@ -117,11 +118,14 @@ function displayFriends() {
     // Create the profile picture and add it to the card
     let profilePic = document.createElement('img');
     profilePic.classList.add('rounded', 'float-end');
-    profilePic.style.width = '50px';
-    profilePic.style.height = '50px';
+    profilePic.style.width = '75px';
+    profilePic.style.height = '75px';
     profilePic.style.objectFit = 'cover';
     profilePic.src = friends[i].image;
     cardBody.appendChild(profilePic);
+
+    let chatButton = document.createElement('button');
+    chatButton.textContent = 'Chat';
 
     // Add the title and text to the card body
     cardBody.appendChild(cardTitle);
@@ -129,6 +133,7 @@ function displayFriends() {
 
     // Add the card body to the card container
     card.appendChild(cardBody);
+    card.appendChild(chatButton);
 
     // Add the card to the section
     section.appendChild(card);
@@ -147,59 +152,62 @@ function displayRequests() {
   for (let i = 0; i < requests.length; i++) {
     // Create the card container
     let card = document.createElement('div');
-    card.classList.add('card', 'mb-3');
+    card.classList.add('card', 'mb-3', 'justify-content-between', 'd-flex');
+    card.style.maxwidth = 'max-content';
+    card.style.maxheight = 'max-content';
 
     // Create the card body
     let cardBody = document.createElement('div');
-    cardBody.classList.add('card-body');
-
-    // Create the card title with the request's name
-    let cardTitle = document.createElement('h5');
-    cardTitle.classList.add('card-title');
-    cardTitle.textContent = requests[i].name;
-
-    // Create the accept button
-
-    // Create the reject button
-    let rejectButton = document.createElement('button');
-    rejectButton.classList.add('btn', 'btn-danger', 'float', 'mx-1', 'btn-sm');
-    rejectButton.textContent = 'Reject';
-    // Add a click event listener to the reject button
-    rejectButton.addEventListener('click', function () {
-      // Call a function to reject the request
-      rejectRequest(requests[i]);
-      // Remove the card from the section
-      card.remove();
-    });
-
-    let acceptButton = document.createElement('button');
-    acceptButton.classList.add('btn', 'btn-success', 'float', 'btn-sm');
-    acceptButton.textContent = 'Accept';
-    // Add a click event listener to the accept button
-    acceptButton.addEventListener('click', function () {
-      // Call a function to accept the request
-      acceptRequest(requests[i]);
-      // Remove the card from the section
-      card.remove();
-    });
-
-    // Add the title and buttons to the card body
-    cardBody.appendChild(cardTitle);
-
-    cardBody.appendChild(rejectButton);
-    cardBody.appendChild(acceptButton);
+    cardBody.classList.add('card-body', 'd-flex', 'justify-content-between', 'align-items-center');
 
     // Create the profile picture and add it to the card
     let profilePic = document.createElement('img');
-    profilePic.classList.add('rounded', 'float');
-    profilePic.style.width = '50px';
-    profilePic.style.height = '50px';
-    profilePic.style.objectFit = 'cover';
+    profilePic.classList.add('rounded', 'float-right', 'me-1');
+    profilePic.style.width = '75px';
+    profilePic.style.height = '70px';
+    // profilePic.style.objectFit = 'center-center';
     profilePic.src = requests[i].image;
+
+    // Create the card title with the friend's name
+    let cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-title', 'me-1', 'justify-content-center');
+    cardTitle.textContent = requests[i].name;
+
+    // Create the accept button
+    let acceptButton = document.createElement('button');
+    acceptButton.type = 'button';
+    acceptButton.classList.add('btn', 'btn-success', 'btn-sm', 'float');
+    acceptButton.textContent = 'Accept';
+    acceptButton.style.maxwidth = 'max-content';
+    acceptButton.style.maxheight = 'max-content';
+
+    acceptButton.addEventListener('click', function () {
+      // Handle accept button click
+    });
+
+    // Create the reject button
+    let rejectButton = document.createElement('button');
+    rejectButton.type = 'button';
+    rejectButton.classList.add('btn', 'btn-danger', 'btn-sm', 'float');
+    rejectButton.textContent = 'Decline';
+    rejectButton.style.maxwidth = 'max-content';
+    rejectButton.style.maxheight = 'max-content';
+
+    rejectButton.addEventListener('click', function () {
+      // Handle reject button click
+    });
+
     cardBody.appendChild(profilePic);
+    cardBody.appendChild(cardTitle);
+
+    // buttonBody.appendChild(acceptButton);
+    // buttonBody.appendChild(rejectButton);
+    // cardBody.appendChild(buttonBody);
 
     // Add the card body to the card container
     card.appendChild(cardBody);
+    card.appendChild(acceptButton);
+    card.appendChild(rejectButton);
 
     // Add the card to the section
     section.appendChild(card);

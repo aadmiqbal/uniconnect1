@@ -7,6 +7,11 @@ body {
   overflow: auto;
 }
 
+#list {
+  overflow: auto;
+  height: 100vh;
+}
+
 #ddmen {
   box-sizing: content-box;
 }
@@ -134,6 +139,7 @@ body {
   color: whitesmoke;
   font-weight: bold;
   font-family: Arial;
+  outline: none;
 }
 
 #requests-button {
@@ -152,13 +158,8 @@ body {
 
 .card-body {
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
-
-.card-body img {
-  margin-right: 10px;
-}
-
 .btn-accept {
   background-color: green;
   color: white;
