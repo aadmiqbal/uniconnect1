@@ -10,7 +10,8 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
 //
 import { ConnectionsFeedComponent } from './connections-feed/connections-feed.component';
 //
-
+import { MentorModuleSelectionComponent } from './mentor-module-selection/mentor-module-selection.component';
+import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee-module-selection.component';
 @NgModule({
   imports: [
     RouterModule.forRoot(
@@ -31,7 +32,23 @@ import { ConnectionsFeedComponent } from './connections-feed/connections-feed.co
           path: 'account',
           loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
         },
-        { path: 'connections-feed', component: ConnectionsFeedComponent },
+        {
+          path: 'connections-feed',
+          component: ConnectionsFeedComponent,
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+            pageTitle: 'Connections Feed',
+          },
+        },
+        {
+          path: 'mentor-module-selection',
+          component: MentorModuleSelectionComponent,
+        },
+        {
+          path: 'mentee-module-selection',
+          component: MenteeModuleSelectionComponent,
+        },
         {
           path: 'login',
           loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
