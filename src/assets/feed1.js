@@ -247,3 +247,43 @@ function populatePopup(profilePopup, user) {
   profilePopup.appendChild(topRow);
   profilePopup.appendChild(bottomRow);
 }
+
+function addModuleLabel() {
+  const moduleLabels = document.querySelector('#module-labels');
+  const firstModuleLabel = moduleLabels.querySelector("label[for^='modules']");
+  const firstModuleSelect = moduleLabels.querySelector("select[id^='modules']");
+  const addButton = document.querySelector('#my-button');
+
+  // Clone the first label and select dropdown and update the id
+  const newModuleLabel = firstModuleLabel.cloneNode(true);
+  const newModuleSelect = firstModuleSelect.cloneNode(true);
+  const newModuleSelectId = 'modules' + (parseInt(newModuleSelect.id.slice(7)) + 1).toString();
+  newModuleLabel.setAttribute('for', newModuleSelectId);
+  newModuleSelect.setAttribute('id', newModuleSelectId);
+
+  // Show the new label and select dropdown
+  newModuleLabel.style.display = 'inline-block';
+  newModuleSelect.style.display = 'inline-block';
+
+  const brElement = document.createElement('br');
+
+  const removeBtn = document.createElement('button');
+  removeBtn.textContent = 'Remove';
+  removeBtn.addEventListener('click', function () {
+    moduleLabels.removeChild(newModuleLabel);
+    moduleLabels.removeChild(newModuleSelect);
+    moduleLabels.removeChild(removeBtn);
+  });
+  moduleLabels.appendChild(newModuleLabel);
+  moduleLabels.appendChild(newModuleSelect);
+  moduleLabels.appendChild(removeBtn);
+
+  // Insert a line break element after the label element
+  moduleLabels.appendChild(brElement);
+
+  const br1 = document.createElement('br');
+  const br2 = document.createElement('br');
+  moduleLabels.appendChild(br1);
+  moduleLabels.appendChild(removeBtn);
+  moduleLabels.appendChild(br2);
+}

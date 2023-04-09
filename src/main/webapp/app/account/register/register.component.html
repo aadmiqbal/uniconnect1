@@ -234,6 +234,41 @@
                     {{ module.moduleName }}
                   </option>
                 </select>
+                &nbsp;&nbsp;&nbsp;
+
+                <div id="label-container">
+                  <div id="module-labels">
+                    <label for="modules1" style="display: none">Modules:</label>
+                    <select class="form-control" id="modules1" formControlName="modules1" style="display: none">
+                      <option value="" style="display: none">Select a module</option>
+                      <option *ngFor="let module of userModulesData" [value]="module.id">
+                        {{ module.moduleName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <button id="my-button" class="circle-button" style="margin-top: 25px" onclick="addModuleLabel()">
+                  <span>+</span>
+                </button>
+
+                <style>
+                  .circle-button {
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    background-color: #f1f1f1;
+                    border: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 24px;
+                    color: #333;
+                  }
+                  .circle-button span {
+                    line-height: 0;
+                  }
+                </style>
               </div>
             </div>
 
