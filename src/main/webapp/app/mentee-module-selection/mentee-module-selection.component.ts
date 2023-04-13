@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-mentor-module-selection',
@@ -7,10 +8,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./mentee-module-selection.component.scss'],
 })
 export class MenteeModuleSelectionComponent {
-  constructor(private router: Router) {}
+  moduleSelect: any = 0;
+
+  moduleData: any[] = [];
+
+  /** Test data:
+   *
+   *
+   * moduleData = [
+    { id : 1, moduleName : "DSA" },
+    { id : 2, moduleName : "OOP"},
+    { id : 3, moduleName : "MLFCS"},
+    { id : 4, moduleName : "AI1"},
+    { id : 5, moduleName : "FSAD"},
+    { id : 6, moduleName : "TOC"}
+  ];**/
+
+  constructor(private router: Router, private http: HttpClient) {}
+
+  ngOnInit() {
+    this.http.get<any[]>('/api/user-modules').subscribe(data => {
+      this.moduleData = data;
+    });
+  }
 
   home(): void {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/home');
   }
 
   feed(): void {

@@ -4,34 +4,17 @@
 
 <body class="bg-light">
   <h1>Choose a module:</h1>
+
   <p>
     <i>Choose a module from the list below you'd like to find a mentor for</i>
   </p>
-  <select id="moduleselect">
-    <option value="default">Select a module...</option>
+
+  <select [(ngModel)]="moduleSelect">
+    <option value="0">Select a module...</option>
+    <option *ngFor="let choice of moduleData" [value]="choice.id">
+      {{ choice.moduleName }}
+    </option>
   </select>
-  <!-- populated by the below script -->
-
-  <!-- TODO - fix the script, dunno why it's not working when built even though the js is sound -->
-
-  <script>
-
-    let dropdown = document.getElementById("moduleselect");
-
-    let options = ["DSA", "OOP", "MLFCS", "AI2", "FSAD", "TOC"];
-    <!-- populated with options taken from this array; this should be populated from db when possible -->
-
-    for (let val in options){
-      let option = document.createElement("option");
-
-      let optionTxt = document.createTextNode(options[val]);
-      option.appendChild(optionTxt);
-
-      option.setAttribute('value', options[val]);
-
-      dropdown.appendChild(option);
-    }
-  </script>
 
   <button type="button" (click)="feed()" style="margin: 5% 0 0 0; background-color: darkorange; border-color: darkorange; color: black">
     Find a mentor
