@@ -95,3 +95,8 @@ relationship ManyToOne {
     UserGroupUsers{user} to AppUsers
     //setup of Groups relationship with Users via GroupUsers
 }
+
+paginate AppUsers, UserGroupUsers, UserGroups, Connections with infinite-scroll
+//paginated the tables which are likely to contain the most entries (pagination will speed things up)
+//future chat-related tables should probably be paginated
+
