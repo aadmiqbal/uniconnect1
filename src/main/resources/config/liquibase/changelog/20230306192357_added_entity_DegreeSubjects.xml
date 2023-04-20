@@ -41,6 +41,8 @@
                   tableName="degree_subjects"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
+            <column name="degree_id" type="numeric"/>
+            <column name="subject_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

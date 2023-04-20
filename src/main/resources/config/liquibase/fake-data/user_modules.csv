@@ -1,11 +1,31 @@
 id;module_name;optional;study_year
-1;mission-critical overriding;false;4
-2;Home Illinois;false;4
-3;Outdoors applications;false;4
-4;Fantastic;true;3
-5;secondary object-oriented Bike;true;4
-6;Pataca National;true;1
-7;Internal Frozen parallelism;true;3
-8;Response Associate;true;1
-9;payment;false;1
-10;TCP;true;4
+1;Data Structures and Algorithms;false;1
+2;Object Oriented Programming;false;1
+3;Mathematical and Logical Foundations of Computer Science;false;1
+4;Theories of Computation;false;1
+5;Full Stack Application Development;false;1
+6;Artificial Intelligence 1;false;1
+7;Functional Programming;false;2
+8;Operating Systems / Systems Programming;false;2
+9;Software Engineering and Professional Practices;false;2
+10;Security and Networks;false;2
+11;Artificial Intelligence 2;false;2
+12;Team Project;false;2
+13;Teaching Computer Science in Schools;true;3
+14;Human Computer Interaction;true;3
+15;Security in Real World Systems;true;3
+16;Mobile and Ubiquitous Computing;true;3
+17;Computer Vision;true;3
+18;Advanced Functional Programming;true;3
+19;Programming Language Principles, Design, and Implementation;true;3
+20;Dependable and Distributed Systems;true;3
+21;Advanced Networking;true;3
+22;Algorithms and Complexity;true;3
+23;Intelligent Interactive Systems;true;3
+24;Intelligent Robotics;true;3
+25;Machine Learning and Intelligent Data Analysis;true;3
+26;Quantum Computing;true;3
+27;Neural Computation;true;3
+28;Natural Language Processing;true;3
+29;Evolutionary Computation;true;3
+30;Computer Aided Verification;true;3
