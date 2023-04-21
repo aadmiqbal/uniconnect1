@@ -93,4 +93,10 @@ public class UserExtraServiceImpl implements UserExtraService {
         log.debug("Request to delete UserExtra : {}", id);
         userExtraRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<UserExtra> findByUserLogin(String userLogin) {
+        log.debug("Request to find UserExtra by user login: {}", userLogin);
+        return userExtraRepository.findOneWithUserByUserLogin(userLogin);
+    }
 }

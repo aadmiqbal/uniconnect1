@@ -5,6 +5,9 @@ function sleep(ms) {
 }
 async function greet(appUsers) {
   await sleep(2000);
+  //TODO: will need to also pass in the current user
+  // to filter out accounts in the feed based on modules,
+  // if there is already a connection, if it is the user themself
 
   /*let head = document.getElementsByTagName('HEAD')[0];
   let cssLink = document.createElement('link');
@@ -17,6 +20,11 @@ async function greet(appUsers) {
 
   // loop through appUsers
   for (const user of appUsers) {
+    let imagesrc1 = '../../content/images/pp.png';
+    if (user.pfp) {
+      imagesrc1 = user.pfp;
+    }
+
     let myPanel = document.createElement('div');
     myPanel.className = 'card mb-3';
     myPanel.style.maxWidth = 'max-content';
@@ -29,7 +37,7 @@ async function greet(appUsers) {
     colMd4.className = 'col-md-4';
 
     let img = document.createElement('img');
-    img.src = imagesrc;
+    img.src = imagesrc1;
     img.className = 'img-fluid rounded-start rounded';
     img.alt = 'Profile';
 
