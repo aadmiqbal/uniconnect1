@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UNIconnect</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
+  </head>
+  <body id="popupAdder">
+    <div class="align-content-lg-start">
+      <div class="sidebar" id="sidebar">
+        <a class="active" href="#">Individuals</a>
+        <a href="#">Groups</a>
+        <a href="#">Mentors</a>
+      </div>
+    </div>
+    <section class="bg-light text-dark py-xxl-3 py-xl-3 py-lg-3 py-md-3 py-sm-3">
+      <div class="container">
+        <div class="row gy-1">
+          <div class="col col-xl-2 col-lg-2 col-md-2 col-sm-2"></div>
+          <div class="col-xl-8 col-lg-8 col-md-10 text-center align-item-center col-sm-12 col-xs-12" id="fdcont">
+            <h2>The Feed</h2>
+            <div class="container" id="flux">
+              <div class="container" id="cardsection"></div>
+            </div>
+          </div>
+          <div class="col d-none d-sm-none d-lg-none d-md-none d-xl-block">
+            <h1>Connections</h1>
+            <div class="button-container">
+              <button class="buttonstyle" id="friends-button" onclick="displayFriends()">Friends</button>
+              <button class="buttonstyle" id="requests-button" onclick="displayRequests()">Requests</button>
+              <br />
+              <div id="list"></div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col">
+                <br />
+                <div class="container-fluid">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col d-none d-sm-none d-lg-none d-md-none d-xl-block">
+                <div class="container" id="f2">
+                  <div class="container" id="requestsection"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                  <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                  </a>
+                  <span class="mb-3 mb-md-0 text-muted">© 2023 UNIconnect</span>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

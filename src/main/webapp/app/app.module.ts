@@ -30,6 +30,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { MentorModuleSelectionComponent } from './mentor-module-selection/mentor-module-selection.component';
 import { RouterModule } from '@angular/router';
 import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee-module-selection.component';
+import { GroupFeedComponent } from './group-feed/group-feed.component';
 
 @NgModule({
   imports: [
@@ -61,6 +62,7 @@ import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee
     PrivacyPolicyComponent,
     MentorModuleSelectionComponent,
     MenteeModuleSelectionComponent,
+    GroupFeedComponent,
   ],
   bootstrap: [MainComponent],
 })
