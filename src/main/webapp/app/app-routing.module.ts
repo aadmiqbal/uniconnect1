@@ -12,6 +12,7 @@ import { ConnectionsFeedComponent } from './connections-feed/connections-feed.co
 //
 import { MentorModuleSelectionComponent } from './mentor-module-selection/mentor-module-selection.component';
 import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee-module-selection.component';
+import { GroupFeedComponent } from './group-feed/group-feed.component';
 @NgModule({
   imports: [
     RouterModule.forRoot(
@@ -31,6 +32,11 @@ import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee
         {
           path: 'account',
           loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+        },
+
+        {
+          path: 'group-feed',
+          component: GroupFeedComponent,
         },
         {
           path: 'connections-feed',
