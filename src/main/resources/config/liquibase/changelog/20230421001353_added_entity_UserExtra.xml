@@ -23,7 +23,7 @@
             <column name="bio" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="pfp" type="varchar(10485760)">
+            <column name="pfp" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

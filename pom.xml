@@ -979,16 +979,6 @@
                                 <logging>debug</logging>
                                 <contexts>!test</contexts>
                             </configuration>
-                            <executions>
-                                <execution>
-                                    <id>calculate-checksums</id>
-                                    <phase>validate</phase>
-                                    <goals>
-                                        <goal>calculateChecksums</goal>
-                                    </goals>
-                                </execution>
-                                <!-- your existing execution blocks -->
-                            </executions>
                             <dependencies>
                                 <dependency>
                                     <groupId>org.liquibase</groupId>
@@ -1088,16 +1078,6 @@
                                 <logging>debug</logging>
                                 <contexts>!test</contexts>
                             </configuration>
-                            <executions>
-                                <execution>
-                                    <id>calculate-checksums</id>
-                                    <phase>validate</phase>
-                                    <goals>
-                                        <goal>calculateChecksums</goal>
-                                    </goals>
-                                </execution>
-                                <!-- your existing execution blocks -->
-                            </executions>
                             <dependencies>
                                 <dependency>
                                     <groupId>org.liquibase</groupId>
