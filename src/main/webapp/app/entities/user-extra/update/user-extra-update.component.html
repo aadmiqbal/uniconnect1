@@ -34,6 +34,21 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userExtra.modules" for="field_modules">Modules</label>
+          <input type="text" class="form-control" name="modules" id="field_modules" data-cy="modules" formControlName="modules" />
+          <div *ngIf="editForm.get('modules')!.invalid && (editForm.get('modules')!.dirty || editForm.get('modules')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('modules')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 2000 }"
+            >
+              This field cannot be longer than 2000 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="teamprojectApp.userExtra.user" for="field_user">User</label>
           <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
             <option [ngValue]="null"></option>

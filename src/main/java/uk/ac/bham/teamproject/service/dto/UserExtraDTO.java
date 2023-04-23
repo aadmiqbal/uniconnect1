@@ -2,6 +2,7 @@ package uk.ac.bham.teamproject.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * A DTO for the {@link uk.ac.bham.teamproject.domain.UserExtra} entity.
@@ -18,6 +19,9 @@ public class UserExtraDTO implements Serializable {
     private String bio;
 
     private String pfp;
+
+    @Size(max = 2000)
+    private String modules;
 
     private UserDTO user;
 
@@ -61,6 +65,14 @@ public class UserExtraDTO implements Serializable {
         this.pfp = pfp;
     }
 
+    public String getModules() {
+        return modules;
+    }
+
+    public void setModules(String modules) {
+        this.modules = modules;
+    }
+
     public UserDTO getUser() {
         return user;
     }
@@ -99,6 +111,7 @@ public class UserExtraDTO implements Serializable {
             ", studyYear=" + getStudyYear() +
             ", bio='" + getBio() + "'" +
             ", pfp='" + getPfp() + "'" +
+            ", modules='" + getModules() + "'" +
             ", user=" + getUser() +
             "}";
     }
