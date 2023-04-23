@@ -6,7 +6,6 @@ export interface IUserExtra {
   studyYear?: number | null;
   bio?: string | null;
   pfp?: string | null;
-  modules?: string | null;
   user?: Pick<IUser, 'id' | 'login'> | null;
 }
 
