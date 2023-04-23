@@ -114,6 +114,21 @@ Generic styles
 [jhisortby] {
   cursor: pointer;
 }
+.circle-button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: #f1f1f1;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #333;
+}
+.circle-button span {
+  line-height: 0;
+}
 
 /* ==========================================================================
 Custom alerts for notification

@@ -283,6 +283,8 @@ function populatePopup(profilePopup, user) {
 }
 
 function addModuleLabel() {
+  event.preventDefault(); // prevent the form from submitting
+
   const moduleLabels = document.querySelector('#module-labels');
   const firstModuleLabel = moduleLabels.querySelector("label[for^='modules']");
   const firstModuleSelect = moduleLabels.querySelector("select[id^='modules']");
