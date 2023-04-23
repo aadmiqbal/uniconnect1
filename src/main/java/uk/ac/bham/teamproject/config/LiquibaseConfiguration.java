@@ -6,6 +6,7 @@ import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
+import org.springframework.core.io.ResourceLoader;
 import tech.jhipster.config.JHipsterConstants;
 import tech.jhipster.config.liquibase.SpringLiquibaseUtil;
 
@@ -28,9 +30,13 @@ public class LiquibaseConfiguration {
         this.env = env;
     }
 
+    @Autowired
+    private ResourceLoader resourceLoader;
+
     @Bean
     public SpringLiquibase liquibase(
         @Qualifier("taskExecutor") Executor executor,
+        //pushing change deespite line below giving error cuz it was giving error before i did anything
         @LiquibaseDataSource ObjectProvider<DataSource> liquibaseDataSource,
         LiquibaseProperties liquibaseProperties,
         ObjectProvider<DataSource> dataSource,
@@ -46,7 +52,8 @@ public class LiquibaseConfiguration {
             dataSource.getIfUnique(),
             dataSourceProperties
         );
-        liquibase.setChangeLog("classpath:config/liquibase/master.xml");
+        liquibase.setResourceLoader(resourceLoader);
+        liquibase.setChangeLog("classpath:/config/liquibase/master.xml");
         liquibase.setContexts(liquibaseProperties.getContexts());
         liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
         liquibase.setLiquibaseSchema(liquibaseProperties.getLiquibaseSchema());

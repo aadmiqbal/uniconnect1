@@ -29,7 +29,7 @@ public class UserExtra implements Serializable {
     @Column(name = "bio")
     private String bio;
 
-    @Column(name = "pfp")
+    @Column(name = "pfp", length = 10485760)
     private String pfp;
 
     @OneToOne

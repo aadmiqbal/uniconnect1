@@ -17,6 +17,8 @@
 ---
 # Conditionally disable springdoc on missing api-docs profile
 spring:
+  liquibase:
+    change-log: classpath:config/liquibase/master.xml
   config:
     activate:
       on-profile: '!api-docs'
