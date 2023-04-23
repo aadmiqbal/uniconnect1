@@ -47,7 +47,6 @@
     <include file="config/liquibase/changelog/20230306192358_added_entity_constraints_ModuleLink.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230310190942_added_entity_constraints_AppUserLogins.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230421001353_added_entity_constraints_UserExtra.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20230422000100_update_pfp_length.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
