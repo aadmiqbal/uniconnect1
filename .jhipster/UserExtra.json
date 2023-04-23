@@ -17,6 +17,10 @@
     {
       "fieldName": "pfp",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "modules",
+      "fieldType": "String"
     }
   ],
   "jpaMetamodelFiltering": false,

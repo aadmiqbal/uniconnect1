@@ -24,6 +24,7 @@ describe('UserExtra Form Service', () => {
             studyYear: expect.any(Object),
             bio: expect.any(Object),
             pfp: expect.any(Object),
+            modules: expect.any(Object),
             user: expect.any(Object),
           })
         );
@@ -39,6 +40,7 @@ describe('UserExtra Form Service', () => {
             studyYear: expect.any(Object),
             bio: expect.any(Object),
             pfp: expect.any(Object),
+            modules: expect.any(Object),
             user: expect.any(Object),
           })
         );
