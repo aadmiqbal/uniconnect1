@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import uk.ac.bham.teamproject.domain.UserExtra;
 import uk.ac.bham.teamproject.repository.UserExtraRepository;
 import uk.ac.bham.teamproject.service.UserExtraService;
 import uk.ac.bham.teamproject.service.dto.UserExtraDTO;
@@ -189,5 +190,12 @@ public class UserExtraResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/user-extras/by-user-login/{userLogin}")
+    public ResponseEntity<UserExtra> getUserExtraByUserLogin(@PathVariable String userLogin) {
+        log.debug("REST request to get UserExtra by user login : {}", userLogin);
+        Optional<UserExtra> userExtra = userExtraService.findByUserLogin(userLogin);
+        return ResponseUtil.wrapOrNotFound(userExtra);
     }
 }
