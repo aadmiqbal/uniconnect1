@@ -5,8 +5,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import uk.ac.bham.teamproject.domain.UserExtra;
 import uk.ac.bham.teamproject.repository.UserExtraRepository;
 import uk.ac.bham.teamproject.service.UserExtraService;
 import uk.ac.bham.teamproject.service.dto.UserExtraDTO;
@@ -56,7 +55,7 @@ public class UserExtraResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/user-extras")
-    public ResponseEntity<UserExtraDTO> createUserExtra(@Valid @RequestBody UserExtraDTO userExtraDTO) throws URISyntaxException {
+    public ResponseEntity<UserExtraDTO> createUserExtra(@RequestBody UserExtraDTO userExtraDTO) throws URISyntaxException {
         log.debug("REST request to save UserExtra : {}", userExtraDTO);
         if (userExtraDTO.getId() != null) {
             throw new BadRequestAlertException("A new userExtra cannot already have an ID", ENTITY_NAME, "idexists");
@@ -84,7 +83,7 @@ public class UserExtraResource {
     @PutMapping("/user-extras/{id}")
     public ResponseEntity<UserExtraDTO> updateUserExtra(
         @PathVariable(value = "id", required = false) final Long id,
-        @Valid @RequestBody UserExtraDTO userExtraDTO
+        @RequestBody UserExtraDTO userExtraDTO
     ) throws URISyntaxException {
         log.debug("REST request to update UserExtra : {}, {}", id, userExtraDTO);
         if (userExtraDTO.getId() == null) {
@@ -119,7 +118,7 @@ public class UserExtraResource {
     @PatchMapping(value = "/user-extras/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<UserExtraDTO> partialUpdateUserExtra(
         @PathVariable(value = "id", required = false) final Long id,
-        @NotNull @RequestBody UserExtraDTO userExtraDTO
+        @RequestBody UserExtraDTO userExtraDTO
     ) throws URISyntaxException {
         log.debug("REST request to partial update UserExtra partially : {}, {}", id, userExtraDTO);
         if (userExtraDTO.getId() == null) {
@@ -191,5 +190,12 @@ public class UserExtraResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/user-extras/by-user-login/{userLogin}")
+    public ResponseEntity<UserExtra> getUserExtraByUserLogin(@PathVariable String userLogin) {
+        log.debug("REST request to get UserExtra by user login : {}", userLogin);
+        Optional<UserExtra> userExtra = userExtraService.findByUserLogin(userLogin);
+        return ResponseUtil.wrapOrNotFound(userExtra);
     }
 }

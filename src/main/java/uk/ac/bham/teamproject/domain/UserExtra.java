@@ -2,7 +2,6 @@ package uk.ac.bham.teamproject.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -32,10 +31,6 @@ public class UserExtra implements Serializable {
 
     @Column(name = "pfp", length = 10485760)
     private String pfp;
-
-    @Size(max = 2000)
-    @Column(name = "modules", length = 2000)
-    private String modules;
 
     @OneToOne
     @MapsId
@@ -109,19 +104,6 @@ public class UserExtra implements Serializable {
         this.pfp = pfp;
     }
 
-    public String getModules() {
-        return this.modules;
-    }
-
-    public UserExtra modules(String modules) {
-        this.setModules(modules);
-        return this;
-    }
-
-    public void setModules(String modules) {
-        this.modules = modules;
-    }
-
     public User getUser() {
         return this.user;
     }
@@ -163,7 +145,6 @@ public class UserExtra implements Serializable {
             ", studyYear=" + getStudyYear() +
             ", bio='" + getBio() + "'" +
             ", pfp='" + getPfp() + "'" +
-            ", modules='" + getModules() + "'" +
             "}";
     }
 }
