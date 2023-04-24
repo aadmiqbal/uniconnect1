@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="finalUser">
+      <h2 data-cy="finalUserDetailsHeading"><span jhiTranslate="teamprojectApp.finalUser.detail.title">Final User</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ finalUser.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalUser.name">Name</span></dt>
+        <dd>
+          <span>{{ finalUser.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalUser.studyYear">Study Year</span></dt>
+        <dd>
+          <span>{{ finalUser.studyYear }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalUser.bio">Bio</span></dt>
+        <dd>
+          <span>{{ finalUser.bio }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalUser.pfp">Pfp</span></dt>
+        <dd>
+          <span>{{ finalUser.pfp }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalUser.modules">Modules</span></dt>
+        <dd>
+          <span>{{ finalUser.modules }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalUser.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ finalUser.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalUser.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ finalUser.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalUser.user">User</span></dt>
+        <dd>
+          <span>{{ finalUser.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/final-user', finalUser.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

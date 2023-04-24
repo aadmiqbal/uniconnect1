@@ -1,6 +1,7 @@
 package uk.ac.bham.teamproject.config;
 
 import java.time.Duration;
+import javax.cache.Caching;
 import org.ehcache.config.builders.*;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.hibernate.cache.jcache.ConfigSettings;
@@ -9,8 +10,10 @@ import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.boot.info.GitProperties;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.cache.jcache.JCacheCacheManager;
 import org.springframework.context.annotation.*;
 import tech.jhipster.config.JHipsterProperties;
 import tech.jhipster.config.cache.PrefixedKeyGenerator;
@@ -36,7 +39,7 @@ public class CacheConfiguration {
     }
 
     @Bean
-    public HibernatePropertiesCustomizer hibernatePropertiesCustomizer(javax.cache.CacheManager cacheManager) {
+    public HibernatePropertiesCustomizer hibernatePropertiesCustomizer(CacheManager cacheManager) {
         return hibernateProperties -> hibernateProperties.put(ConfigSettings.CACHE_MANAGER, cacheManager);
     }
 
@@ -65,6 +68,7 @@ public class CacheConfiguration {
             createCache(cm, uk.ac.bham.teamproject.domain.DegreeSubjects.class.getName());
             createCache(cm, uk.ac.bham.teamproject.domain.ModuleLink.class.getName());
             createCache(cm, uk.ac.bham.teamproject.domain.AppUserLogins.class.getName());
+            createCache(cm, uk.ac.bham.teamproject.domain.FinalUser.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
@@ -91,5 +95,14 @@ public class CacheConfiguration {
     @Bean
     public KeyGenerator keyGenerator() {
         return new PrefixedKeyGenerator(this.gitProperties, this.buildProperties);
+    }
+
+    @Bean
+    public CacheManager cacheManager() {
+        return new JCacheCacheManager(jCacheManager());
+    }
+
+    private javax.cache.CacheManager jCacheManager() {
+        return Caching.getCachingProvider().getCacheManager();
     }
 }
