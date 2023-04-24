@@ -32,6 +32,7 @@
     <include file="config/liquibase/changelog/20230306192357_added_entity_DegreeSubjects.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230306192358_added_entity_ModuleLink.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230310190942_added_entity_AppUserLogins.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230424171743_added_entity_UserExtra.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20230306151939_added_entity_constraints_UserModules.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230306151941_added_entity_constraints_OptionalModuleLink.xml" relativeToChangelogFile="false"/>
@@ -45,6 +46,7 @@
     <include file="config/liquibase/changelog/20230306192357_added_entity_constraints_DegreeSubjects.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230306192358_added_entity_constraints_ModuleLink.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230310190942_added_entity_constraints_AppUserLogins.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230424171743_added_entity_constraints_UserExtra.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

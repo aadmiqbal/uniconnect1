@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 //import displayFeedBackend from '';
 //declare function greet(): void;
-declare function greet(appUsers: any[]): void;
+declare function greet(userExtras: any[]): void;
 //hello
 @Component({
   selector: 'jhi-connections-feed',
@@ -14,8 +14,8 @@ export class ConnectionsFeedComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<any[]>('/api/app-users').subscribe(appUsers => {
-      greet(appUsers);
+    this.http.get<any[]>('/api/user-extras').subscribe(userExtras => {
+      greet(userExtras);
     });
   }
 }

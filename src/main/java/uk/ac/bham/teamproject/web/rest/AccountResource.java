@@ -1,6 +1,8 @@
 package uk.ac.bham.teamproject.web.rest;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
@@ -50,18 +52,26 @@ public class AccountResource {
     /**
      * {@code POST  /register} : register the user.
      *
-     * @param managedUserVM the managed user View Model.
+     * @param request the managed user View Model.
      * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
      * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
      */
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
-        if (isPasswordLengthInvalid(managedUserVM.getPassword())) {
+    public void registerAccount(@Valid @RequestBody RegisterRequest request) {
+        if (isPasswordLengthInvalid(request.getPassword())) {
             throw new InvalidPasswordException();
         }
-        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(request.getStudyYear());
+        int studyYearInt = -1;
+        if (matcher.find()) {
+            studyYearInt = Integer.parseInt(matcher.group());
+        }
+        //TODO: pass in modules as well
+        User user = userService.registerUser(request, request.getPassword(), studyYearInt, request.getBio());
+
         mailService.sendActivationEmail(user);
     }
 
@@ -190,5 +200,37 @@ public class AccountResource {
             password.length() < ManagedUserVM.PASSWORD_MIN_LENGTH ||
             password.length() > ManagedUserVM.PASSWORD_MAX_LENGTH
         );
+    }
+
+    public static class RegisterRequest extends ManagedUserVM {
+
+        //TODO:modules stuff
+        private String studyYear;
+        private String bio;
+
+        // private List<Module> modules; // Replace Module with the appropriate class for your modules
+
+        public String getStudyYear() {
+            return studyYear;
+        }
+
+        public void setStudyYear(String studyYear) {
+            this.studyYear = studyYear;
+        }
+
+        public String getBio() {
+            return bio;
+        }
+
+        public void setBio(String bio) {
+            this.bio = bio;
+        }
+        /*  public List<Module> getModules() {
+            return modules;
+        }
+
+        public void setModules(List<Module> modules) {
+            this.modules = modules;
+        } */
     }
 }

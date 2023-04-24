@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+import javax.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -17,7 +18,9 @@ import tech.jhipster.security.RandomUtil;
 import uk.ac.bham.teamproject.config.Constants;
 import uk.ac.bham.teamproject.domain.Authority;
 import uk.ac.bham.teamproject.domain.User;
+import uk.ac.bham.teamproject.domain.UserExtra;
 import uk.ac.bham.teamproject.repository.AuthorityRepository;
+import uk.ac.bham.teamproject.repository.UserExtraRepository;
 import uk.ac.bham.teamproject.repository.UserRepository;
 import uk.ac.bham.teamproject.security.AuthoritiesConstants;
 import uk.ac.bham.teamproject.security.SecurityUtils;
@@ -41,15 +44,19 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
+    UserExtraRepository userExtraRepository;
+
     public UserService(
         UserRepository userRepository,
         PasswordEncoder passwordEncoder,
         AuthorityRepository authorityRepository,
+        UserExtraRepository userExtraRepository,
         CacheManager cacheManager
     ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.userExtraRepository = userExtraRepository;
         this.cacheManager = cacheManager;
     }
 
@@ -93,7 +100,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(AdminUserDTO userDTO, String password) {
+    public User registerUser(AdminUserDTO userDTO, String password, Integer studyYear, String bio) {
         userRepository
             .findOneByLogin(userDTO.getLogin().toLowerCase())
             .ifPresent(existingUser -> {
@@ -132,6 +139,17 @@ public class UserService {
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+        //creating entry for userextra when someone registers
+        UserExtra newUserExtra = new UserExtra();
+        newUserExtra.setUser(newUser);
+        newUserExtra.setStudyYear(studyYear);
+        newUserExtra.setBio(bio);
+        newUserExtra.setName(newUser.getLogin());
+        //TODO: fix when frontend allows entering real name
+
+        userExtraRepository.save(newUserExtra);
+
         return newUser;
     }
 
@@ -146,6 +164,7 @@ public class UserService {
     }
 
     public User createUser(AdminUserDTO userDTO) {
+        //TODO: create userextra when admin creates user
         User user = new User();
         user.setLogin(userDTO.getLogin().toLowerCase());
         user.setFirstName(userDTO.getFirstName());
@@ -321,5 +340,37 @@ public class UserService {
         if (user.getEmail() != null) {
             Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evict(user.getEmail());
         }
+    }
+
+    @Transactional
+    public UserDTO updateUserAndUserExtra(String login, String studyYear, String bio, String module) {
+        //TODO:modules stuff
+        Optional<User> userOptional = userRepository.findOneByLogin(login);
+        if (!userOptional.isPresent()) {
+            throw new EntityNotFoundException("User with login " + login + " not found");
+        }
+
+        User user = userOptional.get();
+        user.setActivated(true); // set the user as activated
+
+        userRepository.save(user); // save the updated user
+
+        Optional<UserExtra> userExtraOptional = userExtraRepository.findOneWithUserByUserLogin(login);
+        UserExtra userExtra;
+        if (!userExtraOptional.isPresent()) {
+            userExtra = new UserExtra();
+            userExtra.setUser(user);
+        } else {
+            userExtra = userExtraOptional.get();
+        }
+
+        // update the user extra details
+        userExtra.setStudyYear(Integer.parseInt(studyYear));
+        userExtra.setBio(bio);
+        //userExtra.setModule(module);
+
+        userExtraRepository.save(userExtra); // save the updated user extra
+
+        return new UserDTO(user);
     }
 }
