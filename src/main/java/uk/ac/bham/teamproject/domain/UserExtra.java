@@ -29,11 +29,8 @@ public class UserExtra implements Serializable {
     @Column(name = "bio")
     private String bio;
 
-    @Column(name = "pfp", length = 10485760)
+    @Column(name = "pfp")
     private String pfp;
-
-    @Column(name = "modules")
-    private String modules;
 
     @OneToOne
     @MapsId
@@ -107,19 +104,6 @@ public class UserExtra implements Serializable {
         this.pfp = pfp;
     }
 
-    public String getModules() {
-        return this.modules;
-    }
-
-    public UserExtra modules(String modules) {
-        this.setModules(modules);
-        return this;
-    }
-
-    public void setModules(String modules) {
-        this.modules = modules;
-    }
-
     public User getUser() {
         return this.user;
     }
@@ -161,7 +145,6 @@ public class UserExtra implements Serializable {
             ", studyYear=" + getStudyYear() +
             ", bio='" + getBio() + "'" +
             ", pfp='" + getPfp() + "'" +
-            ", modules='" + getModules() + "'" +
             "}";
     }
 }

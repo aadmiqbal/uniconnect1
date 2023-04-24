@@ -221,8 +221,6 @@ describe('UserExtra e2e test', () => {
 
       cy.get(`[data-cy="pfp"]`).type('Marketing Omani').should('have.value', 'Marketing Omani');
 
-      cy.get(`[data-cy="modules"]`).type('6th').should('have.value', '6th');
-
       cy.get(`[data-cy="user"]`).select(1);
 
       cy.get(entityCreateSaveButtonSelector).click();

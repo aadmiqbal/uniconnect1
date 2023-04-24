@@ -19,8 +19,6 @@ public class UserExtraDTO implements Serializable {
 
     private String pfp;
 
-    private String modules;
-
     private UserDTO user;
 
     public Long getId() {
@@ -63,14 +61,6 @@ public class UserExtraDTO implements Serializable {
         this.pfp = pfp;
     }
 
-    public String getModules() {
-        return modules;
-    }
-
-    public void setModules(String modules) {
-        this.modules = modules;
-    }
-
     public UserDTO getUser() {
         return user;
     }
@@ -109,7 +99,6 @@ public class UserExtraDTO implements Serializable {
             ", studyYear=" + getStudyYear() +
             ", bio='" + getBio() + "'" +
             ", pfp='" + getPfp() + "'" +
-            ", modules='" + getModules() + "'" +
             ", user=" + getUser() +
             "}";
     }
