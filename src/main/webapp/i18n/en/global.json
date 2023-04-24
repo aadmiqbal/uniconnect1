@@ -23,7 +23,6 @@
         "moduleLink": "Module Link",
         "appUserLogins": "App User Logins",
         "userExtra": "User Extra",
-        "finalUser": "Final User",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

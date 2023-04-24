@@ -57,9 +57,9 @@ export class SettingsComponent implements OnInit {
       if (account) {
         this.settingsForm.patchValue(account);
         this.userLogin = account.login;
-        //this.userExtraService.findByUserLogin(account.login).subscribe((res: HttpResponse<IUserExtra>) => {
-        //this.userExtra = res.body;
-        //});
+        this.userExtraService.findByUserLogin(account.login).subscribe((res: HttpResponse<IUserExtra>) => {
+          this.userExtra = res.body;
+        });
       }
     });
   }
