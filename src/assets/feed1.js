@@ -17,11 +17,6 @@ async function greet(appUsers) {
 
   // loop through appUsers
   for (const user of appUsers) {
-    let imagesrc1 = '../../content/images/pp.png';
-    if (user.pfp) {
-      imagesrc1 = user.pfp;
-    }
-
     let myPanel = document.createElement('div');
     myPanel.className = 'card mb-3';
     myPanel.style.maxWidth = 'max-content';
@@ -34,7 +29,7 @@ async function greet(appUsers) {
     colMd4.className = 'col-md-4';
 
     let img = document.createElement('img');
-    img.src = imagesrc1;
+    img.src = imagesrc;
     img.className = 'img-fluid rounded-start rounded';
     img.alt = 'Profile';
 
