@@ -17,12 +17,6 @@
     {
       "fieldName": "pfp",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "modules",
-      "fieldType": "String",
-      "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": "2000"
     }
   ],
   "jpaMetamodelFiltering": false,

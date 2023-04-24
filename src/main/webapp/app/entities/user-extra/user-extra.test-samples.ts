@@ -6,17 +6,16 @@ export const sampleWithRequiredData: IUserExtra = {
 
 export const sampleWithPartialData: IUserExtra = {
   id: 95119,
-  name: 'THX Pennsylvania array',
-  bio: 'capacitor Cotton Money',
+  name: 'Accountability',
+  bio: 'Pennsylvania array Legacy',
 };
 
 export const sampleWithFullData: IUserExtra = {
   id: 28084,
-  name: '1080p primary',
-  studyYear: 89414,
-  bio: 'Cheese payment',
-  pfp: 'scalable mission-critical Pizza',
-  modules: 'Analyst Mississippi',
+  name: 'Cotton',
+  studyYear: 60333,
+  bio: 'functionalities',
+  pfp: 'indigo SCSI Cheese',
 };
 
 export const sampleWithNewData: NewUserExtra = {
