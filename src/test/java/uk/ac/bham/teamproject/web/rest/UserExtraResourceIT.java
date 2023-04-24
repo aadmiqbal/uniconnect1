@@ -54,6 +54,15 @@ class UserExtraResourceIT {
     private static final String DEFAULT_PFP = "AAAAAAAAAA";
     private static final String UPDATED_PFP = "BBBBBBBBBB";
 
+    private static final String DEFAULT_MODULES = "AAAAAAAAAA";
+    private static final String UPDATED_MODULES = "BBBBBBBBBB";
+
+    private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/user-extras";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -87,7 +96,14 @@ class UserExtraResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static UserExtra createEntity(EntityManager em) {
-        UserExtra userExtra = new UserExtra().name(DEFAULT_NAME).studyYear(DEFAULT_STUDY_YEAR).bio(DEFAULT_BIO).pfp(DEFAULT_PFP);
+        UserExtra userExtra = new UserExtra()
+            .name(DEFAULT_NAME)
+            .studyYear(DEFAULT_STUDY_YEAR)
+            .bio(DEFAULT_BIO)
+            .pfp(DEFAULT_PFP)
+            .modules(DEFAULT_MODULES)
+            .firstName(DEFAULT_FIRST_NAME)
+            .lastName(DEFAULT_LAST_NAME);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
@@ -103,7 +119,14 @@ class UserExtraResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static UserExtra createUpdatedEntity(EntityManager em) {
-        UserExtra userExtra = new UserExtra().name(UPDATED_NAME).studyYear(UPDATED_STUDY_YEAR).bio(UPDATED_BIO).pfp(UPDATED_PFP);
+        UserExtra userExtra = new UserExtra()
+            .name(UPDATED_NAME)
+            .studyYear(UPDATED_STUDY_YEAR)
+            .bio(UPDATED_BIO)
+            .pfp(UPDATED_PFP)
+            .modules(UPDATED_MODULES)
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
@@ -135,6 +158,9 @@ class UserExtraResourceIT {
         assertThat(testUserExtra.getStudyYear()).isEqualTo(DEFAULT_STUDY_YEAR);
         assertThat(testUserExtra.getBio()).isEqualTo(DEFAULT_BIO);
         assertThat(testUserExtra.getPfp()).isEqualTo(DEFAULT_PFP);
+        assertThat(testUserExtra.getModules()).isEqualTo(DEFAULT_MODULES);
+        assertThat(testUserExtra.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
+        assertThat(testUserExtra.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
 
         // Validate the id for MapsId, the ids must be same
         assertThat(testUserExtra.getId()).isEqualTo(userExtraDTO.getUser().getId());
@@ -215,7 +241,10 @@ class UserExtraResourceIT {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].studyYear").value(hasItem(DEFAULT_STUDY_YEAR)))
             .andExpect(jsonPath("$.[*].bio").value(hasItem(DEFAULT_BIO)))
-            .andExpect(jsonPath("$.[*].pfp").value(hasItem(DEFAULT_PFP)));
+            .andExpect(jsonPath("$.[*].pfp").value(hasItem(DEFAULT_PFP)))
+            .andExpect(jsonPath("$.[*].modules").value(hasItem(DEFAULT_MODULES)))
+            .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
+            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -250,7 +279,10 @@ class UserExtraResourceIT {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.studyYear").value(DEFAULT_STUDY_YEAR))
             .andExpect(jsonPath("$.bio").value(DEFAULT_BIO))
-            .andExpect(jsonPath("$.pfp").value(DEFAULT_PFP));
+            .andExpect(jsonPath("$.pfp").value(DEFAULT_PFP))
+            .andExpect(jsonPath("$.modules").value(DEFAULT_MODULES))
+            .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
+            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME));
     }
 
     @Test
@@ -272,7 +304,14 @@ class UserExtraResourceIT {
         UserExtra updatedUserExtra = userExtraRepository.findById(userExtra.getId()).get();
         // Disconnect from session so that the updates on updatedUserExtra are not directly saved in db
         em.detach(updatedUserExtra);
-        updatedUserExtra.name(UPDATED_NAME).studyYear(UPDATED_STUDY_YEAR).bio(UPDATED_BIO).pfp(UPDATED_PFP);
+        updatedUserExtra
+            .name(UPDATED_NAME)
+            .studyYear(UPDATED_STUDY_YEAR)
+            .bio(UPDATED_BIO)
+            .pfp(UPDATED_PFP)
+            .modules(UPDATED_MODULES)
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME);
         UserExtraDTO userExtraDTO = userExtraMapper.toDto(updatedUserExtra);
 
         restUserExtraMockMvc
@@ -291,6 +330,9 @@ class UserExtraResourceIT {
         assertThat(testUserExtra.getStudyYear()).isEqualTo(UPDATED_STUDY_YEAR);
         assertThat(testUserExtra.getBio()).isEqualTo(UPDATED_BIO);
         assertThat(testUserExtra.getPfp()).isEqualTo(UPDATED_PFP);
+        assertThat(testUserExtra.getModules()).isEqualTo(UPDATED_MODULES);
+        assertThat(testUserExtra.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
+        assertThat(testUserExtra.getLastName()).isEqualTo(UPDATED_LAST_NAME);
     }
 
     @Test
@@ -370,7 +412,12 @@ class UserExtraResourceIT {
         UserExtra partialUpdatedUserExtra = new UserExtra();
         partialUpdatedUserExtra.setId(userExtra.getId());
 
-        partialUpdatedUserExtra.name(UPDATED_NAME).pfp(UPDATED_PFP);
+        partialUpdatedUserExtra
+            .name(UPDATED_NAME)
+            .pfp(UPDATED_PFP)
+            .modules(UPDATED_MODULES)
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME);
 
         restUserExtraMockMvc
             .perform(
@@ -388,6 +435,9 @@ class UserExtraResourceIT {
         assertThat(testUserExtra.getStudyYear()).isEqualTo(DEFAULT_STUDY_YEAR);
         assertThat(testUserExtra.getBio()).isEqualTo(DEFAULT_BIO);
         assertThat(testUserExtra.getPfp()).isEqualTo(UPDATED_PFP);
+        assertThat(testUserExtra.getModules()).isEqualTo(UPDATED_MODULES);
+        assertThat(testUserExtra.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
+        assertThat(testUserExtra.getLastName()).isEqualTo(UPDATED_LAST_NAME);
     }
 
     @Test
@@ -402,7 +452,14 @@ class UserExtraResourceIT {
         UserExtra partialUpdatedUserExtra = new UserExtra();
         partialUpdatedUserExtra.setId(userExtra.getId());
 
-        partialUpdatedUserExtra.name(UPDATED_NAME).studyYear(UPDATED_STUDY_YEAR).bio(UPDATED_BIO).pfp(UPDATED_PFP);
+        partialUpdatedUserExtra
+            .name(UPDATED_NAME)
+            .studyYear(UPDATED_STUDY_YEAR)
+            .bio(UPDATED_BIO)
+            .pfp(UPDATED_PFP)
+            .modules(UPDATED_MODULES)
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME);
 
         restUserExtraMockMvc
             .perform(
@@ -420,6 +477,9 @@ class UserExtraResourceIT {
         assertThat(testUserExtra.getStudyYear()).isEqualTo(UPDATED_STUDY_YEAR);
         assertThat(testUserExtra.getBio()).isEqualTo(UPDATED_BIO);
         assertThat(testUserExtra.getPfp()).isEqualTo(UPDATED_PFP);
+        assertThat(testUserExtra.getModules()).isEqualTo(UPDATED_MODULES);
+        assertThat(testUserExtra.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
+        assertThat(testUserExtra.getLastName()).isEqualTo(UPDATED_LAST_NAME);
     }
 
     @Test

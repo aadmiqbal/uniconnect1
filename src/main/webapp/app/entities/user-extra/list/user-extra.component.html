@@ -62,6 +62,24 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="modules">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userExtra.modules">Modules</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="firstName">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userExtra.firstName">First Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastName">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userExtra.lastName">Last Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="user.login">
             <div class="d-flex">
               <span jhiTranslate="teamprojectApp.userExtra.user">User</span>
@@ -85,6 +103,9 @@
           <td>{{ userExtra.studyYear }}</td>
           <td>{{ userExtra.bio }}</td>
           <td>{{ userExtra.pfp }}</td>
+          <td>{{ userExtra.modules }}</td>
+          <td>{{ userExtra.firstName }}</td>
+          <td>{{ userExtra.lastName }}</td>
           <td>
             {{ userExtra.user?.login }}
           </td>

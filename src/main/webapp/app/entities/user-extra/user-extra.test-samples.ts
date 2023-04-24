@@ -6,16 +6,21 @@ export const sampleWithRequiredData: IUserExtra = {
 
 export const sampleWithPartialData: IUserExtra = {
   id: 95119,
-  name: 'Accountability',
-  bio: 'Pennsylvania array Legacy',
+  name: 'generating orchestration',
+  bio: 'Legacy',
+  firstName: 'Braulio',
+  lastName: 'Baumbach',
 };
 
 export const sampleWithFullData: IUserExtra = {
   id: 28084,
-  name: 'Cotton',
+  name: 'architectures',
   studyYear: 60333,
   bio: 'functionalities',
   pfp: 'indigo SCSI Cheese',
+  modules: 'Bhutan scalable',
+  firstName: 'Ezekiel',
+  lastName: 'Dickinson',
 };
 
 export const sampleWithNewData: NewUserExtra = {

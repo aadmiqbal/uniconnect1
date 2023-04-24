@@ -22,6 +22,9 @@ type UserExtraFormGroupContent = {
   studyYear: FormControl<IUserExtra['studyYear']>;
   bio: FormControl<IUserExtra['bio']>;
   pfp: FormControl<IUserExtra['pfp']>;
+  modules: FormControl<IUserExtra['modules']>;
+  firstName: FormControl<IUserExtra['firstName']>;
+  lastName: FormControl<IUserExtra['lastName']>;
   user: FormControl<IUserExtra['user']>;
 };
 
@@ -44,8 +47,17 @@ export class UserExtraFormService {
       ),
       name: new FormControl(userExtraRawValue.name),
       studyYear: new FormControl(userExtraRawValue.studyYear),
-      bio: new FormControl(userExtraRawValue.bio),
-      pfp: new FormControl(userExtraRawValue.pfp),
+      bio: new FormControl(userExtraRawValue.bio, {
+        validators: [Validators.maxLength(2000)],
+      }),
+      pfp: new FormControl(userExtraRawValue.pfp, {
+        validators: [Validators.maxLength(10485760)],
+      }),
+      modules: new FormControl(userExtraRawValue.modules, {
+        validators: [Validators.maxLength(3000)],
+      }),
+      firstName: new FormControl(userExtraRawValue.firstName),
+      lastName: new FormControl(userExtraRawValue.lastName),
       user: new FormControl(userExtraRawValue.user),
     });
   }

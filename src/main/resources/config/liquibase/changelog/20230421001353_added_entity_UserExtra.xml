@@ -20,10 +20,19 @@
             <column name="study_year" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="bio" type="varchar(255)">
+            <column name="bio" type="varchar(2000)">
                 <constraints nullable="true" />
             </column>
-            <column name="pfp" type="varchar(255)">
+            <column name="pfp" type="varchar(10485760)">
+                <constraints nullable="true" />
+            </column>
+            <column name="modules" type="varchar(3000)">
+                <constraints nullable="true" />
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="last_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -51,6 +60,9 @@
             <column name="study_year" type="numeric"/>
             <column name="bio" type="string"/>
             <column name="pfp" type="string"/>
+            <column name="modules" type="string"/>
+            <column name="first_name" type="string"/>
+            <column name="last_name" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

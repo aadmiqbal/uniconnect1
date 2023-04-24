@@ -2,6 +2,7 @@ package uk.ac.bham.teamproject.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -26,11 +27,23 @@ public class UserExtra implements Serializable {
     @Column(name = "study_year")
     private Integer studyYear;
 
-    @Column(name = "bio")
+    @Size(max = 2000)
+    @Column(name = "bio", length = 2000)
     private String bio;
 
-    @Column(name = "pfp")
+    @Size(max = 10485760)
+    @Column(name = "pfp", length = 10485760)
     private String pfp;
+
+    @Size(max = 3000)
+    @Column(name = "modules", length = 3000)
+    private String modules;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @OneToOne
     @MapsId
@@ -104,6 +117,45 @@ public class UserExtra implements Serializable {
         this.pfp = pfp;
     }
 
+    public String getModules() {
+        return this.modules;
+    }
+
+    public UserExtra modules(String modules) {
+        this.setModules(modules);
+        return this;
+    }
+
+    public void setModules(String modules) {
+        this.modules = modules;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public UserExtra firstName(String firstName) {
+        this.setFirstName(firstName);
+        return this;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public UserExtra lastName(String lastName) {
+        this.setLastName(lastName);
+        return this;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public User getUser() {
         return this.user;
     }
@@ -145,6 +197,9 @@ public class UserExtra implements Serializable {
             ", studyYear=" + getStudyYear() +
             ", bio='" + getBio() + "'" +
             ", pfp='" + getPfp() + "'" +
+            ", modules='" + getModules() + "'" +
+            ", firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
             "}";
     }
 }
