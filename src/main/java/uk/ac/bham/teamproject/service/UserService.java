@@ -355,7 +355,7 @@ public class UserService {
 
         userRepository.save(user); // save the updated user
 
-        Optional<UserExtra> userExtraOptional = userExtraRepository.findOneWithUserByUserLogin(login);
+        /*Optional<UserExtra> userExtraOptional = userExtraRepository.findOneWithUserByUserLogin(login);
         UserExtra userExtra;
         if (!userExtraOptional.isPresent()) {
             userExtra = new UserExtra();
@@ -370,7 +370,7 @@ public class UserService {
         //userExtra.setModule(module);
 
         userExtraRepository.save(userExtra); // save the updated user extra
-
+*/
         return new UserDTO(user);
     }
 }
