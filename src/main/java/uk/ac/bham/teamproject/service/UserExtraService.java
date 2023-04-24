@@ -3,7 +3,6 @@ package uk.ac.bham.teamproject.service;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import uk.ac.bham.teamproject.domain.UserExtra;
 import uk.ac.bham.teamproject.service.dto.UserExtraDTO;
 
 /**
@@ -64,6 +63,4 @@ public interface UserExtraService {
      * @param id the id of the entity.
      */
     void delete(Long id);
-
-    Optional<UserExtra> findByUserLogin(String userLogin);
 }

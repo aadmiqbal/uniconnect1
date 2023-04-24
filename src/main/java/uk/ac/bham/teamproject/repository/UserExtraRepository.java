@@ -37,7 +37,4 @@ public interface UserExtraRepository extends JpaRepository<UserExtra, Long> {
 
     @Query("select userExtra from UserExtra userExtra left join fetch userExtra.user where userExtra.id =:id")
     Optional<UserExtra> findOneWithToOneRelationships(@Param("id") Long id);
-
-    @Query("SELECT ue FROM UserExtra ue JOIN FETCH ue.user u WHERE u.login = :userLogin")
-    Optional<UserExtra> findOneWithUserByUserLogin(@Param("userLogin") String userLogin);
 }

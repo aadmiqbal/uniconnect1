@@ -34,6 +34,11 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userExtra.modules" for="field_modules">Modules</label>
+          <input type="text" class="form-control" name="modules" id="field_modules" data-cy="modules" formControlName="modules" />
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="teamprojectApp.userExtra.user" for="field_user">User</label>
           <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
             <option [ngValue]="null"></option>

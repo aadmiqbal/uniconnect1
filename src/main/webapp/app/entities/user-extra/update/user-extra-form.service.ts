@@ -22,6 +22,7 @@ type UserExtraFormGroupContent = {
   studyYear: FormControl<IUserExtra['studyYear']>;
   bio: FormControl<IUserExtra['bio']>;
   pfp: FormControl<IUserExtra['pfp']>;
+  modules: FormControl<IUserExtra['modules']>;
   user: FormControl<IUserExtra['user']>;
 };
 
@@ -46,6 +47,7 @@ export class UserExtraFormService {
       studyYear: new FormControl(userExtraRawValue.studyYear),
       bio: new FormControl(userExtraRawValue.bio),
       pfp: new FormControl(userExtraRawValue.pfp),
+      modules: new FormControl(userExtraRawValue.modules),
       user: new FormControl(userExtraRawValue.user),
     });
   }
