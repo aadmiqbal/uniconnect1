@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" xmlns="http://www.w3.org/1999/html">
   <div class="row">
     <div class="col-sm">
       <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
@@ -72,7 +72,30 @@
                 </small>
               </div>
             </div>
-
+            <label class="form-label">First Name</label>
+            <div>
+              <input
+                class="form-control"
+                id="firstname"
+                name="FirstName"
+                formControlName="firstname"
+                class="form-control ng-untouched ng-pristine ng-invalid"
+                style="border-color: darkorange"
+                placeholder="Your first name"
+              />
+            </div>
+            <label class="form-label">Last Name</label>
+            <div>
+              <input
+                class="form-control"
+                id="lastname"
+                name="lastname"
+                formControlName="lastname"
+                class="form-control ng-untouched ng-pristine ng-invalid"
+                style="border-color: darkorange"
+                placeholder="Your last name"
+              />
+            </div>
             <div class="mb-3">
               <label class="form-label" for="email" jhiTranslate="global.form.email.label">Email</label>
               <input
@@ -227,14 +250,6 @@
                   <option value="Comp Sci">Computer Science</option>
                 </select>
                 &nbsp;&nbsp;&nbsp;
-                <!--  <div *ngFor="let module of userModulesData">
-                    <label>
-                      <input type="checkbox" id="modules"[value]="module.id" formControlName="modules">
-                      {{ module.moduleName }}
-                    </label>
-                  </div> -->
-
-                <!-- Add these checkboxes inside the form element -->
                 <div
                   *ngFor="
                     let option of [

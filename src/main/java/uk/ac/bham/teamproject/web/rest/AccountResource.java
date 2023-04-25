@@ -70,7 +70,15 @@ public class AccountResource {
             studyYearInt = Integer.parseInt(matcher.group());
         }
         //TODO: pass in modules as well
-        User user = userService.registerUser(request, request.getPassword(), studyYearInt, request.getBio(), request.getModules());
+        User user = userService.registerUser(
+            request,
+            request.getPassword(),
+            studyYearInt,
+            request.getBio(),
+            request.getModules(),
+            request.getFirstname(),
+            request.getLastname()
+        );
         mailService.sendActivationEmail(user);
     }
 
@@ -209,6 +217,10 @@ public class AccountResource {
 
         private String modules; // Replace Module with the appropriate class for your modules
 
+        private String firstname;
+
+        private String lastname;
+
         public String getStudyYear() {
             return studyYear;
         }
@@ -231,6 +243,22 @@ public class AccountResource {
 
         public void setModules(String modules) {
             this.modules = modules;
+        }
+
+        public String getFirstname() {
+            return firstname;
+        }
+
+        public void setFirstname(String firstname) {
+            this.firstname = firstname;
+        }
+
+        public String getLastname() {
+            return lastname;
+        }
+
+        public void setLastname(String lastname) {
+            this.lastname = lastname;
         }
     }
 }

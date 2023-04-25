@@ -61,15 +61,26 @@ export class RegisterComponent implements AfterViewInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(1), Validators.maxLength(2000)],
     }),
+    firstname: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    lastname: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
   userModulesData: any[] = [];
+
   constructor(private translateService: TranslateService, private registerService: RegisterService, private http: HttpClient) {}
+
   ngOnInit() {
     this.http.get<any[]>('/api/user-modules').subscribe(data => {
       this.userModulesData = data;
     });
   }
+
   ngAfterViewInit(): void {
     if (this.login) {
       this.login.nativeElement.focus();
@@ -83,16 +94,29 @@ export class RegisterComponent implements AfterViewInit {
     this.errorEmailExists = false;
     this.errorUserExists = false;
 
-    const { password, confirmPassword, login, email, studyYear, bio } = this.registerForm.getRawValue();
+    const { password, confirmPassword, login, email, studyYear, bio, firstname, lastname } = this.registerForm.getRawValue();
     const modules = this.xyz;
     if (password !== confirmPassword) {
       this.doNotMatch = true;
     } else {
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang }, studyYear, bio, modules)
+        .save(
+          {
+            login,
+            email,
+            password,
+            langKey: this.translateService.currentLang,
+          },
+          studyYear,
+          bio,
+          modules,
+          firstname,
+          lastname
+        )
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }
+
   private processError(response: HttpErrorResponse): void {
     if (response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE) {
       this.errorUserExists = true;
