@@ -12,6 +12,7 @@ import { RegisterService } from './register.service';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent implements AfterViewInit {
+  xyz: string = '';
   @ViewChild('login', { static: false })
   login?: ElementRef;
 
