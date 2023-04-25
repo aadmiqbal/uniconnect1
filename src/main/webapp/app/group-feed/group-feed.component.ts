@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+declare function greet1(finalUsers: any[]): void;
 
 @Component({
   selector: 'jhi-group-feed',
@@ -6,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./group-feed.component.scss'],
 })
 export class GroupFeedComponent implements OnInit {
-  constructor() {}
+  /* myScriptElement: HTMLScriptElement; */
+  constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.get<any[]>('/api/final-users').subscribe(finalUsers => {
+      greet1(finalUsers);
+    });
+  }
 }

@@ -1,0 +1,166 @@
+body {
+  margin-top: 40px;
+  /* This margin just makes the text easier to read. You can remove it if you want since it can mess with your other styles. */
+}
+#fdcont {
+  height: 100vh;
+  overflow: auto;
+}
+
+#list {
+  overflow: auto;
+  height: 100vh;
+}
+
+#ddmen {
+  box-sizing: content-box;
+}
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: #ff781f;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    position: absolute;
+    padding-bottom: 500px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+img {
+  width: 200px;
+  height: auto;
+}
+/* sm */
+@media (min-width: 768px) {
+  img {
+    width: 200px;
+  }
+}
+/* md */
+@media (min-width: 992px) {
+  img {
+    width: 200px;
+  }
+}
+/* lg */
+@media (min-width: 1200px) {
+  img {
+    width: 300px;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+#flux {
+  height: 850px;
+  overflow: auto;
+}
+
+.row {
+  flex-wrap: nowrap;
+}
+
+#list {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.buttonstyle {
+  background-color: darkorange;
+  font-size: 16px;
+  width: 250px;
+  height: 40px;
+  padding-right: 10px;
+  color: whitesmoke;
+  font-weight: bold;
+  font-family: Arial;
+  outline: none;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-title {
+  margin-bottom: 10px;
+}
+
+.card-body img {
+  margin-right: 10px;
+  justify-content: center;
+}
+
+.card-body {
+  display: flex;
+  justify-content: center;
+}
+.btn-accept {
+  background-color: green;
+  color: white;
+}
+
+.btn-reject {
+  background-color: red;
+  color: white;
+}
