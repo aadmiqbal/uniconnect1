@@ -63,7 +63,6 @@ public class AccountResource {
         if (isPasswordLengthInvalid(request.getPassword())) {
             throw new InvalidPasswordException();
         }
-
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(request.getStudyYear());
         int studyYearInt = -1;

@@ -97,9 +97,9 @@ import { Authority } from '../config/authority.constants';
         canActivate: [UserRouteAccessService],
       },
       {
-        path: 'user-extra',
-        data: { pageTitle: 'teamprojectApp.userExtra.home.title' },
-        loadChildren: () => import('./user-extra/user-extra.module').then(m => m.UserExtraModule),
+        path: 'final-user',
+        data: { pageTitle: 'teamprojectApp.finalUser.home.title' },
+        loadChildren: () => import('./final-user/final-user.module').then(m => m.FinalUserModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

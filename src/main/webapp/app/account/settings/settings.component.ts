@@ -6,8 +6,8 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { LANGUAGES } from 'app/config/language.constants';
 
-import { UserExtraService } from 'app/entities/user-extra/service/user-extra.service';
-import { IUserExtra } from 'app/entities/user-extra/user-extra.model';
+import { FinalUserService } from 'app/entities/final-user/service/final-user.service';
+import { IFinalUser } from 'app/entities/final-user/final-user.model';
 import { HttpResponse } from '@angular/common/http';
 
 const initialAccount: Account = {} as Account;
@@ -21,7 +21,7 @@ export class SettingsComponent implements OnInit {
   languages = LANGUAGES;
 
   userLogin: string | null = null;
-  userExtra: IUserExtra | null = null;
+  finalUser: IFinalUser | null = null;
 
   settingsForm = new FormGroup({
     firstName: new FormControl(initialAccount.firstName, {
@@ -49,16 +49,17 @@ export class SettingsComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private translateService: TranslateService,
-    private userExtraService: UserExtraService
+    private finalUserService: FinalUserService
   ) {}
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => {
       if (account) {
         this.settingsForm.patchValue(account);
+
         this.userLogin = account.login;
-        this.userExtraService.findByUserLogin(account.login).subscribe((res: HttpResponse<IUserExtra>) => {
-          this.userExtra = res.body;
+        this.finalUserService.findByUserLogin(account.login).subscribe((res: HttpResponse<IFinalUser>) => {
+          this.finalUser = res.body;
         });
       }
     });
@@ -77,14 +78,13 @@ export class SettingsComponent implements OnInit {
         this.translateService.use(account.langKey);
       }
 
-      if (this.userExtra) {
-        this.userExtra.pfp = this.settingsForm.get(['pfp'])?.value;
-        this.userExtra.bio = this.settingsForm.get(['bio'])?.value;
-        this.userExtraService.update(this.userExtra).subscribe();
+      if (this.finalUser) {
+        this.finalUser.pfp = this.settingsForm.get(['pfp'])?.value;
+        this.finalUser.bio = this.settingsForm.get(['bio'])?.value;
+        this.finalUserService.update(this.finalUser).subscribe();
       }
     });
   }
-
   onFileChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     const file = target.files?.[0];

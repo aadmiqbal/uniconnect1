@@ -1,0 +1,31 @@
+{
+  "teamprojectApp": {
+    "finalUser": {
+      "home": {
+        "title": "Final Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Final User",
+        "createOrEditLabel": "Create or edit a Final User",
+        "notFound": "No Final Users found"
+      },
+      "created": "A new Final User is created with identifier {{ param }}",
+      "updated": "A Final User is updated with identifier {{ param }}",
+      "deleted": "A Final User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Final User {{ id }}?"
+      },
+      "detail": {
+        "title": "Final User"
+      },
+      "id": "ID",
+      "name": "Name",
+      "studyYear": "Study Year",
+      "bio": "Bio",
+      "pfp": "Pfp",
+      "modules": "Modules",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "user": "User"
+    }
+  }
+}
