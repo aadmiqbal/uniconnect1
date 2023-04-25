@@ -5,6 +5,7 @@ function sleep(ms) {
 }
 async function greet(appUsers) {
   await sleep(2000);
+  displayFriends();
   //TODO: will need to also pass in the current user
   // to filter out accounts in the feed based on modules,
   // if there is already a connection, if it is the user themself
@@ -95,7 +96,6 @@ async function greet(appUsers) {
 
 function showUser(user) {
   if (document.getElementById('popupHolder') == null) {
-    alert('Huaghefhiwegyugysef!');
     let popupHolder = document.createElement('div');
     popupHolder.id = 'popupHolder';
     popupHolder.style.display = 'flex';
@@ -372,8 +372,19 @@ function displayFriends() {
     profilePic.src = friends[i].image;
     cardBody.appendChild(profilePic);
 
+    let chatButtonHolder = document.createElement('a');
+    chatButtonHolder.setAttribute('routerlink', 'chat-group');
+    chatButtonHolder.setAttribute('routerlinkactive', 'active');
+    chatButtonHolder.setAttribute('ng-reflect-router-link', 'chat-group');
+    chatButtonHolder.setAttribute('ng-reflect-router-link-active', 'active');
+    chatButtonHolder.href = '/chat-group';
+
     let chatButton = document.createElement('button');
     chatButton.textContent = 'Chat';
+    chatButton.style.border = 'None';
+    chatButton.style.width = '100%';
+
+    chatButtonHolder.appendChild(chatButton);
 
     // Add the title and text to the card body
     cardBody.appendChild(cardTitle);
@@ -381,7 +392,7 @@ function displayFriends() {
 
     // Add the card body to the card container
     card.appendChild(cardBody);
-    card.appendChild(chatButton);
+    card.appendChild(chatButtonHolder);
 
     // Add the card to the section
     section.appendChild(card);

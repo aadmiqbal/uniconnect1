@@ -31,6 +31,7 @@ import { MentorModuleSelectionComponent } from './mentor-module-selection/mentor
 import { RouterModule } from '@angular/router';
 import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee-module-selection.component';
 import { GroupFeedComponent } from './group-feed/group-feed.component';
+import { ChatGroupComponent } from './chat-group/chat-group.component';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { GroupFeedComponent } from './group-feed/group-feed.component';
     MentorModuleSelectionComponent,
     MenteeModuleSelectionComponent,
     GroupFeedComponent,
+    ChatGroupComponent,
   ],
   bootstrap: [MainComponent],
 })

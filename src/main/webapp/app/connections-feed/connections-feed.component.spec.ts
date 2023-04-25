@@ -17,6 +17,7 @@ describe('ConnectionsFeedComponent', () => {
   });
 
   it('should create', () => {
+    // @ts-ignore
     expect(component).toBeTruthy();
   });
 });

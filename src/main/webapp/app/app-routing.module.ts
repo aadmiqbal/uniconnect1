@@ -13,6 +13,8 @@ import { ConnectionsFeedComponent } from './connections-feed/connections-feed.co
 import { MentorModuleSelectionComponent } from './mentor-module-selection/mentor-module-selection.component';
 import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee-module-selection.component';
 import { GroupFeedComponent } from './group-feed/group-feed.component';
+import { ChatGroupComponent } from './chat-group/chat-group.component';
+
 @NgModule({
   imports: [
     RouterModule.forRoot(
@@ -45,6 +47,15 @@ import { GroupFeedComponent } from './group-feed/group-feed.component';
           data: {
             authorities: [Authority.ADMIN, Authority.USER],
             pageTitle: 'Connections Feed',
+          },
+        },
+        {
+          path: 'chat-group',
+          component: ChatGroupComponent,
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+            pageTitle: 'Chat Group',
           },
         },
         {
