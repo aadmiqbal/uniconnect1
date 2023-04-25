@@ -12,7 +12,6 @@ import { RegisterService } from './register.service';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent implements AfterViewInit {
-  xyz: string = '';
   @ViewChild('login', { static: false })
   login?: ElementRef;
 
@@ -20,8 +19,9 @@ export class RegisterComponent implements AfterViewInit {
   error = false;
   errorEmailExists = false;
   errorUserExists = false;
-  public xyz = '';
   success = false;
+
+  public xyz = '';
 
   registerForm = new FormGroup({
     login: new FormControl('', {
@@ -59,9 +59,10 @@ export class RegisterComponent implements AfterViewInit {
     }),
     bio: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(1), Validators.maxLength(250)],
+      validators: [Validators.required, Validators.minLength(1), Validators.maxLength(2000)],
     }),
   });
+
   userModulesData: any[] = [];
   constructor(private translateService: TranslateService, private registerService: RegisterService, private http: HttpClient) {}
   ngOnInit() {
@@ -100,5 +101,20 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       this.error = true;
     }
+  }
+
+  handleCheckboxChange(event: any, option: string) {
+    const checkboxValues = this.xyz.split(',').filter(x => x);
+
+    if (event.target.checked) {
+      checkboxValues.push(option);
+    } else {
+      const index = checkboxValues.indexOf(option);
+      if (index > -1) {
+        checkboxValues.splice(index, 1);
+      }
+    }
+
+    this.xyz = checkboxValues.join(',');
   }
 }
