@@ -81,12 +81,12 @@ export class RegisterComponent implements AfterViewInit {
     this.errorUserExists = false;
 
     const { password, confirmPassword, login, email, studyYear, bio } = this.registerForm.getRawValue();
-    const modules = this.registerForm.controls['modules'].value.valueOf();
+    const modules = this.xyz;
     if (password !== confirmPassword) {
       this.doNotMatch = true;
     } else {
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang }, studyYear, bio /*,modules */)
+        .save({ login, email, password, langKey: this.translateService.currentLang }, studyYear, bio, modules)
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }

@@ -10,13 +10,13 @@ import { Registration } from './register.model';
 export class RegisterService {
   constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
-  save(account: any, studyYear: string, bio: string /*, modules: any[] */): Observable<HttpResponse<any>> {
+  save(account: any, studyYear: string, bio: string, modules: string): Observable<HttpResponse<any>> {
     //TODO: modules stuff
     const data = {
       ...account,
       studyYear,
       bio,
-      //modules,
+      modules,
     };
 
     return this.http.post<any>(SERVER_API_URL + 'api/register', data, { observe: 'response' });

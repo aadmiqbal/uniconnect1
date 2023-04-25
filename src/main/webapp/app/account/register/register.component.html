@@ -227,48 +227,45 @@
                   <option value="Comp Sci">Computer Science</option>
                 </select>
                 &nbsp;&nbsp;&nbsp;
-                <label for="modules">Modules:</label>
-                <select class="form-control" id="modules" formControlName="modules">
-                  <option value="">Select a module</option>
-                  <option *ngFor="let module of userModulesData" [value]="module.id">
-                    {{ module.moduleName }}
-                  </option>
-                </select>
-                &nbsp;&nbsp;&nbsp;
-
-                <div id="label-container">
-                  <div id="module-labels">
-                    <label for="modules1" style="display: none">Modules:</label>
-                    <select class="form-control" id="modules1" formControlName="modules1" style="display: none">
-                      <option value="" style="display: none">Select a module</option>
-                      <option *ngFor="let module of userModulesData" [value]="module.id">
-                        {{ module.moduleName }}
-                      </option>
-                    </select>
-                  </div>
+                <div
+                  *ngFor="
+                    let option of [
+                      'Data Structures and Algorithms',
+                      'Object Oriented Programming',
+                      'Mathematical and Logical Foundations of Computer Science',
+                      'Theories of Computation',
+                      'Full Stack Application Development',
+                      'Artificial Intelligence 1',
+                      'Functional Programming',
+                      'Operating Systems / Systems Programming',
+                      'Software Engineering and Professional Practices',
+                      'Security and Networks',
+                      'Artificial Intelligence 2',
+                      'Team Project',
+                      'Teaching Computer Science in Schools',
+                      'Human Computer Interaction',
+                      'Security in Real World Systems',
+                      'Mobile and Ubiquitous Computing',
+                      'Computer Vision',
+                      'Advanced Functional Programming',
+                      'Programming Language Principles, Design, & Implementation',
+                      'Dependable and Distributed Systems',
+                      'Advanced Networking',
+                      'Algorithms and Complexity',
+                      'Intelligent Interactive Systems',
+                      'Intelligent Robotics',
+                      'Machine Learning and Intelligent Data Analysis',
+                      'Quantum Computing',
+                      'Neural Computation',
+                      'Natural Language Processing',
+                      'Evolutionary Computation',
+                      'Computer Aided Verification'
+                    ]
+                  "
+                >
+                  <input type="checkbox" [id]="option" [value]="option" (change)="handleCheckboxChange($event, option)" />
+                  <label [for]="option">{{ option }}</label>
                 </div>
-
-                <button id="my-button" class="circle-button" style="margin-top: 25px" onclick="addModuleLabel()">
-                  <span>+</span>
-                </button>
-
-                <style>
-                  .circle-button {
-                    border-radius: 50%;
-                    width: 40px;
-                    height: 40px;
-                    background-color: #f1f1f1;
-                    border: none;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 24px;
-                    color: #333;
-                  }
-                  .circle-button span {
-                    line-height: 0;
-                  }
-                </style>
               </div>
             </div>
 

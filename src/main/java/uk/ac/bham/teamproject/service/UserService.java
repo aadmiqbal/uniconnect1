@@ -99,7 +99,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(AdminUserDTO userDTO, String password, Integer studyYear, String bio) {
+    public User registerUser(AdminUserDTO userDTO, String password, Integer studyYear, String bio, String modules) {
         userRepository
             .findOneByLogin(userDTO.getLogin().toLowerCase())
             .ifPresent(existingUser -> {
@@ -144,6 +144,7 @@ public class UserService {
         newFinalUser.setUser(newUser);
         newFinalUser.setStudyYear(studyYear);
         newFinalUser.setBio(bio);
+        newFinalUser.setModules(modules);
         newFinalUser.setName(newUser.getLogin());
         //TODO: fix when frontend allows entering real name
 

@@ -70,7 +70,7 @@ public class AccountResource {
             studyYearInt = Integer.parseInt(matcher.group());
         }
         //TODO: pass in modules as well
-        User user = userService.registerUser(request, request.getPassword(), studyYearInt, request.getBio());
+        User user = userService.registerUser(request, request.getPassword(), studyYearInt, request.getBio(), request.getModules());
         mailService.sendActivationEmail(user);
     }
 
@@ -207,7 +207,7 @@ public class AccountResource {
         private String studyYear;
         private String bio;
 
-        // private List<Module> modules; // Replace Module with the appropriate class for your modules
+        private String modules; // Replace Module with the appropriate class for your modules
 
         public String getStudyYear() {
             return studyYear;
@@ -224,12 +224,13 @@ public class AccountResource {
         public void setBio(String bio) {
             this.bio = bio;
         }
-        /*  public List<Module> getModules() {
+
+        public String getModules() {
             return modules;
         }
 
-        public void setModules(List<Module> modules) {
+        public void setModules(String modules) {
             this.modules = modules;
-        } */
+        }
     }
 }
