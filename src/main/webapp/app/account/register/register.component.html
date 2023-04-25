@@ -237,7 +237,38 @@
                 <!-- Add these checkboxes inside the form element -->
                 <div
                   *ngFor="
-                    let option of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't']
+                    let option of [
+                      'Data Structures and Algorithms',
+                      'Object Oriented Programming',
+                      'Mathematical and Logical Foundations of Computer Science',
+                      'Theories of Computation',
+                      'Full Stack Application Development',
+                      'Artificial Intelligence 1',
+                      'Functional Programming',
+                      'Operating Systems / Systems Programming',
+                      'Software Engineering and Professional Practices',
+                      'Security and Networks',
+                      'Artificial Intelligence 2',
+                      'Team Project',
+                      'Teaching Computer Science in Schools',
+                      'Human Computer Interaction',
+                      'Security in Real World Systems',
+                      'Mobile and Ubiquitous Computing',
+                      'Computer Vision',
+                      'Advanced Functional Programming',
+                      'Programming Language Principles, Design, & Implementation',
+                      'Dependable and Distributed Systems',
+                      'Advanced Networking',
+                      'Algorithms and Complexity',
+                      'Intelligent Interactive Systems',
+                      'Intelligent Robotics',
+                      'Machine Learning and Intelligent Data Analysis',
+                      'Quantum Computing',
+                      'Neural Computation',
+                      'Natural Language Processing',
+                      'Evolutionary Computation',
+                      'Computer Aided Verification'
+                    ]
                   "
                 >
                   <input type="checkbox" [id]="option" [value]="option" (change)="handleCheckboxChange($event, option)" />
