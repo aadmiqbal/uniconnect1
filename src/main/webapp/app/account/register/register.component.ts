@@ -20,6 +20,7 @@ export class RegisterComponent implements AfterViewInit {
   error = false;
   errorEmailExists = false;
   errorUserExists = false;
+  public xyz = '';
   success = false;
 
   registerForm = new FormGroup({
