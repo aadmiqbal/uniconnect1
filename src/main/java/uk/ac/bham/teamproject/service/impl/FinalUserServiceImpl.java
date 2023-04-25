@@ -93,4 +93,10 @@ public class FinalUserServiceImpl implements FinalUserService {
         log.debug("Request to delete FinalUser : {}", id);
         finalUserRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<FinalUser> findByUserLogin(String userLogin) {
+        log.debug("Request to find FinalUser by user login: {}", userLogin);
+        return finalUserRepository.findOneWithUserByUserLogin(userLogin);
+    }
 }

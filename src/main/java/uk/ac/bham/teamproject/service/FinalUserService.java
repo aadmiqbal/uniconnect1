@@ -3,6 +3,7 @@ package uk.ac.bham.teamproject.service;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import uk.ac.bham.teamproject.domain.FinalUser;
 import uk.ac.bham.teamproject.service.dto.FinalUserDTO;
 
 /**
@@ -63,4 +64,6 @@ public interface FinalUserService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Optional<FinalUser> findByUserLogin(String userLogin);
 }

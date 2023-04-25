@@ -37,4 +37,7 @@ public interface FinalUserRepository extends JpaRepository<FinalUser, Long>, Jpa
 
     @Query("select finalUser from FinalUser finalUser left join fetch finalUser.user where finalUser.id =:id")
     Optional<FinalUser> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Query("SELECT ue FROM FinalUser ue JOIN FETCH ue.user u WHERE u.login = :userLogin")
+    Optional<FinalUser> findOneWithUserByUserLogin(@Param("userLogin") String userLogin);
 }

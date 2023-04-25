@@ -70,4 +70,8 @@ export class FinalUserService {
     }
     return finalUserCollection;
   }
+
+  findByUserLogin(userLogin: string): Observable<EntityResponseType> {
+    return this.http.get<IFinalUser>(`${this.resourceUrl}/by-user-login/${userLogin}`, { observe: 'response' });
+  }
 }

@@ -86,7 +86,7 @@ export class RegisterComponent implements AfterViewInit {
       this.doNotMatch = true;
     } else {
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang }, studyYear, bio, modules)
+        .save({ login, email, password, langKey: this.translateService.currentLang }, studyYear, bio /*,modules */)
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }

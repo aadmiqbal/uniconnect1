@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import uk.ac.bham.teamproject.domain.FinalUser;
 import uk.ac.bham.teamproject.repository.FinalUserRepository;
 import uk.ac.bham.teamproject.service.FinalUserQueryService;
 import uk.ac.bham.teamproject.service.FinalUserService;
@@ -206,5 +207,12 @@ public class FinalUserResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/final-users/by-user-login/{userLogin}")
+    public ResponseEntity<FinalUser> getFinalUserByUserLogin(@PathVariable String userLogin) {
+        log.debug("REST request to get FinalUser by user login : {}", userLogin);
+        Optional<FinalUser> finalUser = finalUserService.findByUserLogin(userLogin);
+        return ResponseUtil.wrapOrNotFound(finalUser);
     }
 }

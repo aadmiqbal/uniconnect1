@@ -16,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import tech.jhipster.security.RandomUtil;
 import uk.ac.bham.teamproject.config.Constants;
 import uk.ac.bham.teamproject.domain.Authority;
+import uk.ac.bham.teamproject.domain.FinalUser;
 import uk.ac.bham.teamproject.domain.User;
 import uk.ac.bham.teamproject.repository.AuthorityRepository;
+import uk.ac.bham.teamproject.repository.FinalUserRepository;
 import uk.ac.bham.teamproject.repository.UserRepository;
 import uk.ac.bham.teamproject.security.AuthoritiesConstants;
 import uk.ac.bham.teamproject.security.SecurityUtils;
@@ -41,15 +43,19 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
+    FinalUserRepository finalUserRepository;
+
     public UserService(
         UserRepository userRepository,
         PasswordEncoder passwordEncoder,
         AuthorityRepository authorityRepository,
+        FinalUserRepository finalUserRepository,
         CacheManager cacheManager
     ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.finalUserRepository = finalUserRepository;
         this.cacheManager = cacheManager;
     }
 
@@ -93,7 +99,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(AdminUserDTO userDTO, String password) {
+    public User registerUser(AdminUserDTO userDTO, String password, Integer studyYear, String bio) {
         userRepository
             .findOneByLogin(userDTO.getLogin().toLowerCase())
             .ifPresent(existingUser -> {
@@ -132,6 +138,17 @@ public class UserService {
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+        //creating entry for finaluser when someone registers
+        FinalUser newFinalUser = new FinalUser();
+        newFinalUser.setUser(newUser);
+        newFinalUser.setStudyYear(studyYear);
+        newFinalUser.setBio(bio);
+        newFinalUser.setName(newUser.getLogin());
+        //TODO: fix when frontend allows entering real name
+
+        finalUserRepository.save(newFinalUser);
+
         return newUser;
     }
 
@@ -146,6 +163,8 @@ public class UserService {
     }
 
     public User createUser(AdminUserDTO userDTO) {
+        //TODO: create finaluser when admin creates user
+
         User user = new User();
         user.setLogin(userDTO.getLogin().toLowerCase());
         user.setFirstName(userDTO.getFirstName());
