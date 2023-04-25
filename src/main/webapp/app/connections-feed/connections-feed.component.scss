@@ -127,21 +127,19 @@ body {
 }
 
 #friends-button {
-  border-top-left-radius: 25%;
-  border-bottom-left-radius: 25%;
 }
 
 .buttonstyle {
   background-color: darkorange;
   font-size: 16px;
-  width: 100px;
+  width: 250px;
+  height: 40px;
   padding-right: 10px;
   color: whitesmoke;
   font-weight: bold;
   font-family: Arial;
   outline: none;
 }
-
 #requests-button {
   padding-right: 10px;
   border-top-right-radius: 25%;

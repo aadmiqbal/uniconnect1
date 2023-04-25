@@ -19,9 +19,9 @@ async function greet1(appUsers) {
   // loop through appUsers
   for (const user of appUsers) {
     let imagesrc1 = '../../content/images/pp.png';
-    if (user.pfp) {
+    /* if (user.pfp) {
       imagesrc1 = user.pfp;
-    }
+    }*/
 
     let myPanel = document.createElement('div');
     myPanel.className = 'card mb-3';
