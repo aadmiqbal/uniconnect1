@@ -3,7 +3,7 @@ let imagesrc = '../../content/images/pp.png';
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function greet(appUsers) {
+async function greet(appUsers, currentUser, postFriendship) {
   await sleep(2000);
   displayFriends();
   //TODO: will need to also pass in the current user
@@ -79,7 +79,7 @@ async function greet(appUsers) {
     cardBody.appendChild(cardText);
     //cardBody.appendChild(small);
 
-    cardBody.addEventListener('click', showUser.bind(cardBody, user));
+    cardBody.addEventListener('click', showUser.bind(cardBody, user, currentUser, postFriendship));
 
     colMd8.appendChild(cardBody);
 
@@ -94,7 +94,7 @@ async function greet(appUsers) {
   }
 }
 
-function showUser(user) {
+function showUser(user, currentUser, postFriendship) {
   if (document.getElementById('popupHolder') == null) {
     let popupHolder = document.createElement('div');
     popupHolder.id = 'popupHolder';
@@ -120,7 +120,7 @@ function showUser(user) {
     profilePopup.style.marginTop = 'auto';
     profilePopup.style.minWidth = '600px';
 
-    populatePopup(profilePopup, user);
+    populatePopup(profilePopup, user, currentUser, postFriendship);
 
     popupHolder.prepend(profilePopup);
 
@@ -129,7 +129,7 @@ function showUser(user) {
   return null;
 }
 
-function populatePopup(profilePopup, user) {
+function populatePopup(profilePopup, user, currentUser, postFriendship) {
   let topRow = document.createElement('div');
   topRow.style.display = 'table-row';
 
@@ -238,6 +238,7 @@ function populatePopup(profilePopup, user) {
   connectButton.style.textAlign = 'center';
   connectButton.style.position = 'absolute';
   connectButton.style.bottom = '10px'; //TODO: done 'cheating'
+  //connectButton.addEventListener('click', connect);
 
   /*const connect = function () {
     alert("'Connect' pushed!");
@@ -245,7 +246,7 @@ function populatePopup(profilePopup, user) {
   connectButton.addEventListener('click', connect);
 */
 
-  const connect = function () {
+  /*const connect = function () {
     const userId1 = document.getElementById('userId1').value; // Get the first user ID from the input field
     const userId2 = document.getElementById('userId2').value; // Get the second user ID from the input field
 
@@ -266,9 +267,14 @@ function populatePopup(profilePopup, user) {
         console.error(error);
         alert('Failed to add connection');
       });
+  }; */
+  // ...
+  const connect = function (currentUserId, otherUserId) {
+    postFriendship(currentUserId, otherUserId);
   };
+  connectButton.addEventListener('click', () => connect(currentUser, user.id));
 
-  connectButton.addEventListener('click', connect);
+  //connectButton.addEventListener('click', connect);
 
   brl.appendChild(modulesField);
   brm.appendChild(bioField);
@@ -281,47 +287,6 @@ function populatePopup(profilePopup, user) {
   profilePopup.appendChild(topRow);
   profilePopup.appendChild(bottomRow);
 }
-
-function addModuleLabel() {
-  const moduleLabels = document.querySelector('#module-labels');
-  const firstModuleLabel = moduleLabels.querySelector("label[for^='modules']");
-  const firstModuleSelect = moduleLabels.querySelector("select[id^='modules']");
-  const addButton = document.querySelector('#my-button');
-
-  // Clone the first label and select dropdown and update the id
-  const newModuleLabel = firstModuleLabel.cloneNode(true);
-  const newModuleSelect = firstModuleSelect.cloneNode(true);
-  const newModuleSelectId = 'modules' + (parseInt(newModuleSelect.id.slice(7)) + 1).toString();
-  newModuleLabel.setAttribute('for', newModuleSelectId);
-  newModuleSelect.setAttribute('id', newModuleSelectId);
-
-  // Show the new label and select dropdown
-  newModuleLabel.style.display = 'inline-block';
-  newModuleSelect.style.display = 'inline-block';
-
-  const brElement = document.createElement('br');
-
-  const removeBtn = document.createElement('button');
-  removeBtn.textContent = 'Remove';
-  removeBtn.addEventListener('click', function () {
-    moduleLabels.removeChild(newModuleLabel);
-    moduleLabels.removeChild(newModuleSelect);
-    moduleLabels.removeChild(removeBtn);
-  });
-  moduleLabels.appendChild(newModuleLabel);
-  moduleLabels.appendChild(newModuleSelect);
-  moduleLabels.appendChild(removeBtn);
-
-  // Insert a line break element after the label element
-  moduleLabels.appendChild(brElement);
-
-  const br1 = document.createElement('br');
-  const br2 = document.createElement('br');
-  moduleLabels.appendChild(br1);
-  moduleLabels.appendChild(removeBtn);
-  moduleLabels.appendChild(br2);
-}
-
 // Define arrays
 let friends = [
   { name: 'Roshaan', image: imagesrc, status: 'Online' },
