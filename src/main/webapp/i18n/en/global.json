@@ -23,6 +23,8 @@
         "moduleLink": "Module Link",
         "appUserLogins": "App User Logins",
         "finalUser": "Final User",
+        "friendship": "Friendship",
+        "userExtra": "User Extra",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -37,14 +37,16 @@
       "DegreeSubjects",
       "ModuleLink",
       "AppUserLogins",
-      "FinalUser"
+      "UserExtra",
+      "FinalUser",
+      "Friendship"
     ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.3",
     "jwtSecretKey": "ZDg3OGJmYWQwMzUzYWJjZTM2NDE5ZmRiMWZkZTY1OWVkZGMyNjRiZGUyMGQwYjE0NjBkYTY3YmU2OTVjMzEwNDQ4NDk1YjQ2Y2E1MWJiMjliZjY0NDU5MjU5YmEwYjNjMjAxY2RlODZiMWYwYzVjODA2ZDEwZmZmMTBhNDdlMTE=",
     "languages": ["en"],
-    "lastLiquibaseTimestamp": 1682375572000,
+    "lastLiquibaseTimestamp": 1682465491000,
     "messageBroker": false,
     "microfrontend": false,
     "microfrontends": [],
