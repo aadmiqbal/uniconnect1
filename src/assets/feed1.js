@@ -305,7 +305,23 @@ let requests = [
   { name: 'Einstein', image: imagesrc },
   { name: 'Robin', image: imagesrc },
 ];
+function selectPicture(picture) {
+  // Remove selected class from all pictures
+  const pictures = document.querySelectorAll('.picture-container img');
+  pictures.forEach(p => p.classList.remove('selected'));
 
+  // Add selected class to clicked picture
+  picture.classList.add('selected');
+}
+// Function to open popup
+function openPopup() {
+  document.getElementById('popupContainer').style.display = 'flex';
+}
+
+// Function to close popup
+function closePopup() {
+  document.getElementById('popupContainer').style.display = 'none';
+}
 // Function to display friends list
 function displayFriends() {
   // Get the section element where we want to display the cards
