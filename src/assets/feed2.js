@@ -1,7 +1,7 @@
-function sleep1(ms) {
+function sleepGroup(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function greet1(appUsers) {
+async function greetGroup(appUsers) {
   await sleep1(2000);
   //TODO: will need to also pass in the current user
   // to filter out accounts in the feed based on modules,
@@ -76,7 +76,7 @@ async function greet1(appUsers) {
     cardBody.appendChild(cardText);
     //cardBody.appendChild(small);
 
-    cardBody.addEventListener('click', showUser.bind(cardBody, user));
+    cardBody.addEventListener('click', showGroup.bind(cardBody, user));
 
     colMd8.appendChild(cardBody);
 
@@ -91,9 +91,8 @@ async function greet1(appUsers) {
   }
 }
 
-function showUser(user) {
+function showGroup(user) {
   if (document.getElementById('popupHolder') == null) {
-    alert('Huaghefhiwegyugysef!');
     let popupHolder = document.createElement('div');
     popupHolder.id = 'popupHolder';
     popupHolder.style.display = 'flex';
@@ -118,7 +117,7 @@ function showUser(user) {
     profilePopup.style.marginTop = 'auto';
     profilePopup.style.minWidth = '600px';
 
-    populatePopup(profilePopup, user);
+    populatePopupGroup(profilePopup, user);
 
     popupHolder.prepend(profilePopup);
 
@@ -127,7 +126,7 @@ function showUser(user) {
   return null;
 }
 
-function populatePopup(profilePopup, user) {
+function populatePopupGroup(profilePopup, user) {
   let topRow = document.createElement('div');
   topRow.style.display = 'table-row';
 
@@ -280,7 +279,7 @@ function populatePopup(profilePopup, user) {
   profilePopup.appendChild(bottomRow);
 }
 
-function addModuleLabel() {
+function addModuleLabelGroup() {
   const moduleLabels = document.querySelector('#module-labels');
   const firstModuleLabel = moduleLabels.querySelector("label[for^='modules']");
   const firstModuleSelect = moduleLabels.querySelector("select[id^='modules']");
@@ -328,7 +327,7 @@ let friendss = [
 ];
 
 // Function to display friends list
-function displayFriends() {
+function displayFriendsGroup() {
   // Get the section element where we want to display the cards
   let section = document.getElementById('list');
 

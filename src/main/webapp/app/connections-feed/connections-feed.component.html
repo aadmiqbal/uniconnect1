@@ -12,27 +12,34 @@
     />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
   </head>
-  <body id="popupAdder">
+  <body id="popupAdder" style="height: calc(100vh - 185px)">
     <div class="align-content-lg-start">
       <div class="sidebar" id="sidebar"></div>
     </div>
     <section class="bg-light text-dark py-xxl-3 py-xl-3 py-lg-3 py-md-3 py-sm-3">
-      <div class="container">
+      <div>
         <div class="row gy-1">
           <div class="col col-xl-2 col-lg-2 col-md-2 col-sm-2"></div>
-          <div class="col-xl-8 col-lg-8 col-md-10 text-center align-item-center col-sm-12 col-xs-12" id="fdcont">
+          <div
+            class="col-xl-8 col-lg-8 col-md-10 text-center align-item-center col-sm-12 col-xs-12"
+            id="fdcont"
+            style="height: calc(100vh - 185px)"
+          >
             <h2>The Feed</h2>
             <div class="container" id="flux">
               <div class="container" id="cardsection"></div>
             </div>
           </div>
-          <div class="col d-none d-sm-none d-lg-none d-md-none d-xl-block">
+          <div
+            class="col d-none d-sm-none d-lg-none d-md-none d-xl-block"
+            style="height: calc(100vh - 185px); overflow-y: scroll; width: fit-content"
+          >
             <h1>Connections</h1>
             <div class="button-container">
               <button class="buttonstyle" id="friends-button" onclick="displayFriends()">Friends</button>
 
               <br />
-              <div id="list"></div>
+              <div id="list" style="height: fit-content"></div>
             </div>
             <br />
             <div class="row">
