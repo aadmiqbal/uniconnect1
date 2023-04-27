@@ -1,0 +1,29 @@
+{
+  "teamprojectApp": {
+    "finalGroup": {
+      "home": {
+        "title": "Final Groups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Final Group",
+        "createOrEditLabel": "Create or edit a Final Group",
+        "notFound": "No Final Groups found"
+      },
+      "created": "A new Final Group is created with identifier {{ param }}",
+      "updated": "A Final Group is updated with identifier {{ param }}",
+      "deleted": "A Final Group is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Final Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Final Group"
+      },
+      "id": "ID",
+      "name": "Name",
+      "members": "Members",
+      "isAdvertised": "Is Advertised",
+      "groupDescription": "Group Description",
+      "pfp": "Pfp",
+      "admins": "Admins"
+    }
+  }
+}

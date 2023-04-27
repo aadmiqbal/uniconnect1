@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="finalGroup">
+      <h2 data-cy="finalGroupDetailsHeading"><span jhiTranslate="teamprojectApp.finalGroup.detail.title">Final Group</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ finalGroup.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalGroup.name">Name</span></dt>
+        <dd>
+          <span>{{ finalGroup.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalGroup.members">Members</span></dt>
+        <dd>
+          <span>{{ finalGroup.members }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalGroup.isAdvertised">Is Advertised</span></dt>
+        <dd>
+          <span>{{ finalGroup.isAdvertised }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalGroup.groupDescription">Group Description</span></dt>
+        <dd>
+          <span>{{ finalGroup.groupDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalGroup.pfp">Pfp</span></dt>
+        <dd>
+          <span>{{ finalGroup.pfp }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.finalGroup.admins">Admins</span></dt>
+        <dd>
+          <span>{{ finalGroup.admins }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/final-group', finalGroup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
