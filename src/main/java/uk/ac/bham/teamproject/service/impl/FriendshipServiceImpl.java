@@ -1,13 +1,18 @@
 package uk.ac.bham.teamproject.service.impl;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import uk.ac.bham.teamproject.domain.FinalUser;
 import uk.ac.bham.teamproject.domain.Friendship;
+import uk.ac.bham.teamproject.repository.FinalUserRepository;
 import uk.ac.bham.teamproject.repository.FriendshipRepository;
 import uk.ac.bham.teamproject.service.FriendshipService;
 import uk.ac.bham.teamproject.service.dto.FriendshipDTO;
@@ -26,9 +31,17 @@ public class FriendshipServiceImpl implements FriendshipService {
 
     private final FriendshipMapper friendshipMapper;
 
-    public FriendshipServiceImpl(FriendshipRepository friendshipRepository, FriendshipMapper friendshipMapper) {
+    @Autowired
+    private final FinalUserRepository finalUserRepository;
+
+    public FriendshipServiceImpl(
+        FriendshipRepository friendshipRepository,
+        FriendshipMapper friendshipMapper,
+        FinalUserRepository finalUserRepository
+    ) {
         this.friendshipRepository = friendshipRepository;
         this.friendshipMapper = friendshipMapper;
+        this.finalUserRepository = finalUserRepository;
     }
 
     @Override
@@ -80,5 +93,14 @@ public class FriendshipServiceImpl implements FriendshipService {
     public void delete(Long id) {
         log.debug("Request to delete Friendship : {}", id);
         friendshipRepository.deleteById(id);
+    }
+
+    @Override
+    public List<FriendshipDTO> findAllByFinalUser(Long finalUserId) {
+        log.debug("Request to get all Friendships by FinalUser : {}", finalUserId);
+        FinalUser finalUser = finalUserRepository
+            .findById(finalUserId)
+            .orElseThrow(() -> new IllegalStateException("FinalUser not found with id: " + finalUserId));
+        return friendshipRepository.findAllByFinalUser(finalUser).stream().map(friendshipMapper::toDto).collect(Collectors.toList());
     }
 }

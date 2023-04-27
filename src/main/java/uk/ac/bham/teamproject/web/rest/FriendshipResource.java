@@ -202,4 +202,11 @@ public class FriendshipResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    @GetMapping("/friendships/final-user/{finalUserId}")
+    public ResponseEntity<List<FriendshipDTO>> getAllFriendshipsByFinalUser(@PathVariable Long finalUserId) {
+        log.debug("REST request to get Friendships by FinalUser : {}", finalUserId);
+        List<FriendshipDTO> friendships = friendshipService.findAllByFinalUser(finalUserId);
+        return ResponseEntity.ok().body(friendships);
+    }
 }

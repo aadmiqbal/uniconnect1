@@ -1,7 +1,9 @@
 package uk.ac.bham.teamproject.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
+import uk.ac.bham.teamproject.domain.FinalUser;
 import uk.ac.bham.teamproject.domain.Friendship;
 
 /**
@@ -9,4 +11,6 @@ import uk.ac.bham.teamproject.domain.Friendship;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface FriendshipRepository extends JpaRepository<Friendship, Long>, JpaSpecificationExecutor<Friendship> {}
+public interface FriendshipRepository extends JpaRepository<Friendship, Long>, JpaSpecificationExecutor<Friendship> {
+    List<Friendship> findAllByFinalUser(FinalUser finalUser);
+}

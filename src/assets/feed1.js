@@ -3,7 +3,7 @@ let imagesrc = '../../content/images/pp.png';
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function greet(appUsers, currentUser, postFriendship) {
+async function greet(appUsers, currentUser, postFriendship, currentFriendships) {
   await sleep(2000);
   displayFriends();
   //TODO: will need to also pass in the current user
@@ -21,10 +21,22 @@ async function greet(appUsers, currentUser, postFriendship) {
 
   // loop through appUsers
   for (const user of appUsers) {
+    const isFriend = currentFriendships.some(friendship => {
+      return (
+        (friendship.finalUser.id === currentUser && friendship.finalUser2.id === user.id) ||
+        (friendship.finalUser.id === user.id && friendship.finalUser2.id === currentUser)
+      );
+    });
+
+    if (user.id == currentUser || isFriend) {
+      //go to the next user without doing anything
+      continue;
+    }
+
     let imagesrc1 = '../../content/images/pp.png';
-    /*if (user.pfp) {
+    if (user.pfp) {
       imagesrc1 = user.pfp;
-    }*/
+    }
 
     let myPanel = document.createElement('div');
     myPanel.className = 'card mb-3';
@@ -75,13 +87,8 @@ async function greet(appUsers, currentUser, postFriendship) {
       myPanel.parentNode.removeChild(myPanel);
     });
 
-    /*let small = document.createElement('small');
-    small.className = 'text-muted';
-    small.textContent = 'Last updated 3 mins ago';*/
-
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(btnClose);
-    cardBody.appendChild(yearstudy);
     cardBody.appendChild(cardText);
     //cardBody.appendChild(small);
 
@@ -244,43 +251,11 @@ function populatePopup(profilePopup, user, currentUser, postFriendship) {
   connectButton.style.textAlign = 'center';
   connectButton.style.position = 'absolute';
   connectButton.style.bottom = '10px'; //TODO: done 'cheating'
-  //connectButton.addEventListener('click', connect);
 
-  /*const connect = function () {
-    alert("'Connect' pushed!");
-  }; //TODO: call backend to add connection
-  connectButton.addEventListener('click', connect);
-*/
-
-  /*const connect = function () {
-    const userId1 = document.getElementById('userId1').value; // Get the first user ID from the input field
-    const userId2 = document.getElementById('userId2').value; // Get the second user ID from the input field
-
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId1: userId1, userId2: userId2 }),
-    };
-
-    fetch('http://localhost:8080/api/connections', requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to add connection');
-        }
-        alert('Connection added successfully!');
-      })
-      .catch(error => {
-        console.error(error);
-        alert('Failed to add connection');
-      });
-  }; */
-  // ...
   const connect = function (currentUserId, otherUserId) {
     postFriendship(currentUserId, otherUserId);
   };
   connectButton.addEventListener('click', () => connect(currentUser, user.id));
-
-  //connectButton.addEventListener('click', connect);
 
   brl.appendChild(modulesField);
   brm.appendChild(bioField);
@@ -305,23 +280,7 @@ let requests = [
   { name: 'Einstein', image: imagesrc },
   { name: 'Robin', image: imagesrc },
 ];
-function selectPicture(picture) {
-  // Remove selected class from all pictures
-  const pictures = document.querySelectorAll('.picture-container img');
-  pictures.forEach(p => p.classList.remove('selected'));
 
-  // Add selected class to clicked picture
-  picture.classList.add('selected');
-}
-// Function to open popup
-function openPopup() {
-  document.getElementById('popupContainer').style.display = 'flex';
-}
-
-// Function to close popup
-function closePopup() {
-  document.getElementById('popupContainer').style.display = 'none';
-}
 // Function to display friends list
 function displayFriends() {
   // Get the section element where we want to display the cards
