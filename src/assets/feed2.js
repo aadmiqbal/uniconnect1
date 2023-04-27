@@ -51,6 +51,14 @@ async function greetGroup(appUsers) {
     cardTitle.className = 'card-title';
     cardTitle.textContent = 'Name: ' + '  ' + user.name;
 
+    let yearstudy = document.createElement('p');
+    yearstudy.className = 'card-text';
+    yearstudy.textContent = 'Year of study: ' + user.studyYear;
+
+    let cardText = document.createElement('p');
+    cardText.className = 'card-text';
+    cardText.textContent = 'Biography: ' + user.bio;
+
     let btnClose = document.createElement('button');
     btnClose.type = 'button';
     btnClose.className = 'btn-close float-end';
@@ -62,17 +70,13 @@ async function greetGroup(appUsers) {
       myPanel.style.display = 'none';
       myPanel.parentNode.removeChild(myPanel);
     });
-
-    let cardText = document.createElement('p');
-    cardText.className = 'card-text';
-    cardText.textContent = 'Biography: ' + user.bio;
-    cardText.title = 'Year Of Study' + user.studyYear;
     /*let small = document.createElement('small');
     small.className = 'text-muted';
     small.textContent = 'Last updated 3 mins ago';*/
 
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(btnClose);
+    cardBody.appendChild(yearstudy);
     cardBody.appendChild(cardText);
     //cardBody.appendChild(small);
 
