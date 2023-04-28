@@ -8,7 +8,8 @@ body {
 }
 
 #list {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: 100vh;
 }
 
@@ -132,7 +133,7 @@ body {
 .buttonstyle {
   background-color: darkorange;
   font-size: 16px;
-  width: 250px;
+  width: 200px;
   height: 40px;
   padding-right: 10px;
   color: whitesmoke;
