@@ -22,17 +22,17 @@
             <!-- Close button -->
             <span class="popup-close" onclick="closePopup()">&times;</span>
             <!-- Form -->
-            <form class="popup-form">
-              <label for="groupName">Group Name</label>
-              <input type="text" id="groupName" name="groupName" required />
+            <form class="popup-form" [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+              <label for="name">Group Name</label>
+              <input type="text" id="name" formControlName="name" required />
               <label for="groupDescription">Group Description</label>
-              <input type="text" id="groupDescription" name="groupDescription" required />
+              <input type="text" id="groupDescription" formControlName="groupDescription" required />
               <p>Select group avatar</p>
               <div class="picture-container">
-                <img src="../../content/images/g1.png" alt="Picture 1" onclick="selectPicture(this)" />
-                <img src="../../content/images/g2.png" alt="Picture 2" onclick="selectPicture(this)" />
-                <img src="../../content/images/g3.png" alt="Picture 3" onclick="selectPicture(this)" />
-                <img src="../../content/images/g4.png" alt="Picture 4" onclick="selectPicture(this)" />
+                <img src="../../content/images/g1.png" alt="Picture 1" (click)="groupForm.patchValue({ groupAvatar: 'g1.png' })" />
+                <img src="../../content/images/g2.png" alt="Picture 2" (click)="groupForm.patchValue({ groupAvatar: 'g2.png' })" />
+                <img src="../../content/images/g3.png" alt="Picture 3" (click)="groupForm.patchValue({ groupAvatar: 'g3.png' })" />
+                <img src="../../content/images/g4.png" alt="Picture 4" (click)="groupForm.patchValue({ groupAvatar: 'g4.png' })" />
               </div>
               <button type="submit">Create Group</button>
             </form>
