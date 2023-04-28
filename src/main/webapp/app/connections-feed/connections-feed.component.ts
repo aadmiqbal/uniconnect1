@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IFriendship } from 'app/entities/friendship/friendship.model';
 
 declare function greet(
   finalUser: any[] | undefined,

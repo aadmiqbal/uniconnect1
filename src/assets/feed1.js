@@ -3,24 +3,18 @@ let imagesrc = '../../content/images/pp.png';
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function greet(appUsers, currentUser, postFriendship, currentFriendships) {
+async function greet(finalUsers, currentUser, postFriendship, currentFriendships) {
   await sleep(2000);
-  displayFriends();
-  //TODO: will need to also pass in the current user
-  // to filter out accounts in the feed based on modules,
-  // if there is already a connection, if it is the user themself
+  console.log('pre function');
 
-  /*let head = document.getElementsByTagName('HEAD')[0];
-  let cssLink = document.createElement('link');
-  cssLink.rel = 'stylesheet';
-  cssLink.type = 'text/css';
-  cssLink.href = 'connections-feed.component.scss';
-  head.appendChild(cssLink);*/
+  await displayFriends(currentFriendships, finalUsers, currentUser);
+
+  console.log('post function');
 
   let i = 1;
 
   // loop through appUsers
-  for (const user of appUsers) {
+  for (const user of finalUsers) {
     const isFriend = currentFriendships.some(friendship => {
       return (
         (friendship.finalUser.id === currentUser && friendship.finalUser2.id === user.id) ||
@@ -269,18 +263,7 @@ function populatePopup(profilePopup, user, currentUser, postFriendship) {
   profilePopup.appendChild(topRow);
   profilePopup.appendChild(bottomRow);
 }
-// Define arrays
-let friends = [
-  { name: 'Roshaan', image: imagesrc, status: 'Online' },
-  { name: 'Adam', image: imagesrc, status: 'Offline' },
-  { name: 'Axel', image: imagesrc, status: 'Away' },
-];
-let requests = [
-  { name: 'Krishaad', image: imagesrc },
-  { name: 'Varan', image: imagesrc },
-  { name: 'Einstein', image: imagesrc },
-  { name: 'Robin', image: imagesrc },
-];
+
 function selectPicture(picture) {
   // Remove selected class from all pictures
   const pictures = document.querySelectorAll('.picture-container img');
@@ -299,8 +282,40 @@ function closePopup() {
   document.getElementById('popupContainer').style.display = 'none';
 }
 
+function fetchUsersByIdsFromApi(userIds, finalusers) {
+  return finalusers.filter(user => userIds.includes(user.id));
+}
+
+async function fetchUsersByIds(userIds, finalusers) {
+  // Replace this with a call to the actual API endpoint that fetches users by IDs
+  const users = fetchUsersByIdsFromApi(userIds, finalusers);
+
+  // Create a map of user objects indexed by their IDs
+  const usersMap = {};
+  for (const user of users) {
+    usersMap[user.id] = user;
+  }
+
+  return usersMap;
+}
+
 // Function to display friends list
-function displayFriends() {
+async function displayFriends(currentfriendships, finalusers, currentUserId) {
+  console.log('currentFriendships in displayFriends:', currentfriendships); // Add this line to check the data
+  console.log('function is actually called');
+  // Extract unique user IDs from currentFriendships
+  const userIds = Array.from(new Set(currentfriendships.flatMap(friendship => [friendship.finalUser.id, friendship.finalUser2.id])));
+
+  // Fetch users data
+  const usersMap = await fetchUsersByIds(userIds, finalusers);
+
+  // Update finalUser and finalUser2 objects with the fetched data
+  currentfriendships = currentfriendships.map(friendship => ({
+    ...friendship,
+    finalUser: usersMap[friendship.finalUser.id],
+    finalUser2: usersMap[friendship.finalUser2.id],
+  }));
+
   // Get the section element where we want to display the cards
   let section = document.getElementById('list');
 
@@ -308,7 +323,20 @@ function displayFriends() {
   section.innerHTML = '';
 
   // Loop through the friends array and create a card for each friend
-  for (let i = 0; i < friends.length; i++) {
+  for (const friendship of currentfriendships) {
+    let friend;
+
+    if (friendship.finalUser && friendship.finalUser.id === currentUserId) {
+      friend = friendship.finalUser2;
+    } else if (friendship.finalUser2 && friendship.finalUser2.id === currentUserId) {
+      friend = friendship.finalUser;
+    }
+
+    if (!friend) {
+      console.log('not friend');
+      continue;
+    }
+    console.log('found a friend');
     // Create the card container
     let card = document.createElement('div');
     card.classList.add('card', 'mb-3');
@@ -320,12 +348,7 @@ function displayFriends() {
     // Create the card title with the friend's name
     let cardTitle = document.createElement('h5');
     cardTitle.classList.add('card-title');
-    cardTitle.textContent = friends[i].name;
-
-    // Create the card text with the friend's status
-    let cardText = document.createElement('p');
-    cardText.classList.add('card-text');
-    cardText.textContent = 'Status: ' + friends[i].status;
+    cardTitle.textContent = friend.name;
 
     // Create the profile picture and add it to the card
     let profilePic = document.createElement('img');
@@ -333,7 +356,7 @@ function displayFriends() {
     profilePic.style.width = '75px';
     profilePic.style.height = '75px';
     profilePic.style.objectFit = 'cover';
-    profilePic.src = friends[i].image;
+    profilePic.src = friend.pfp;
     cardBody.appendChild(profilePic);
 
     let chatButtonHolder = document.createElement('a');
@@ -352,8 +375,6 @@ function displayFriends() {
 
     // Add the title and text to the card body
     cardBody.appendChild(cardTitle);
-    cardBody.appendChild(cardText);
-
     // Add the card body to the card container
     card.appendChild(cardBody);
     card.appendChild(chatButtonHolder);
