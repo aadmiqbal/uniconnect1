@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+declare function displayFinalGroups(finalGroups: any[] | undefined): void;
 
 @Component({
   selector: 'jhi-group-feed',
@@ -23,7 +24,8 @@ export class GroupFeedComponent implements OnInit {
     try {
       const account = await this.http.get<any>('/api/account').toPromise();
       this.currentUserId = account.id;
-      console.log(this.currentUserId);
+      const finalGroups = await this.http.get<any[]>('/api/final-groups').toPromise();
+      displayFinalGroups(finalGroups);
     } catch (error) {
       console.error('Error fetching account or final users:', error);
     }

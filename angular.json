@@ -36,7 +36,7 @@
               "src/main/webapp/robots.txt"
             ],
             "styles": ["src/main/webapp/content/scss/vendor.scss", "src/main/webapp/content/scss/global.scss"],
-            "scripts": ["src/assets/feed1.js", "src/assets/chatGroupJavascript.js"]
+            "scripts": ["src/assets/feed1.js", "src/assets/chatGroupJavascript.js", "src/assets/groupFeedJavascript.js"]
           },
           "configurations": {
             "production": {
