@@ -271,7 +271,12 @@ function selectPicture(picture) {
 
   // Add selected class to clicked picture
   picture.classList.add('selected');
+
+  // Return the path of the clicked picture
+  console.log(picture.src);
+  return picture.src;
 }
+
 // Function to open popup
 function openPopup() {
   document.getElementById('popupContainer').style.display = 'flex';

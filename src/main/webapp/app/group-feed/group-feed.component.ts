@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-declare function greet1(finalUsers: any[]): void;
-
 @Component({
   selector: 'jhi-group-feed',
   templateUrl: './group-feed.component.html',
@@ -12,17 +10,28 @@ declare function greet1(finalUsers: any[]): void;
 export class GroupFeedComponent implements OnInit {
   groupForm!: FormGroup;
   constructor(private http: HttpClient, private fb: FormBuilder) {}
+  currentUserId: number | undefined;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.groupForm = this.fb.group({
       name: ['', Validators.required],
       groupDescription: ['', Validators.required],
       groupAvatar: [''],
     });
+    try {
+      const account = await this.http.get<any>('/api/account').toPromise();
+      this.currentUserId = account.id;
+      console.log(this.currentUserId);
+    } catch (error) {
+      console.error('Error fetching account or final users:', error);
+    }
   }
+
   onSubmit(): void {
     if (this.groupForm.valid) {
       const formData = this.groupForm.value;
+      formData.admins = this.currentUserId;
+      formData.members = this.currentUserId;
       this.http.post('/api/final-groups', formData).subscribe(
         result => {
           console.log('Group created:', result);
