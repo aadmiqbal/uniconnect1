@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-declare function displayFinalGroups(finalGroups: any[] | undefined): void;
+declare function displayFinalGroups(
+  finalGroups: any[] | undefined,
+  finalUsers: any[] | undefined,
+  currentUserId: number | undefined,
+  connectToGroup: OmitThisParameter<(groupId: number, userId: number) => Promise<void>>
+): void;
+declare function displayCurrentGroups(
+  finalGroups: any[] | undefined,
+  finalUsers: any[] | undefined,
+  currentUserId: number | undefined
+): void;
 
 @Component({
   selector: 'jhi-group-feed',
@@ -15,6 +25,33 @@ export class GroupFeedComponent implements OnInit {
   selectedImage: string | null = null;
   isAdvertised!: boolean;
 
+  async connectToGroup(groupId: number, userId: number): Promise<void> {
+    try {
+      // Fetch the group data
+      const group = await this.http.get<any>(`/api/final-groups/${groupId}`).toPromise();
+
+      // Check if the user is already a member
+      const membersArray = group.members.split(',');
+      if (membersArray.includes(userId.toString())) {
+        console.log('User already a member');
+        return;
+      }
+
+      // Append the user's ID to the members string
+      const updatedMembers = group.members + ',' + userId;
+
+      // Update the group
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      await this.http.put(`/api/final-groups/${groupId}`, { ...group, members: updatedMembers }, { headers }).toPromise();
+
+      console.log('User connected to group');
+      location.reload();
+    } catch (error) {
+      console.error('Error connecting user to group:', error);
+      alert('Error connecting to group');
+    }
+  }
+
   async ngOnInit(): Promise<void> {
     this.groupForm = this.fb.group({
       name: ['', Validators.required],
@@ -25,7 +62,9 @@ export class GroupFeedComponent implements OnInit {
       const account = await this.http.get<any>('/api/account').toPromise();
       this.currentUserId = account.id;
       const finalGroups = await this.http.get<any[]>('/api/final-groups').toPromise();
-      displayFinalGroups(finalGroups);
+      const finalUsers = await this.http.get<any[]>('/api/final-users').toPromise();
+      displayFinalGroups(finalGroups, finalUsers, this.currentUserId, this.connectToGroup.bind(this));
+      displayCurrentGroups(finalGroups, finalUsers, this.currentUserId);
     } catch (error) {
       console.error('Error fetching account or final users:', error);
     }
