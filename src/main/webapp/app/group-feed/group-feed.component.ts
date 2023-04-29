@@ -11,6 +11,8 @@ export class GroupFeedComponent implements OnInit {
   groupForm!: FormGroup;
   constructor(private http: HttpClient, private fb: FormBuilder) {}
   currentUserId: number | undefined;
+  selectedImage: string | null = null;
+  isAdvertised!: boolean;
 
   async ngOnInit(): Promise<void> {
     this.groupForm = this.fb.group({
@@ -32,6 +34,10 @@ export class GroupFeedComponent implements OnInit {
       const formData = this.groupForm.value;
       formData.admins = this.currentUserId;
       formData.members = this.currentUserId;
+      formData.pfp = this.selectedImage;
+      //need to add in frontend checkbox for advertising
+      this.isAdvertised = true;
+      formData.isAdvertised = this.isAdvertised;
       this.http.post('/api/final-groups', formData).subscribe(
         result => {
           console.log('Group created:', result);
@@ -46,5 +52,9 @@ export class GroupFeedComponent implements OnInit {
         }
       );
     }
+  }
+  onImageClick(imageUrl: string): void {
+    this.selectedImage = imageUrl;
+    this.groupForm.get('groupAvatar')?.setValue(this.selectedImage);
   }
 }
