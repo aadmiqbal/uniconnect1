@@ -1,1 +1,77 @@
-<p>groupsettings works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Group Settings</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Group Settings</h1>
+      <form action="" method="post">
+        <label for="group_name">Group Name</label>
+        <input type="text" id="group_name" name="group_name" placeholder="Enter group name" required />
+
+        <label for="group_description">Group Description</label>
+        <textarea id="group_description" name="group_description" placeholder="Enter group description" rows="5" required></textarea>
+
+        <label> <input type="checkbox" name="is_advertised" /> Is Advertised? </label>
+        <hr />
+        <div class="mb-3">
+          <label>Select a Picture:</label>
+          <div class="picture-container">
+            <img
+              src="../../content/images/g1.png"
+              alt="Picture 1"
+              onclick="selectPicture(this)"
+              (click)="onImageClick('../../content/images/g1.png')"
+            />
+            <img
+              src="../../content/images/g2.png"
+              alt="Picture 2"
+              onclick="selectPicture(this)"
+              (click)="onImageClick('../../content/images/g2.png')"
+            />
+            <img
+              src="../../content/images/g3.png"
+              alt="Picture 3"
+              onclick="selectPicture(this)"
+              (click)="onImageClick('../../content/images/g3.png')"
+            />
+            <img
+              src="../../content/images/g4.png"
+              alt="Picture 4"
+              onclick="selectPicture(this)"
+              (click)="onImageClick('../../content/images/g4.png')"
+            />
+          </div>
+          <input type="hidden" id="group_picture" name="group_picture" value="picture1.jpg" />
+          <!-- Hidden input to store selected picture value -->
+        </div>
+        <button type="submit">Save Group</button>
+      </form>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+      integrity="sha384-Ka5HTzzlq3YqGc5a9X1UqpZLzIT03zhMWQ2S0xMx+oWhPynDyKIfn4EL4bllyBdR"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+      integrity="sha384-HGJiOxSbMYAYWhKjvF4cv4as4d9iZtTgyVXYvBuMIrOmMaT7T90y21JWY7vbyGn2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
