@@ -32,6 +32,7 @@ import { RouterModule } from '@angular/router';
 import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee-module-selection.component';
 import { GroupFeedComponent } from './group-feed/group-feed.component';
 import { ChatGroupComponent } from './chat-group/chat-group.component';
+import { GroupsettingsComponent } from './groupsettings/groupsettings.component';
 
 @NgModule({
   imports: [
@@ -65,6 +66,7 @@ import { ChatGroupComponent } from './chat-group/chat-group.component';
     MenteeModuleSelectionComponent,
     GroupFeedComponent,
     ChatGroupComponent,
+    GroupsettingsComponent,
   ],
   bootstrap: [MainComponent],
 })

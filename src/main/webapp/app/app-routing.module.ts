@@ -9,7 +9,9 @@ import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 //
 import { ConnectionsFeedComponent } from './connections-feed/connections-feed.component';
-//
+
+import { GroupsettingsComponent } from './groupsettings/groupsettings.component';
+
 import { MentorModuleSelectionComponent } from './mentor-module-selection/mentor-module-selection.component';
 import { MenteeModuleSelectionComponent } from './mentee-module-selection/mentee-module-selection.component';
 import { GroupFeedComponent } from './group-feed/group-feed.component';
@@ -39,6 +41,15 @@ import { ChatGroupComponent } from './chat-group/chat-group.component';
         {
           path: 'group-feed',
           component: GroupFeedComponent,
+        },
+        {
+          path: 'groupsettings',
+          component: GroupsettingsComponent,
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+            pageTitle: 'Group Settings',
+          },
         },
         {
           path: 'connections-feed',
