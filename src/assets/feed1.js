@@ -160,7 +160,11 @@ function populatePopup(profilePopup, user, currentUser, postFriendship) {
   trr.style.whiteSpace = 'nowrap';
 
   let img = document.createElement('img');
-  img.src = imagesrc;
+  if (user.pfp) {
+    img.src = user.pfp;
+  } else {
+    img.src = imagesrc;
+  }
   img.id = 'img_field';
   img.alt = 'Profile';
   img.width = 150; //TODO: change?
@@ -168,11 +172,11 @@ function populatePopup(profilePopup, user, currentUser, postFriendship) {
   img.style.right = '0px';
 
   let nameField = document.createElement('h2');
-  nameField.textContent = user.name;
+  nameField.textContent = user.firstName + ' ' + user.lastName;
   nameField.style.verticalAlign = 'top';
 
   let courseField = document.createElement('p');
-  courseField.textContent = 'Course: ' + user.course; //TODO: check if course is fetched
+  courseField.textContent = 'Course: Computer Science '; // forgot 2 store course lmao maybe one day in future will let non comp sci ppl + user.course; //TODO: check if course is fetched
   courseField.style.verticalAlign = 'top';
 
   let closeButton = document.createElement('button');
@@ -219,18 +223,23 @@ function populatePopup(profilePopup, user, currentUser, postFriendship) {
   brr.style.minWidth = '91px'; //cheating?
   brr.style.whiteSpace = 'nowrap';
 
-  let modulesField = document.createElement('ul');
+  let modulesField = document.createElement('pre');
   modulesField.id = 'modulesField';
   modulesField.style.padding = '10px';
-  modulesField.textContent = 'Modules:';
 
-  for (let i = 0; i < 4; i++) {
+  const containerWidth = 450; // can change
+  const font = '16px Arial'; // can also change
+  const lines = splitModulesToFit(user.modules, containerWidth, font);
+
+  modulesField.textContent = 'Modules:\n' + lines.join('\n');
+
+  /*for (let i = 0; i < 4; i++) {
     //const module = user.module[i];
     let li = document.createElement('li');
     li.className = 'module-element-' + String(i);
     li.textContent = 'Module' + String(i);
     modulesField.appendChild(li);
-  }
+  } */
 
   let bioField = document.createElement('p');
   bioField.id = 'bioField';
@@ -271,7 +280,6 @@ function selectPicture(picture) {
 
   // Add selected class to clicked picture
   picture.classList.add('selected');
-
   // Return the path of the clicked picture
   console.log(picture.src);
   return picture.src;
@@ -361,7 +369,11 @@ async function displayFriends(currentfriendships, finalusers, currentUserId) {
     profilePic.style.width = '75px';
     profilePic.style.height = '75px';
     profilePic.style.objectFit = 'cover';
-    profilePic.src = friend.pfp;
+    if (friend.pfp) {
+      profilePic.src = friend.pfp;
+    } else {
+      profilePic.src = imagesrc;
+    }
     cardBody.appendChild(profilePic);
 
     let chatButtonHolder = document.createElement('a');
@@ -387,6 +399,62 @@ async function displayFriends(currentfriendships, finalusers, currentUserId) {
     // Add the card to the section
     section.appendChild(card);
   }
+}
+
+/* function createModulesArray(modules) {
+    // Split the string into an array using the comma as the separator
+    const modulesArray = modules.split(',');
+
+    // Trim any whitespace from each module
+    const trimmedModulesArray = modulesArray.map(module => module.trim());
+
+    return trimmedModulesArray;
+  }
+
+  const modulesString = user.modules;
+  const modulesArray = createModulesArray(modulesString);
+  console.log(modulesArray); // Output: ["module1", "module2", "module3"]
+
+
+  let modulesField = document.createElement('ul');
+  modulesField.id = 'modulesField';
+  modulesField.style.padding = '10px';
+  modulesField.textContent = 'Modules:';
+
+  for (let i = 0; i < modulesArray.length; i++) {
+    const module = modulesArray[i];
+
+  }
+
+  */
+function splitModulesToFit(modulesString, containerWidth, font) {
+  const modules = modulesString.split(',');
+  const separator = ', ';
+
+  let lines = [];
+  let currentLine = '';
+
+  for (const module of modules) {
+    const currentLineWidth = measureTextWidth(currentLine + module + separator, font);
+    if (currentLineWidth > containerWidth) {
+      lines.push(currentLine.trim());
+      currentLine = module + separator;
+    } else {
+      currentLine += module + separator;
+    }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine.trim());
+  }
+
+  return lines;
+}
+function measureTextWidth(text, font) {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  context.font = font;
+  return context.measureText(text).width;
 }
 
 // Function to display requests list
