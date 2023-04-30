@@ -72,6 +72,7 @@ export class GroupsettingsComponent implements OnInit {
         this.finalgroup.name = this.groupForm.get('group_name')?.value;
         this.finalgroup.groupDescription = this.groupForm.get('group_description')?.value;
         this.finalgroup.isAdvertised = this.groupForm.get('isAdvertised')?.value;
+        this.finalgroup.pfp = this.groupForm.get('groupAvatar')?.value;
 
         this.finalGroupService.update(this.finalgroup).subscribe(
           (response: HttpResponse<IFinalGroup>) => {

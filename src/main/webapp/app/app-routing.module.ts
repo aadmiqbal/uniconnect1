@@ -41,6 +41,11 @@ import { ChatGroupComponent } from './chat-group/chat-group.component';
         {
           path: 'group-feed',
           component: GroupFeedComponent,
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+            pageTitle: 'Connections Feed',
+          },
         },
         {
           path: 'groupsettings/:groupId',
@@ -72,10 +77,20 @@ import { ChatGroupComponent } from './chat-group/chat-group.component';
         {
           path: 'mentor-module-selection',
           component: MentorModuleSelectionComponent,
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+            pageTitle: 'Mentor module selection',
+          },
         },
         {
           path: 'mentee-module-selection',
           component: MenteeModuleSelectionComponent,
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+            pageTitle: 'Mentee module selection',
+          },
         },
         {
           path: 'login',
