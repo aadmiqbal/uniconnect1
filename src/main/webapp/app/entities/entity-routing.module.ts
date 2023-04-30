@@ -116,6 +116,11 @@ import { Authority } from '../config/authority.constants';
         data: { pageTitle: 'teamprojectApp.finalGroup.home.title', authorities: [Authority.ADMIN] },
         loadChildren: () => import('./final-group/final-group.module').then(m => m.FinalGroupModule),
       },
+      {
+        path: 'message',
+        data: { pageTitle: 'teamprojectApp.message.home.title' },
+        loadChildren: () => import('./message/message.module').then(m => m.MessageModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

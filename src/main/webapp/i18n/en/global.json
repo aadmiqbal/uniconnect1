@@ -26,6 +26,7 @@
         "friendship": "Friendship",
         "userExtra": "User Extra",
         "finalGroup": "Final Group",
+        "message": "Message",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

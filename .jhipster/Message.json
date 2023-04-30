@@ -1,0 +1,31 @@
+{
+  "changelogDate": "20230430123150",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "senderId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "recieverId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2000"
+    },
+    {
+      "fieldName": "timestamp",
+      "fieldType": "Instant",
+      "fieldValidateRules": []
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Message",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
