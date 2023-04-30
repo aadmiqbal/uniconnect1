@@ -43,7 +43,7 @@ import { ChatGroupComponent } from './chat-group/chat-group.component';
           component: GroupFeedComponent,
         },
         {
-          path: 'groupsettings',
+          path: 'groupsettings/:groupId',
           component: GroupsettingsComponent,
           canActivate: [UserRouteAccessService],
           data: {

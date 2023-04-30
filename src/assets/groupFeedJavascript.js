@@ -132,6 +132,8 @@ async function displayCurrentGroups(currentGroups, finalusers, currentUserId) {
       settingsButton.textContent = 'Settings';
       settingsButton.style.border = 'None';
       settingsButton.style.width = '100%';
+      settingsButton.innerHTML = `<a href="/groupsettings/${group.id}" class="settings-btn">Go to Group Settings</a>`;
+
       card.appendChild(settingsButton);
     }
 
