@@ -12,72 +12,81 @@
     />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
   </head>
-  <body id="popupAdder">
-    <div class="align-content-lg-start">
-      <div class="sidebar" id="sidebar">
-        <button onclick="openPopup()" class="buttonstyle" style="text-align: left">Create a Group</button>
-        <div id="popupContainer" class="popup-container" style="display: none">
-          <!-- Popup box -->
-          <div class="popup-box">
-            <!-- Close button -->
-            <span class="popup-close" onclick="closePopup()">&times;</span>
-            <!-- Form -->
-            <form class="popup-form" [formGroup]="groupForm" (ngSubmit)="onSubmit()">
-              <label for="name">Group Name</label>
-              <input type="text" id="name" formControlName="name" required />
-              <label for="groupDescription">Group Description</label>
-              <input type="text" id="groupDescription" formControlName="groupDescription" required />
-              <p>Select group avatar</p>
-              <div class="picture-container">
-                <img
-                  src="../../content/images/g1.png"
-                  alt="Picture 1"
-                  onclick="selectPicture(this)"
-                  (click)="onImageClick('../../content/images/g1.png')"
-                />
-                <img
-                  src="../../content/images/g2.png"
-                  alt="Picture 2"
-                  onclick="selectPicture(this)"
-                  (click)="onImageClick('../../content/images/g2.png')"
-                />
-                <img
-                  src="../../content/images/g3.png"
-                  alt="Picture 3"
-                  onclick="selectPicture(this)"
-                  (click)="onImageClick('../../content/images/g3.png')"
-                />
-                <img
-                  src="../../content/images/g4.png"
-                  alt="Picture 4"
-                  onclick="selectPicture(this)"
-                  (click)="onImageClick('../../content/images/g4.png')"
-                />
+  <body id="popupAdder" style="height: calc(100vh - 185px)">
+    <section class="bg-light text-dark py-xxl-3 py-xl-3 py-lg-3 py-md-3 py-sm-3">
+      <div class="sidebar" id="sidebar" style="display: flex; flex-direction: column; overflow-y: hidden; height: calc(100vh - 185px)">
+        <div id="container">
+          <a routerLink="../connections-feed" routerLinkActive="active">Individuals</a>
+          <a href="#" class="active">Groups</a>
+          <a routerLink="../mentor-module-selection" routerLinkActive="active">Mentors</a>
+          <a routerLink="../mentee-module-selection" routerLinkActive="active">Mentees</a>
+
+          <div style="">
+            <button onclick="openPopup()" class="buttonstyle" style="width: 100%; text-align: center">Create a Group</button>
+            <div id="popupContainer" class="popup-container" style="display: none">
+              <!-- Popup box -->
+              <div class="popup-box">
+                <!-- Close button -->
+                <span class="popup-close" onclick="closePopup()">&times;</span>
+                <!-- Form -->
+                <form class="popup-form" [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+                  <label for="name">Group Name</label>
+                  <input type="text" id="name" formControlName="name" required />
+                  <label for="groupDescription">Group Description</label>
+                  <input type="text" id="groupDescription" formControlName="groupDescription" required />
+                  <p>Select group avatar</p>
+                  <div class="picture-container">
+                    <img
+                      src="../../content/images/g1.png"
+                      alt="Picture 1"
+                      onclick="selectPicture(this)"
+                      (click)="onImageClick('../../content/images/g1.png')"
+                    />
+                    <img
+                      src="../../content/images/g2.png"
+                      alt="Picture 2"
+                      onclick="selectPicture(this)"
+                      (click)="onImageClick('../../content/images/g2.png')"
+                    />
+                    <img
+                      src="../../content/images/g3.png"
+                      alt="Picture 3"
+                      onclick="selectPicture(this)"
+                      (click)="onImageClick('../../content/images/g3.png')"
+                    />
+                    <img
+                      src="../../content/images/g4.png"
+                      alt="Picture 4"
+                      onclick="selectPicture(this)"
+                      (click)="onImageClick('../../content/images/g4.png')"
+                    />
+                  </div>
+                  <button type="submit">Create Group</button>
+                </form>
               </div>
-              <button type="submit">Create Group</button>
-            </form>
+            </div>
+            <a routerLink="/groupsettings" routerLinkActive="active" style="display: block; width: 100%; padding: 0; margin: 0">
+              <button type="button" class="buttonstyle" style="width: 100%; text-align: center">Go to Group Settings</button>
+            </a>
           </div>
         </div>
-        <a routerLink="group-feed" routerLinkActive="active">Groups</a>
-        <a href="#">Mentors</a>
-        <a routerLink="/groupsettings" routerLinkActive="active">Go to Group Settings</a>
       </div>
-    </div>
-    <section class="bg-light text-dark py-xxl-3 py-xl-3 py-lg-3 py-md-3 py-sm-3">
+
       <div class="container">
-        <div class="row gy-1">
+        <div class="row gy-1" style="height: calc(100vh - 185px)">
           <div class="col col-xl-2 col-lg-2 col-md-2 col-sm-2"></div>
-          <div class="col-xl-8 col-lg-8 col-md-10 text-center align-item-center col-sm-12 col-xs-12" id="fdcont">
+          <div class="col-xl-8 col-lg-8 col-md-10 text-center align-item-center col-sm-12 col-xs-12" id="fdcont" style="overflow-y: hidden">
             <h2>Group Feed</h2>
             <div class="container" id="flux">
-              <div class="container" id="cardsection"></div>
+              <div class="container" id="cardsection" style="height: 400px; overflow-y: scroll"></div>
+              <!--to be removed-->
             </div>
           </div>
           <div class="col d-none d-sm-none d-lg-none d-md-none d-xl-block">
             <div class="button-container">
               <button class="buttonstyle" id="friends-button" onclick="displayFriends()">Groups</button>
               <br />
-              <div id="list"></div>
+              <div id="list" style="overflow-y: scroll; height: 280px"></div>
             </div>
             <br />
             <div class="row">

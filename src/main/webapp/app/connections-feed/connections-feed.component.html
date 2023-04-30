@@ -14,7 +14,12 @@
   </head>
   <body id="popupAdder" style="height: calc(100vh - 185px)">
     <div class="align-content-lg-start">
-      <div class="sidebar" id="sidebar"></div>
+      <div class="sidebar" id="sidebar" style="overflow-y: hidden">
+        <a href="#" class="active">Individuals</a>
+        <a routerLink="../group-feed" routerLinkActive="active">Groups</a>
+        <a routerLink="../mentor-module-selection" routerLinkActive="active">Mentors</a>
+        <a routerLink="../mentee-module-selection" routerLinkActive="active">Mentees</a>
+      </div>
     </div>
     <section class="bg-light text-dark py-xxl-3 py-xl-3 py-lg-3 py-md-3 py-sm-3">
       <div>
@@ -23,7 +28,7 @@
           <div
             class="col-xl-8 col-lg-8 col-md-10 text-center align-item-center col-sm-12 col-xs-12"
             id="fdcont"
-            style="height: calc(100vh - 185px)"
+            style="height: calc(100vh - 185px); overflow-y: hidden"
           >
             <h2>My Feed</h2>
             <div class="container" id="flux">
@@ -32,7 +37,7 @@
           </div>
           <div
             class="col d-none d-sm-none d-lg-none d-md-none d-xl-block"
-            style="height: calc(100vh - 185px); overflow-y: scroll; width: fit-content"
+            style="height: calc(100vh - 185px); overflow-y: scroll; min-width: min-content"
           >
             <h2>Connections</h2>
             <div class="button-container">

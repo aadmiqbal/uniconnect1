@@ -4,7 +4,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function greet(finalUsers, currentUser, postFriendship, currentFriendships) {
-  await sleep(2000);
+  //await sleep(2000);
   console.log('pre function');
 
   await displayFriends(currentFriendships, finalUsers, currentUser);
@@ -28,9 +28,9 @@ async function greet(finalUsers, currentUser, postFriendship, currentFriendships
     }
 
     let imagesrc1 = '../../content/images/pp.png';
-    if (user.pfp) {
+    /*if (user.pfp) {
       imagesrc1 = user.pfp;
-    }
+    }*/
 
     let myPanel = document.createElement('div');
     myPanel.className = 'card mb-3';
@@ -160,11 +160,12 @@ function populatePopup(profilePopup, user, currentUser, postFriendship) {
   trr.style.whiteSpace = 'nowrap';
 
   let img = document.createElement('img');
-  if (user.pfp) {
+  /*if (user.pfp) {
     img.src = user.pfp;
   } else {
     img.src = imagesrc;
-  }
+  }*/
+  img.src = imagesrc;
   img.id = 'img_field';
   img.alt = 'Profile';
   img.width = 150; //TODO: change?
@@ -314,6 +315,7 @@ async function fetchUsersByIds(userIds, finalusers) {
 
 // Function to display friends list
 async function displayFriends(currentfriendships, finalusers, currentUserId) {
+  currentfriendships = [];
   console.log('currentFriendships in displayFriends:', currentfriendships); // Add this line to check the data
   console.log('function is actually called');
   // Extract unique user IDs from currentFriendships
@@ -369,11 +371,12 @@ async function displayFriends(currentfriendships, finalusers, currentUserId) {
     profilePic.style.width = '75px';
     profilePic.style.height = '75px';
     profilePic.style.objectFit = 'cover';
-    if (friend.pfp) {
+    /*if (friend.pfp) {
       profilePic.src = friend.pfp;
     } else {
       profilePic.src = imagesrc;
-    }
+    }*/
+    profilePic.src = imagesrc;
     cardBody.appendChild(profilePic);
 
     let chatButtonHolder = document.createElement('a');

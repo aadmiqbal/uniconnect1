@@ -1,14 +1,12 @@
 async function displayFinalGroups(finalGroups) {
-  await sleep(2000);
-
   // loop through finalGroups
   for (const group of finalGroups) {
     let i = 1;
 
     let imagesrc1 = '../../content/images/pp.png';
-    if (group.pfp) {
+    /*if (group.pfp) {
       imagesrc1 = group.pfp;
-    }
+    }*/
 
     let myPanel = document.createElement('div');
     myPanel.className = 'card mb-3';
