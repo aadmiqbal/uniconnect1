@@ -87,14 +87,13 @@ async function greet(finalUsers, currentUser, postFriendship, currentFriendships
     cardBody.appendChild(cardText);
     //cardBody.appendChild(small);
 
-    cardBody.addEventListener('click', showUser.bind(cardBody, user, currentUser, postFriendship));
-
     colMd8.appendChild(cardBody);
 
     row.appendChild(colMd4);
     row.appendChild(colMd8);
 
     myPanel.appendChild(row);
+    myPanel.addEventListener('click', showUser.bind(cardBody, user, currentUser, postFriendship));
 
     document.getElementById('cardsection').appendChild(myPanel);
 

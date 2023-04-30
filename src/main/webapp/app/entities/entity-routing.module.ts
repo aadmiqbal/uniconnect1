@@ -98,23 +98,28 @@ import { Authority } from '../config/authority.constants';
       },
       {
         path: 'final-user',
-        data: { pageTitle: 'teamprojectApp.finalUser.home.title' },
+        data: { pageTitle: 'teamprojectApp.finalUser.home.title', authorities: [Authority.ADMIN] },
         loadChildren: () => import('./final-user/final-user.module').then(m => m.FinalUserModule),
       },
       {
         path: 'friendship',
-        data: { pageTitle: 'teamprojectApp.friendship.home.title' },
+        data: { pageTitle: 'teamprojectApp.friendship.home.title', authorities: [Authority.ADMIN] },
         loadChildren: () => import('./friendship/friendship.module').then(m => m.FriendshipModule),
       },
       {
         path: 'user-extra',
-        data: { pageTitle: 'teamprojectApp.userExtra.home.title' },
+        data: { pageTitle: 'teamprojectApp.userExtra.home.title', authorities: [Authority.ADMIN] },
         loadChildren: () => import('./user-extra/user-extra.module').then(m => m.UserExtraModule),
       },
       {
         path: 'final-group',
-        data: { pageTitle: 'teamprojectApp.finalGroup.home.title' },
+        data: { pageTitle: 'teamprojectApp.finalGroup.home.title', authorities: [Authority.ADMIN] },
         loadChildren: () => import('./final-group/final-group.module').then(m => m.FinalGroupModule),
+      },
+      {
+        path: 'message',
+        data: { pageTitle: 'teamprojectApp.message.home.title' },
+        loadChildren: () => import('./message/message.module').then(m => m.MessageModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
