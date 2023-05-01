@@ -312,7 +312,8 @@
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
               <label class="form-check-label" for="flexCheckDefault"> I agree to the terms and conditions for UNIconnect </label>
             </div>
-
+            <label for="ismentor">Is Mentor:</label>
+            <input type="checkbox" id="isMentor" name="isMentor" value="isMentor" (change)="handleMentorCheckboxChange($event)" />
             <button
               type="submit"
               jhiTranslate="register.form.button"
