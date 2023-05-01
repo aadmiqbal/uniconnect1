@@ -1,6 +1,7 @@
-async function displayFinalGroups(finalGroups) {
+async function displayFinalGroups(finalGroups, finalusers, currentUserId, connectToGroup) {
+  await sleep(2000);
+
   // loop through finalGroups
-  let currentUserId = 485468454;
   for (const group of finalGroups) {
     if (group.members.split(',').includes(currentUserId.toString()) || group.isAdvertised == false) {
       continue;
