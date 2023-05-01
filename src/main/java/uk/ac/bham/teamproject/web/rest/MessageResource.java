@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import uk.ac.bham.teamproject.domain.Message;
 import uk.ac.bham.teamproject.repository.MessageRepository;
 import uk.ac.bham.teamproject.service.MessageQueryService;
 import uk.ac.bham.teamproject.service.MessageService;
@@ -199,5 +200,11 @@ public class MessageResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/messages/between/{senderId}/{receiverId}")
+    public ResponseEntity<List<Message>> getMessagesBetween(@PathVariable Integer senderId, @PathVariable Integer receiverId) {
+        List<Message> messages = messageRepository.findMessagesBetween(senderId, receiverId);
+        return ResponseEntity.ok().body(messages);
     }
 }

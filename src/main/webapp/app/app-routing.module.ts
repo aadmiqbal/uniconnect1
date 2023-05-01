@@ -66,7 +66,7 @@ import { ChatGroupComponent } from './chat-group/chat-group.component';
           },
         },
         {
-          path: 'chat-group',
+          path: 'chat-group/:recipientId',
           component: ChatGroupComponent,
           canActivate: [UserRouteAccessService],
           data: {

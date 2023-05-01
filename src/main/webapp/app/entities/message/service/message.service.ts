@@ -121,4 +121,10 @@ export class MessageService {
       body: res.body ? res.body.map(item => this.convertDateFromServer(item)) : null,
     });
   }
+
+  getMessagesBetween(senderId: number, receiverId: number): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<RestMessage[]>(`${this.resourceUrl}/between/${senderId}/${receiverId}`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseArrayFromServer(res)));
+  }
 }

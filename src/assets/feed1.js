@@ -379,11 +379,11 @@ async function displayFriends(currentfriendships, finalusers, currentUserId) {
     cardBody.appendChild(profilePic);
 
     let chatButtonHolder = document.createElement('a');
-    chatButtonHolder.setAttribute('routerlink', 'chat-group');
-    chatButtonHolder.setAttribute('routerlinkactive', 'active');
-    chatButtonHolder.setAttribute('ng-reflect-router-link', 'chat-group');
+    chatButtonHolder.setAttribute('href', `/chat-group/${friend.id}`);
+    chatButtonHolder.setAttribute('ng-reflect-router-link', `/chat-group/${friend.id}`);
     chatButtonHolder.setAttribute('ng-reflect-router-link-active', 'active');
-    chatButtonHolder.href = '/chat-group';
+    chatButtonHolder.setAttribute('routerlink', `/chat-group/${friend.id}`);
+    chatButtonHolder.setAttribute('routerlinkactive', 'active');
 
     let chatButton = document.createElement('button');
     chatButton.textContent = 'Chat';

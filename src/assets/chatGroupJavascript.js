@@ -1,4 +1,3 @@
-let userId = 21;
 function purgeInitialText() {
   let loadText = document.getElementById('loadMsg');
   if (loadText !== null) {
@@ -11,17 +10,6 @@ function purgeInitialText() {
   }
 }
 
-function sendMessage() {
-  purgeInitialText();
-
-  let messageField = document.getElementById('messageField');
-  //alert(messageField.value);//TODO: backend for pushing to db
-
-  document.getElementById('chats').appendChild(createMessage(messageField.value, userId));
-
-  messageField.value = '';
-}
-
 function writeMessages(messages) {
   alert('Javascript file loaded');
   if (messages.length != 0) {
@@ -29,7 +17,7 @@ function writeMessages(messages) {
   }
 
   for (let i = 0; i < messages.length; i++) {
-    document.getElementById('chats').appendChild(createMessage(messages[i][0], messages[i][1]));
+    document.getElementById('chats').appendChild(createMessage(messages[i].content, messages[i].senderId));
   }
 }
 
