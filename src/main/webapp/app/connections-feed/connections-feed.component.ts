@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 declare function greet(
   finalUser: any[] | undefined,
@@ -15,19 +16,21 @@ declare function greet(
   styleUrls: ['./connections-feed.component.scss'],
 })
 export class ConnectionsFeedComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   currentUserId: number | undefined;
   isMentorSelected = false;
   allUsers: any[] = [];
   mentorUsers: any[] = [];
+  isChecked: boolean | undefined;
 
   async ngOnInit(): Promise<void> {
     try {
       const account = await this.http.get<any>('/api/account').toPromise();
       this.currentUserId = account.id;
       const currentFriendships = await this.getFriendshipsForCurrentUser();
-
+      this.isChecked = this.route.snapshot.paramMap.get('isChecked') == 'true';
+      this.isMentorSelected = this.isChecked;
       this.allUsers = (await this.http.get<any[]>('/api/final-users').toPromise()) || [];
 
       this.mentorUsers = this.allUsers.filter(user => user.modules && user.modules.includes('isMentor'));

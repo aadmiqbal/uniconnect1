@@ -49,7 +49,7 @@
             <li>Get Support - Become a Mentee</li>
           </div>
           <hr class="hr-modern" />
-          <a routerLink="mentor-module-selection" class="button">Connect to a mentor</a>
+          <a [routerLink]="['/connections-feed', { isChecked: true }]" class="button">Connect to a mentor</a>
         </div>
       </section>
 

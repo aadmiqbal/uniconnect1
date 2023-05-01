@@ -10,7 +10,16 @@ import { FinalUserService } from 'app/entities/final-user/service/final-user.ser
 import { IFinalUser } from 'app/entities/final-user/final-user.model';
 import { HttpResponse } from '@angular/common/http';
 
-const initialAccount: Account = {} as Account;
+const initialAccount: Account = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  langKey: '',
+  activated: false,
+  authorities: [],
+  imageUrl: '',
+  login: '',
+};
 
 @Component({
   selector: 'jhi-settings',
@@ -55,11 +64,31 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => {
       if (account) {
-        this.settingsForm.patchValue(account);
-
         this.userLogin = account.login;
+
+        // Set the initial values for all form controls
+        this.settingsForm.patchValue({
+          firstName: account.firstName,
+          lastName: account.lastName,
+          email: account.email,
+          langKey: account.langKey,
+          activated: account.activated,
+          authorities: account.authorities,
+          imageUrl: account.imageUrl,
+          login: account.login,
+          pfp: null,
+          bio: null,
+        });
+
+        // Retrieve the final user information and set the values for the pfp and bio fields
         this.finalUserService.findByUserLogin(account.login).subscribe((res: HttpResponse<IFinalUser>) => {
           this.finalUser = res.body;
+          if (this.finalUser) {
+            this.settingsForm.patchValue({
+              pfp: this.finalUser.pfp,
+              bio: this.finalUser.bio,
+            });
+          }
         });
       }
     });
@@ -81,6 +110,8 @@ export class SettingsComponent implements OnInit {
       if (this.finalUser) {
         this.finalUser.pfp = this.settingsForm.get(['pfp'])?.value;
         this.finalUser.bio = this.settingsForm.get(['bio'])?.value;
+        this.finalUser.firstName = this.settingsForm.get(['firstName'])?.value;
+        this.finalUser.lastName = this.settingsForm.get(['lastName'])?.value;
         this.finalUserService.update(this.finalUser).subscribe();
       }
     });
