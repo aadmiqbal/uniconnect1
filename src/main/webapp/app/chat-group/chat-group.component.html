@@ -16,17 +16,38 @@
     <div id="anchor" style="width: 100%; display: flex; flex-flow: column; height: 100%">
       <div
         id="chats"
-        style="
-          height: auto;
-          overflow-y: scroll;
-          scrollbar-width: thin;
-          flex: 1 1 auto;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        "
+        style="height: auto; overflow-y: scroll; scrollbar-width: thin; flex: 1 1 auto; display: flex; flex-direction: column"
       >
-        <p id="loadMsg">Wow! Looks pretty empty here, try starting a chat!</p>
+        <ng-container *ngIf="messages.length === 0">
+          <p>Wow! Looks pretty empty here, try starting a chat!</p>
+        </ng-container>
+        <ng-container *ngFor="let message of messages">
+          <div
+            class="messageHolder"
+            [ngStyle]="{
+              'align-items': message.senderId === currentUserId ? 'flex-end' : 'flex-start'
+            }"
+          >
+            <div class="content">
+              <img
+                src="../../content/images/pp.png"
+                class="userPfp"
+                [ngStyle]="{
+                  float: message.senderId === currentUserId ? 'right' : 'left'
+                }"
+              />
+              <p
+                class="message"
+                [ngStyle]="{
+                  'background-color': message.senderId === currentUserId ? 'orange' : 'grey',
+                  float: message.senderId === currentUserId ? 'right' : 'left'
+                }"
+              >
+                {{ message.content }}
+              </p>
+            </div>
+          </div>
+        </ng-container>
       </div>
       <div id="chatSend" style="background-color: white; flex: 0 1 auto">
         <input #messageField type="text" placeholder="Type your message here..." />

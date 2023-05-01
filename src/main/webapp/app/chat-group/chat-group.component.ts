@@ -27,18 +27,20 @@ export class ChatGroupComponent implements OnInit {
       this.route.params.subscribe(params => {
         this.receiverId = +params['recipientId'];
         this.loadMessages();
+        setInterval(() => {
+          this.loadMessages();
+        }, 5000); // Fetch messages every 5 seconds
       });
     } catch (error) {
       console.error('Error fetching account or final users:', error);
     }
-    (window as any).userId = this.currentUserId;
   }
 
   loadMessages(): void {
     this.messageService.getMessagesBetween(this.currentUserId, this.receiverId).subscribe((response: HttpResponse<IMessage[]>) => {
-      writeMessages(response.body || []);
+      this.messages = response.body || [];
       setTimeout(() => {
-        var container = document.getElementById('messages');
+        var container = document.getElementById('chats');
         container!.scrollTop = container!.scrollHeight;
       }, 1);
     });

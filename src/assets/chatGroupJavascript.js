@@ -1,4 +1,4 @@
-function purgeInitialText() {
+/*function purgeInitialText() {
   let loadText = document.getElementById('loadMsg');
   if (loadText !== null) {
     loadText.remove();
@@ -20,7 +20,7 @@ function writeMessages(messages) {
     document.getElementById('chats').appendChild(createMessage(messages[i].content, messages[i].senderId));
   }
 }
-
+*/
 function createMessage(messageText, sender) {
   let messageHolder = document.createElement('div');
   messageHolder.style.paddingTop = '10px';
