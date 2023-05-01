@@ -6,6 +6,13 @@
 Bootstrap tweaks
 ===============================================================*/
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #eef3f9;
+  }
+}
+
 body,
 h1,
 h2,
