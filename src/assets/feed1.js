@@ -1,5 +1,5 @@
 let imagesrc = '../../content/images/pp.png';
-async function displayFriends(currentfriendships, finalusers, currentUserId) {
+async function displayFriends(currentfriendships, finalusers, currentUserId, deleteFriendship) {
   console.log('currentFriendships in displayFriends:', currentfriendships); // Add this line to check the data
   console.log('function is actually called');
   // Extract unique user IDs from currentFriendships
@@ -39,6 +39,19 @@ async function displayFriends(currentfriendships, finalusers, currentUserId) {
     // Create the card container
     let card = document.createElement('div');
     card.classList.add('card', 'mb-3');
+
+    let deleteButton = document.createElement('button');
+    deleteButton.innerHTML = 'X';
+    deleteButton.classList.add('delete-button');
+    const iamgoingtodelete = function (currentUserId, otherUserId, deleteFriendship) {
+      deleteFriendship(currentUserId, otherUserId);
+    };
+    deleteButton.addEventListener('click', () => {
+      iamgoingtodelete(currentUserId, friend.id, deleteFriendship);
+    });
+
+    // Add the delete button to the card
+    card.appendChild(deleteButton);
 
     // Create the card body
     let cardBody = document.createElement('div');
@@ -89,14 +102,14 @@ async function displayFriends(currentfriendships, finalusers, currentUserId) {
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function greet(finalUsers, currentUser, postFriendship, currentFriendships, isMentorSelected) {
+async function greet(finalUsers, currentUser, postFriendship, currentFriendships, isMentorSelected, deleteFriendship) {
   document.getElementById('cardsection').innerHTML = '';
 
   await sleep(500);
   console.log('pre function');
 
   console.log('post function');
-  await displayFriends(currentFriendships, finalUsers, currentUser);
+  await displayFriends(currentFriendships, finalUsers, currentUser, deleteFriendship);
   let i = 1;
 
   // loop through filtered users if "Mentors Only" checkbox is checked; otherwise loop through all users
@@ -184,7 +197,7 @@ async function greet(finalUsers, currentUser, postFriendship, currentFriendships
     }
 
     document.getElementById('cardsection').appendChild(myPanel);
-    await displayFriends(currentFriendships, finalUsers, currentUser);
+    await displayFriends(currentFriendships, finalUsers, currentUser, deleteFriendship);
 
     i++;
   }

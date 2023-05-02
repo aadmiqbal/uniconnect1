@@ -209,4 +209,11 @@ public class FriendshipResource {
         List<FriendshipDTO> friendships = friendshipService.findAllByFinalUser(finalUserId);
         return ResponseEntity.ok().body(friendships);
     }
+
+    @GetMapping("/friendships/final-user-either/{finalUserId}")
+    public ResponseEntity<List<FriendshipDTO>> getAllFriendshipsByFinalUserInEitherColumn(@PathVariable Long finalUserId) {
+        log.debug("REST request to get Friendships by FinalUser in either column: {}", finalUserId);
+        List<FriendshipDTO> friendships = friendshipService.findAllByFinalUserInEitherColumn(finalUserId);
+        return ResponseEntity.ok().body(friendships);
+    }
 }

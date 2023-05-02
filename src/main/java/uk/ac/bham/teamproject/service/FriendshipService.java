@@ -58,4 +58,5 @@ public interface FriendshipService {
     void delete(Long id);
 
     List<FriendshipDTO> findAllByFinalUser(Long finalUserId);
+    List<FriendshipDTO> findAllByFinalUserInEitherColumn(Long finalUserId);
 }

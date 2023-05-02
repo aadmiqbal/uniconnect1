@@ -13,4 +13,5 @@ import uk.ac.bham.teamproject.domain.Friendship;
 @Repository
 public interface FriendshipRepository extends JpaRepository<Friendship, Long>, JpaSpecificationExecutor<Friendship> {
     List<Friendship> findAllByFinalUser(FinalUser finalUser);
+    List<Friendship> findAllByFinalUser_IdOrFinalUser2_Id(Long finalUserId, Long finalUser2Id);
 }

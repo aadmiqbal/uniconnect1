@@ -103,4 +103,13 @@ public class FriendshipServiceImpl implements FriendshipService {
             .orElseThrow(() -> new IllegalStateException("FinalUser not found with id: " + finalUserId));
         return friendshipRepository.findAllByFinalUser(finalUser).stream().map(friendshipMapper::toDto).collect(Collectors.toList());
     }
+
+    @Override
+    public List<FriendshipDTO> findAllByFinalUserInEitherColumn(Long finalUserId) {
+        return friendshipRepository
+            .findAllByFinalUser_IdOrFinalUser2_Id(finalUserId, finalUserId)
+            .stream()
+            .map(friendshipMapper::toDto)
+            .collect(Collectors.toList());
+    }
 }
