@@ -1,22 +1,24 @@
-<head>
-  <title>Connect to a mentor - UNIconnect</title>
-</head>
+<html lang="en">
+  <head>
+    <title>Connect to a mentor - UNIconnect</title>
+  </head>
 
-<body class="bg-light">
-  <h1>Choose a module:</h1>
+  <body class="bg-light">
+    <h1>Choose a module:</h1>
 
-  <p>
-    <i>Choose a module from the list below you'd like to find a mentor for</i>
-  </p>
+    <p>
+      <i>Choose a module from the list below you'd like to find a mentor for</i>
+    </p>
 
-  <select [(ngModel)]="moduleSelect">
-    <option value="0">Select a module...</option>
-    <option *ngFor="let choice of moduleData" [value]="choice.id">
-      {{ choice.moduleName }}
-    </option>
-  </select>
+    <select [(ngModel)]="moduleSelect">
+      <option value="0">Select a module...</option>
+      <option *ngFor="let choice of moduleData" [value]="choice.id">
+        {{ choice.moduleName }}
+      </option>
+    </select>
 
-  <button type="button" (click)="feed()" style="margin: 5% 0 0 0; background-color: darkorange; border-color: darkorange; color: black">
-    Find a mentor
-  </button>
-</body>
+    <button type="button" (click)="feed()" style="margin: 5% 0 0 0; background-color: darkorange; border-color: darkorange; color: black">
+      Find a mentor
+    </button>
+  </body>
+</html>

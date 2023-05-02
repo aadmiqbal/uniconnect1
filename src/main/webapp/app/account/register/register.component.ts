@@ -126,6 +126,22 @@ export class RegisterComponent implements AfterViewInit {
       this.error = true;
     }
   }
+  handleMentorCheckboxChange(event: any) {
+    const checkboxValues = this.xyz.split(',').filter(x => x);
+
+    if (event.target.checked) {
+      if (!checkboxValues.includes('isMentor')) {
+        checkboxValues.push('isMentor');
+      }
+    } else {
+      const index = checkboxValues.indexOf('isMentor');
+      if (index > -1) {
+        checkboxValues.splice(index, 1);
+      }
+    }
+
+    this.xyz = checkboxValues.join(',');
+  }
 
   handleCheckboxChange(event: any, option: string) {
     const checkboxValues = this.xyz.split(',').filter(x => x);

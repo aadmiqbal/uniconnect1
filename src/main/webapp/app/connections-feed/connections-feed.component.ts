@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 declare function greet(
   finalUser: any[] | undefined,
   currentUserId: number | undefined,
   postFriendshipCallback: (currentUserId: number, otherUserId: number) => Promise<void>,
-  currentFriendships: any[] | undefined
+  currentFriendships: any[] | undefined,
+  isMentorSelected: boolean
 ): void;
 
 @Component({
@@ -14,21 +16,40 @@ declare function greet(
   styleUrls: ['./connections-feed.component.scss'],
 })
 export class ConnectionsFeedComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+
   currentUserId: number | undefined;
+  isMentorSelected = false;
+  allUsers: any[] = [];
+  mentorUsers: any[] = [];
+  isChecked: boolean | undefined;
 
   async ngOnInit(): Promise<void> {
     try {
       const account = await this.http.get<any>('/api/account').toPromise();
       this.currentUserId = account.id;
-      const finalUser = await this.http.get<any[]>('/api/final-users').toPromise();
       const currentFriendships = await this.getFriendshipsForCurrentUser();
-      greet(finalUser, this.currentUserId, this.postFriendship.bind(this), currentFriendships);
+      this.isChecked = this.route.snapshot.paramMap.get('isChecked') == 'true';
+      this.isMentorSelected = this.isChecked;
+      this.allUsers = (await this.http.get<any[]>('/api/final-users').toPromise()) || [];
+
+      this.mentorUsers = this.allUsers.filter(user => user.modules && user.modules.includes('isMentor'));
+
+      greet(this.getMentorUsersToDisplay(), this.currentUserId, this.postFriendship.bind(this), currentFriendships, this.isMentorSelected);
     } catch (error) {
       console.error('Error fetching account or final users:', error);
     }
   }
 
+  async toggleMentorFilter(): Promise<void> {
+    this.isMentorSelected = !this.isMentorSelected;
+    const currentFriendships = await this.getFriendshipsForCurrentUser();
+    greet(this.allUsers, this.currentUserId, this.postFriendship.bind(this), currentFriendships, this.isMentorSelected);
+  }
+
+  private getMentorUsersToDisplay(): any[] {
+    return this.isMentorSelected ? this.mentorUsers : this.allUsers;
+  }
   public async postFriendship(currentUserId: number, otherUserId: number): Promise<void> {
     console.log('current user: ', currentUserId);
     console.log('other user: ', otherUserId);
@@ -48,6 +69,7 @@ export class ConnectionsFeedComponent implements OnInit {
       alert('Failed to add connection');
     }
   }
+
   async getFriendshipsForCurrentUser(): Promise<any[]> {
     try {
       const friendships = await this.http.get<any[]>('/api/friendships').toPromise();
@@ -59,6 +81,16 @@ export class ConnectionsFeedComponent implements OnInit {
       return currentUserFriendships || [];
     } catch (error) {
       console.error('Error fetching friendships:', error);
+      return [];
+    }
+  }
+
+  async getFilteredUsers(): Promise<any[]> {
+    try {
+      const finalUsers = await this.http.get<any[]>('/api/final-users').toPromise();
+      return finalUsers?.filter(user => user.modules && user.modules.includes('isMentor')) || []; // Add null check and default empty array
+    } catch (error) {
+      console.error('Error fetching filtered users:', error);
       return [];
     }
   }

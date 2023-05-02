@@ -1,27 +1,113 @@
 let imagesrc = '../../content/images/pp.png';
+async function displayFriends(currentfriendships, finalusers, currentUserId) {
+  console.log('currentFriendships in displayFriends:', currentfriendships); // Add this line to check the data
+  console.log('function is actually called');
+  // Extract unique user IDs from currentFriendships
+  const userIds = Array.from(new Set(currentfriendships.flatMap(friendship => [friendship.finalUser.id, friendship.finalUser2.id])));
 
+  // Fetch users data
+  const usersMap = await fetchUsersByIds(userIds, finalusers);
+
+  // Update finalUser and finalUser2 objects with the fetched data
+  currentfriendships = currentfriendships.map(friendship => ({
+    ...friendship,
+    finalUser: usersMap[friendship.finalUser.id],
+    finalUser2: usersMap[friendship.finalUser2.id],
+  }));
+
+  // Get the section element where we want to display the cards
+  let section = document.getElementById('list');
+
+  // Clear any previous content
+  section.innerHTML = '';
+
+  // Loop through the friends array and create a card for each friend
+  for (const friendship of currentfriendships) {
+    let friend;
+
+    if (friendship.finalUser && friendship.finalUser.id === currentUserId) {
+      friend = friendship.finalUser2;
+    } else if (friendship.finalUser2 && friendship.finalUser2.id === currentUserId) {
+      friend = friendship.finalUser;
+    }
+
+    if (!friend) {
+      console.log('not friend');
+      continue;
+    }
+    console.log('found a friend');
+    // Create the card container
+    let card = document.createElement('div');
+    card.classList.add('card', 'mb-3');
+
+    // Create the card body
+    let cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    // Create the card title with the friend's name
+    let cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-title');
+    cardTitle.textContent = friend.name;
+
+    // Create the profile picture and add it to the card
+    let profilePic = document.createElement('img');
+    profilePic.classList.add('rounded', 'float-end');
+    profilePic.style.width = '75px';
+    profilePic.style.height = '75px';
+    profilePic.style.objectFit = 'cover';
+    if (friend.pfp) {
+      profilePic.src = friend.pfp;
+    } else {
+      profilePic.src = imagesrc;
+    }
+    cardBody.appendChild(profilePic);
+
+    let chatButtonHolder = document.createElement('a');
+    chatButtonHolder.setAttribute('href', `/chat-group/${friend.id}`);
+    chatButtonHolder.setAttribute('ng-reflect-router-link', `/chat-group/${friend.id}`);
+    chatButtonHolder.setAttribute('ng-reflect-router-link-active', 'active');
+    chatButtonHolder.setAttribute('routerlink', `/chat-group/${friend.id}`);
+    chatButtonHolder.setAttribute('routerlinkactive', 'active');
+
+    let chatButton = document.createElement('button');
+    chatButton.textContent = 'Chat';
+    chatButton.style.border = 'None';
+    chatButton.style.width = '100%';
+
+    chatButtonHolder.appendChild(chatButton);
+
+    // Add the title and text to the card body
+    cardBody.appendChild(cardTitle);
+    // Add the card body to the card container
+    card.appendChild(cardBody);
+    card.appendChild(chatButtonHolder);
+
+    // Add the card to the section
+    section.appendChild(card);
+  }
+}
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function greet(finalUsers, currentUser, postFriendship, currentFriendships) {
-  await sleep(2000);
+async function greet(finalUsers, currentUser, postFriendship, currentFriendships, isMentorSelected) {
+  document.getElementById('cardsection').innerHTML = '';
+
+  await sleep(500);
   console.log('pre function');
 
-  await displayFriends(currentFriendships, finalUsers, currentUser);
-
   console.log('post function');
-
+  await displayFriends(currentFriendships, finalUsers, currentUser);
   let i = 1;
 
-  // loop through appUsers
-  for (const user of finalUsers) {
+  // loop through filtered users if "Mentors Only" checkbox is checked; otherwise loop through all users
+  const usersToDisplay = finalUsers.filter(user => !isMentorSelected || user.modules.includes('isMentor'));
+  for (const user of usersToDisplay) {
     const isFriend = currentFriendships.some(friendship => {
       return (
         (friendship.finalUser.id === currentUser && friendship.finalUser2.id === user.id) ||
         (friendship.finalUser.id === user.id && friendship.finalUser2.id === currentUser)
       );
     });
-
     if (user.id == currentUser || isFriend) {
       //go to the next user without doing anything
       continue;
@@ -85,7 +171,6 @@ async function greet(finalUsers, currentUser, postFriendship, currentFriendships
     cardBody.appendChild(btnClose);
     cardBody.appendChild(yearstudy);
     cardBody.appendChild(cardText);
-    //cardBody.appendChild(small);
 
     colMd8.appendChild(cardBody);
 
@@ -94,13 +179,16 @@ async function greet(finalUsers, currentUser, postFriendship, currentFriendships
 
     myPanel.appendChild(row);
     myPanel.addEventListener('click', showUser.bind(cardBody, user, currentUser, postFriendship));
+    if (isMentorSelected && user.modules && !user.modules.includes('isMentor')) {
+      continue;
+    }
 
     document.getElementById('cardsection').appendChild(myPanel);
+    await displayFriends(currentFriendships, finalUsers, currentUser);
 
     i++;
   }
 }
-
 function showUser(user, currentUser, postFriendship) {
   if (document.getElementById('popupHolder') == null) {
     let popupHolder = document.createElement('div');
@@ -310,122 +398,6 @@ async function fetchUsersByIds(userIds, finalusers) {
 
   return usersMap;
 }
-
-// Function to display friends list
-async function displayFriends(currentfriendships, finalusers, currentUserId) {
-  console.log('currentFriendships in displayFriends:', currentfriendships); // Add this line to check the data
-  console.log('function is actually called');
-  // Extract unique user IDs from currentFriendships
-  const userIds = Array.from(new Set(currentfriendships.flatMap(friendship => [friendship.finalUser.id, friendship.finalUser2.id])));
-
-  // Fetch users data
-  const usersMap = await fetchUsersByIds(userIds, finalusers);
-
-  // Update finalUser and finalUser2 objects with the fetched data
-  currentfriendships = currentfriendships.map(friendship => ({
-    ...friendship,
-    finalUser: usersMap[friendship.finalUser.id],
-    finalUser2: usersMap[friendship.finalUser2.id],
-  }));
-
-  // Get the section element where we want to display the cards
-  let section = document.getElementById('list');
-
-  // Clear any previous content
-  section.innerHTML = '';
-
-  // Loop through the friends array and create a card for each friend
-  for (const friendship of currentfriendships) {
-    let friend;
-
-    if (friendship.finalUser && friendship.finalUser.id === currentUserId) {
-      friend = friendship.finalUser2;
-    } else if (friendship.finalUser2 && friendship.finalUser2.id === currentUserId) {
-      friend = friendship.finalUser;
-    }
-
-    if (!friend) {
-      console.log('not friend');
-      continue;
-    }
-    console.log('found a friend');
-    // Create the card container
-    let card = document.createElement('div');
-    card.classList.add('card', 'mb-3');
-
-    // Create the card body
-    let cardBody = document.createElement('div');
-    cardBody.classList.add('card-body');
-
-    // Create the card title with the friend's name
-    let cardTitle = document.createElement('h5');
-    cardTitle.classList.add('card-title');
-    cardTitle.textContent = friend.name;
-
-    // Create the profile picture and add it to the card
-    let profilePic = document.createElement('img');
-    profilePic.classList.add('rounded', 'float-end');
-    profilePic.style.width = '75px';
-    profilePic.style.height = '75px';
-    profilePic.style.objectFit = 'cover';
-    if (friend.pfp) {
-      profilePic.src = friend.pfp;
-    } else {
-      profilePic.src = imagesrc;
-    }
-    cardBody.appendChild(profilePic);
-
-    let chatButtonHolder = document.createElement('a');
-    chatButtonHolder.setAttribute('href', `/chat-group/${friend.id}`);
-    chatButtonHolder.setAttribute('ng-reflect-router-link', `/chat-group/${friend.id}`);
-    chatButtonHolder.setAttribute('ng-reflect-router-link-active', 'active');
-    chatButtonHolder.setAttribute('routerlink', `/chat-group/${friend.id}`);
-    chatButtonHolder.setAttribute('routerlinkactive', 'active');
-
-    let chatButton = document.createElement('button');
-    chatButton.textContent = 'Chat';
-    chatButton.style.border = 'None';
-    chatButton.style.width = '100%';
-
-    chatButtonHolder.appendChild(chatButton);
-
-    // Add the title and text to the card body
-    cardBody.appendChild(cardTitle);
-    // Add the card body to the card container
-    card.appendChild(cardBody);
-    card.appendChild(chatButtonHolder);
-
-    // Add the card to the section
-    section.appendChild(card);
-  }
-}
-
-/* function createModulesArray(modules) {
-    // Split the string into an array using the comma as the separator
-    const modulesArray = modules.split(',');
-
-    // Trim any whitespace from each module
-    const trimmedModulesArray = modulesArray.map(module => module.trim());
-
-    return trimmedModulesArray;
-  }
-
-  const modulesString = user.modules;
-  const modulesArray = createModulesArray(modulesString);
-  console.log(modulesArray); // Output: ["module1", "module2", "module3"]
-
-
-  let modulesField = document.createElement('ul');
-  modulesField.id = 'modulesField';
-  modulesField.style.padding = '10px';
-  modulesField.textContent = 'Modules:';
-
-  for (let i = 0; i < modulesArray.length; i++) {
-    const module = modulesArray[i];
-
-  }
-
-  */
 function splitModulesToFit(modulesString, containerWidth, font) {
   const modules = modulesString.split(',');
   const separator = ', ';
@@ -449,6 +421,7 @@ function splitModulesToFit(modulesString, containerWidth, font) {
 
   return lines;
 }
+
 function measureTextWidth(text, font) {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
