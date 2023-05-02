@@ -36,7 +36,7 @@ body {
 
 .sidebar a.active {
   background-color: #ff781f;
-  color: white;
+  color: black;
 }
 
 .sidebar a:hover:not(.active) {
@@ -250,7 +250,7 @@ body {
 }
 
 .btn {
-  background-color: darkgrey;
+  background-color: #ff781f;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
