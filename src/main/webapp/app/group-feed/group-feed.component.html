@@ -17,12 +17,11 @@
       <div class="sidebar" id="sidebar" style="display: flex; flex-direction: column; overflow-y: hidden; height: calc(100vh - 185px)">
         <div id="container">
           <a routerLink="../connections-feed" routerLinkActive="active">Individuals</a>
-          <a href="#" class="active">Groups</a>
+          <a routerLink="/group-feed" class="active" routerLinkActive="active">Groups</a>
           <a routerLink="../mentor-module-selection" routerLinkActive="active">Mentors</a>
           <a routerLink="../mentee-module-selection" routerLinkActive="active">Mentees</a>
 
           <div style="">
-            <button onclick="openPopup()" class="buttonstyle" style="width: 100%; text-align: center">Create a Group</button>
             <div id="popupContainer" class="popup-container" style="display: none">
               <!-- Popup box -->
               <div class="popup-box">
@@ -65,9 +64,6 @@
                 </form>
               </div>
             </div>
-            <a routerLink="/groupsettings" routerLinkActive="active" style="display: block; width: 100%; padding: 0; margin: 0">
-              <button type="button" class="buttonstyle" style="width: 100%; text-align: center">Go to Group Settings</button>
-            </a>
           </div>
         </div>
       </div>
@@ -77,6 +73,7 @@
           <div class="col col-xl-2 col-lg-2 col-md-2 col-sm-2"></div>
           <div class="col-xl-8 col-lg-8 col-md-10 text-center align-item-center col-sm-12 col-xs-12" id="fdcont" style="overflow-y: hidden">
             <h2>Group Feed</h2>
+            <button onclick="openPopup()" class="btn" style="width: 100%; text-align: center">Create a Group</button>
             <div class="container" id="flux">
               <div class="container" id="cardsection" style="height: 400px; overflow-y: scroll"></div>
               <!--to be removed-->
@@ -84,7 +81,9 @@
           </div>
           <div class="col d-none d-sm-none d-lg-none d-md-none d-xl-block">
             <div class="button-container">
-              <button class="btn" id="friends-button" onclick="displayFriends()">Groups</button>
+              <br />
+              <br />
+              <button class="btn" id="friends-button" style="margin-bottom: 6.5px" onclick="displayFriends()">Groups</button>
               <br />
               <div id="list" style="overflow-y: scroll; height: 280px"></div>
             </div>

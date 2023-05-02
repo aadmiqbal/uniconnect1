@@ -15,9 +15,9 @@
   <body id="popupAdder" style="height: calc(100vh - 185px)">
     <div class="align-content-lg-start">
       <div class="sidebar" id="sidebar">
-        <a routerLink="/group-feed" routerLinkActive="active">Individuals</a>
-        <a routerLink="/mentee-module-selection" routerLinkActive="active">Groups</a>
-        <a>Display Mentors?</a>
+        <a class="active" routerLink="/connections-feed" routerLinkActive="active">Individuals</a>
+        <a routerLink="/group-feed" routerLinkActive="active">Groups</a>
+        <a class="sidebar-item-disabled">Display Mentors?</a>
         <label class="toggle-switch">
           <input type="checkbox" id="mentor-checkbox" (change)="toggleMentorFilter()" [checked]="isMentorSelected" />
           <span class="toggle-slider"></span>
