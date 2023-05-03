@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  font-size: 20px;
+  font-size: 12px;
 }
 body {
   height: 100vh;
@@ -16,6 +16,7 @@ body {
 }
 .container {
   max-width: 700px;
+  max-height: 890px;
   width: 100%;
   background-color: #fff;
   padding: 25px 30px;
@@ -58,10 +59,10 @@ form .input-box span.details {
   margin-bottom: 5px;
 }
 .user-details .input-box input {
-  height: 45px;
+  height: 30px;
   width: 100%;
   outline: none;
-  font-size: 16px;
+  font-size: 12px;
   border-radius: 5px;
   padding-left: 15px;
   border: 1px solid #ccc;
@@ -212,7 +213,7 @@ form .category label input[type='checkbox']:checked + .checkmark {
 }
 
 form .category label .module {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   margin-left: 10px;
 }
@@ -240,9 +241,10 @@ form .category label .module {
   height: 1.25rem;
   margin-right: 0.5rem;
   margin-left: 1px;
+  font-size: 12px;
 }
 .form-check-label {
-  font-size: 1.2rem;
+  font-size: 12px;
   line-height: 1.5;
 }
 .input-group {
