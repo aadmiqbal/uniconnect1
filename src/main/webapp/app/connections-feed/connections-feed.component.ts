@@ -47,6 +47,17 @@ export class ConnectionsFeedComponent implements OnInit {
     } catch (error) {
       console.error('Error fetching account or final users:', error);
     }
+    window.onscroll = this.setScroll;
+  }
+
+  setScroll(): void {
+    if (window.scrollY > 0) document.getElementById('topScroller')!.style.display = 'flex';
+    else document.getElementById('topScroller')!.style.display = 'none';
+  }
+
+  toTheTop() {
+    window.scrollTo({ top: 0 });
+    document.getElementById('topScroller')!.style.display = 'none';
   }
 
   async toggleMentorFilter(): Promise<void> {

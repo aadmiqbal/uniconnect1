@@ -117,6 +117,17 @@ export class RegisterComponent implements AfterViewInit {
         )
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
+    window.onscroll = this.setScroll;
+  }
+
+  setScroll(): void {
+    if (window.scrollY > 0) document.getElementById('topScroller')!.style.display = 'flex';
+    else document.getElementById('topScroller')!.style.display = 'none';
+  }
+
+  toTheTop() {
+    window.scrollTo({ top: 0 });
+    document.getElementById('topScroller')!.style.display = 'none';
   }
 
   private processError(response: HttpErrorResponse): void {

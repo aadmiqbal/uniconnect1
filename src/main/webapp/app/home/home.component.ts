@@ -23,6 +23,17 @@ export class HomeComponent implements OnInit, OnDestroy {
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => (this.account = account));
+    window.onscroll = this.setScroll;
+  }
+
+  setScroll(): void {
+    if (window.scrollY > 0) document.getElementById('topScroller')!.style.display = 'flex';
+    else document.getElementById('topScroller')!.style.display = 'none';
+  }
+
+  toTheTop() {
+    window.scrollTo({ top: 0 });
+    document.getElementById('topScroller')!.style.display = 'none';
   }
 
   login(): void {

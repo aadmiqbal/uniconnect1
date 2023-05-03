@@ -37,6 +37,17 @@ export class GroupsettingsComponent implements OnInit {
     if (this.groupId) {
       this.loadFinalgroupData(this.groupId);
     }
+    window.onscroll = this.setScroll;
+  }
+
+  setScroll(): void {
+    if (window.scrollY > 0) document.getElementById('topScroller')!.style.display = 'flex';
+    else document.getElementById('topScroller')!.style.display = 'none';
+  }
+
+  toTheTop() {
+    window.scrollTo({ top: 0 });
+    document.getElementById('topScroller')!.style.display = 'none';
   }
   initializeForm(): void {
     this.groupForm = this.formBuilder.group({
